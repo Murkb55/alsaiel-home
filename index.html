@@ -1,0 +1,899 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ALSAIEL — مركز العمليات</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@300;400;500;600;700&family=Share+Tech+Mono&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --void:#020408;
+  --deep:#060d14;
+  --panel:#0a141f;
+  --glass:#0f1e2d;
+  --line:rgba(0,200,255,0.08);
+  --line2:rgba(0,200,255,0.15);
+  --line3:rgba(0,200,255,0.3);
+  --cyan:#00c8ff;
+  --cyan2:#00e5ff;
+  --cyan-dim:rgba(0,200,255,0.6);
+  --gold:#c9a84c;
+  --gold2:#e8c86a;
+  --green:#00ff9d;
+  --red:#ff3860;
+  --text:#c8e8f5;
+  --text2:#6a9ab5;
+  --text3:#2a4a5e;
+  --mono:'Share Tech Mono',monospace;
+  --display:'Rajdhani',sans-serif;
+  --arabic:'IBM Plex Sans Arabic',sans-serif;
+}
+
+html{scroll-behavior:smooth}
+
+body{
+  font-family:var(--arabic);
+  background:var(--void);
+  color:var(--text);
+  min-height:100vh;
+  overflow-x:hidden;
+  cursor:crosshair;
+}
+
+/* ═══ SCANLINES ═══ */
+body::before{
+  content:'';
+  position:fixed;inset:0;
+  background:repeating-linear-gradient(
+    0deg,
+    transparent,transparent 2px,
+    rgba(0,0,0,0.15) 2px,rgba(0,0,0,0.15) 4px
+  );
+  pointer-events:none;z-index:1000;
+  animation:scanMove 8s linear infinite;
+}
+@keyframes scanMove{from{background-position:0 0}to{background-position:0 100px}}
+
+/* ═══ GRID BG ═══ */
+body::after{
+  content:'';
+  position:fixed;inset:0;
+  background-image:
+    linear-gradient(var(--line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:60px 60px;
+  pointer-events:none;z-index:0;
+}
+
+/* ═══ CANVAS ═══ */
+#particle-canvas{
+  position:fixed;inset:0;
+  pointer-events:none;z-index:0;
+  opacity:0.4;
+}
+
+/* ═══ WRAP ═══ */
+.wrap{
+  position:relative;z-index:2;
+  max-width:1200px;
+  margin:0 auto;
+  padding:0 24px 80px;
+}
+
+/* ═══ HEADER ═══ */
+header{
+  padding:32px 0 0;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  border-bottom:1px solid var(--line2);
+  padding-bottom:20px;
+  margin-bottom:60px;
+}
+
+.logo-area{display:flex;align-items:center;gap:16px}
+
+.logo-mark{
+  width:48px;height:48px;
+  border:1px solid var(--cyan);
+  display:flex;align-items:center;justify-content:center;
+  position:relative;
+  clip-path:polygon(10% 0%,90% 0%,100% 10%,100% 90%,90% 100%,10% 100%,0% 90%,0% 10%);
+  background:rgba(0,200,255,0.05);
+}
+.logo-mark::before{
+  content:'';position:absolute;inset:3px;
+  border:1px solid rgba(0,200,255,0.3);
+  clip-path:polygon(10% 0%,90% 0%,100% 10%,100% 90%,90% 100%,10% 100%,0% 90%,0% 10%);
+}
+.logo-mark span{
+  font-family:var(--display);
+  font-size:20px;font-weight:700;
+  color:var(--cyan);
+  letter-spacing:2px;
+}
+
+.logo-text{}
+.logo-name{
+  font-family:var(--display);
+  font-size:22px;font-weight:700;
+  letter-spacing:4px;
+  color:#fff;
+  text-transform:uppercase;
+}
+.logo-sub{
+  font-family:var(--mono);
+  font-size:10px;
+  color:var(--cyan-dim);
+  letter-spacing:3px;
+  margin-top:2px;
+}
+
+.header-status{
+  display:flex;align-items:center;gap:20px;
+}
+
+.status-item{
+  display:flex;align-items:center;gap:6px;
+  font-family:var(--mono);
+  font-size:10px;
+  color:var(--text2);
+  letter-spacing:1px;
+}
+.status-dot{
+  width:6px;height:6px;border-radius:50%;
+}
+.status-dot.live{background:var(--green);animation:livePulse 1.5s infinite;}
+.status-dot.warn{background:var(--gold);}
+@keyframes livePulse{
+  0%,100%{box-shadow:0 0 0 0 rgba(0,255,157,0.4)}
+  50%{box-shadow:0 0 0 6px rgba(0,255,157,0)}
+}
+
+.sys-time{
+  font-family:var(--mono);
+  font-size:12px;
+  color:var(--cyan);
+  letter-spacing:2px;
+  border:1px solid var(--line2);
+  padding:6px 12px;
+  background:rgba(0,200,255,0.03);
+}
+
+/* ═══ HERO ═══ */
+.hero{
+  text-align:center;
+  padding:20px 0 70px;
+  position:relative;
+}
+
+.hero-eyebrow{
+  font-family:var(--mono);
+  font-size:11px;
+  color:var(--cyan-dim);
+  letter-spacing:6px;
+  text-transform:uppercase;
+  margin-bottom:24px;
+  animation:fadeUp 0.8s ease both;
+}
+
+.hero-name{
+  font-family:var(--display);
+  font-size:clamp(52px,8vw,100px);
+  font-weight:700;
+  letter-spacing:8px;
+  text-transform:uppercase;
+  color:#fff;
+  line-height:1;
+  margin-bottom:6px;
+  animation:fadeUp 0.8s 0.1s ease both;
+  position:relative;
+  display:inline-block;
+}
+
+.hero-name::before{
+  content:attr(data-text);
+  position:absolute;inset:0;
+  color:var(--cyan);
+  clip-path:polygon(0 0,100% 0,100% 35%,0 35%);
+  opacity:0.3;
+  transform:translateX(-2px);
+}
+
+.hero-title{
+  font-family:var(--arabic);
+  font-size:clamp(14px,2vw,18px);
+  font-weight:300;
+  color:var(--text2);
+  letter-spacing:2px;
+  margin-bottom:40px;
+  animation:fadeUp 0.8s 0.2s ease both;
+}
+
+.hero-line{
+  width:200px;height:1px;
+  background:linear-gradient(90deg,transparent,var(--cyan),transparent);
+  margin:0 auto 40px;
+  animation:fadeUp 0.8s 0.3s ease both;
+}
+
+.hero-stats{
+  display:flex;justify-content:center;gap:48px;flex-wrap:wrap;
+  animation:fadeUp 0.8s 0.4s ease both;
+}
+
+.hstat{text-align:center}
+.hstat-val{
+  font-family:var(--display);
+  font-size:32px;font-weight:700;
+  color:var(--cyan);
+  line-height:1;
+}
+.hstat-lbl{
+  font-family:var(--mono);
+  font-size:9px;color:var(--text3);
+  letter-spacing:3px;
+  margin-top:4px;
+  text-transform:uppercase;
+}
+
+/* GLITCH */
+@keyframes glitch{
+  0%,90%,100%{transform:none;opacity:1}
+  92%{transform:translateX(-3px);opacity:0.8}
+  94%{transform:translateX(3px);opacity:0.8}
+  96%{transform:translateX(-1px)}
+  98%{transform:translateX(1px)}
+}
+.hero-name{animation:fadeUp 0.8s 0.1s ease both, glitch 6s 2s infinite;}
+
+@keyframes fadeUp{
+  from{opacity:0;transform:translateY(20px)}
+  to{opacity:1;transform:translateY(0)}
+}
+
+/* ═══ SECTION HEADER ═══ */
+.sec-hd{
+  display:flex;align-items:center;gap:16px;
+  margin-bottom:32px;
+}
+.sec-hd-line{
+  flex:1;height:1px;
+  background:linear-gradient(90deg,var(--line2),transparent);
+}
+.sec-hd-label{
+  font-family:var(--mono);
+  font-size:10px;color:var(--cyan-dim);
+  letter-spacing:4px;text-transform:uppercase;
+  border:1px solid var(--line2);
+  padding:5px 14px;
+  background:rgba(0,200,255,0.03);
+  white-space:nowrap;
+}
+.sec-hd-num{
+  font-family:var(--mono);
+  font-size:10px;color:var(--text3);
+  letter-spacing:2px;
+}
+
+/* ═══ PROJECTS GRID ═══ */
+.projects{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:2px;
+  margin-bottom:80px;
+  border:1px solid var(--line2);
+  background:var(--line2);
+}
+
+.project-card{
+  background:var(--panel);
+  padding:28px;
+  position:relative;
+  overflow:hidden;
+  cursor:pointer;
+  transition:background 0.3s;
+  text-decoration:none;
+  display:block;
+  color:inherit;
+}
+
+.project-card::before{
+  content:'';
+  position:absolute;top:0;right:0;
+  width:0;height:2px;
+  background:var(--cyan);
+  transition:width 0.4s ease;
+}
+
+.project-card::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(0,200,255,0.03) 0%,transparent 60%);
+  opacity:0;
+  transition:opacity 0.3s;
+}
+
+.project-card:hover{background:var(--glass);}
+.project-card:hover::before{width:100%;}
+.project-card:hover::after{opacity:1;}
+
+/* Corner decorations */
+.project-card .corner{
+  position:absolute;
+  width:12px;height:12px;
+}
+.project-card .corner.tl{top:8px;right:8px;border-top:1px solid var(--line2);border-right:1px solid var(--line2);}
+.project-card .corner.br{bottom:8px;left:8px;border-bottom:1px solid var(--line2);border-left:1px solid var(--line2);}
+.project-card:hover .corner{border-color:var(--cyan-dim);}
+
+.card-header{
+  display:flex;justify-content:space-between;align-items:flex-start;
+  margin-bottom:20px;
+}
+
+.card-id{
+  font-family:var(--mono);
+  font-size:9px;color:var(--text3);
+  letter-spacing:3px;
+}
+
+.card-status{
+  font-family:var(--mono);
+  font-size:9px;letter-spacing:2px;
+  padding:3px 8px;
+  border-radius:2px;
+  display:flex;align-items:center;gap:5px;
+}
+.card-status.active{
+  background:rgba(0,255,157,0.08);
+  color:var(--green);
+  border:1px solid rgba(0,255,157,0.2);
+}
+.card-status.building{
+  background:rgba(201,168,76,0.08);
+  color:var(--gold);
+  border:1px solid rgba(201,168,76,0.2);
+}
+.card-status.planned{
+  background:rgba(106,154,181,0.08);
+  color:var(--text2);
+  border:1px solid rgba(106,154,181,0.15);
+}
+.card-status-dot{
+  width:5px;height:5px;border-radius:50%;background:currentColor;
+}
+.card-status.active .card-status-dot{animation:livePulse 1.5s infinite;}
+
+.card-icon{
+  font-size:36px;margin-bottom:14px;
+  filter:drop-shadow(0 0 10px rgba(0,200,255,0.3));
+}
+
+.card-name{
+  font-family:var(--display);
+  font-size:22px;font-weight:700;
+  letter-spacing:2px;
+  color:#fff;
+  margin-bottom:6px;
+  text-transform:uppercase;
+}
+
+.card-ar{
+  font-size:13px;color:var(--text2);
+  margin-bottom:14px;
+  font-weight:300;
+}
+
+.card-desc{
+  font-size:12px;color:var(--text3);
+  line-height:1.7;
+  margin-bottom:20px;
+}
+
+.card-tags{
+  display:flex;flex-wrap:wrap;gap:6px;
+  margin-bottom:20px;
+}
+.tag{
+  font-family:var(--mono);
+  font-size:9px;letter-spacing:2px;
+  padding:3px 8px;
+  border:1px solid var(--line2);
+  color:var(--text3);
+  text-transform:uppercase;
+}
+.project-card:hover .tag{border-color:var(--line3);color:var(--text2);}
+
+.card-footer{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:16px;
+  border-top:1px solid var(--line);
+}
+
+.card-metric{
+  font-family:var(--mono);font-size:9px;
+  color:var(--text3);letter-spacing:2px;
+}
+.card-metric strong{color:var(--cyan);font-size:11px;}
+
+.card-arrow{
+  font-family:var(--mono);
+  font-size:14px;color:var(--line3);
+  transition:all 0.3s;
+}
+.project-card:hover .card-arrow{color:var(--cyan);transform:translateX(-6px);}
+
+/* FEATURED card */
+.project-card.featured{
+  border:1px solid rgba(0,200,255,0.15);
+  background:linear-gradient(135deg,rgba(0,200,255,0.04) 0%,var(--panel) 100%);
+}
+.project-card.featured .card-name{color:var(--cyan);}
+
+/* ═══ COMING SOON CARDS ═══ */
+.project-card.soon{
+  opacity:0.5;
+  cursor:default;
+}
+.project-card.soon:hover{background:var(--panel);}
+.project-card.soon::before{display:none;}
+
+/* ═══ TERMINAL SECTION ═══ */
+.terminal-wrap{
+  border:1px solid var(--line2);
+  background:var(--panel);
+  margin-bottom:60px;
+  position:relative;
+  overflow:hidden;
+}
+
+.terminal-bar{
+  background:var(--glass);
+  padding:10px 16px;
+  display:flex;align-items:center;gap:10px;
+  border-bottom:1px solid var(--line2);
+}
+.t-dot{width:10px;height:10px;border-radius:50%;}
+.t-dot.r{background:#ff3860;opacity:0.7;}
+.t-dot.y{background:#ffdd57;opacity:0.7;}
+.t-dot.g{background:#23d160;opacity:0.7;}
+.terminal-title{
+  font-family:var(--mono);
+  font-size:10px;color:var(--text3);
+  letter-spacing:3px;
+  margin-right:auto;
+}
+
+.terminal-body{
+  padding:20px 24px;
+  font-family:var(--mono);
+  font-size:12px;
+  line-height:2;
+  color:var(--text2);
+}
+
+.t-line{display:flex;gap:12px;align-items:flex-start;}
+.t-prompt{color:var(--cyan-dim);flex-shrink:0;}
+.t-cmd{color:var(--text);}
+.t-out{color:var(--text2);padding-right:24px;}
+.t-green{color:var(--green);}
+.t-gold{color:var(--gold);}
+.t-cyan{color:var(--cyan);}
+.t-dim{color:var(--text3);}
+
+.cursor{
+  display:inline-block;
+  width:8px;height:14px;
+  background:var(--cyan);
+  animation:blink 1s infinite;
+  vertical-align:middle;
+  margin-right:2px;
+}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
+/* ═══ METRICS ROW ═══ */
+.metrics{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:2px;
+  background:var(--line2);
+  border:1px solid var(--line2);
+  margin-bottom:60px;
+}
+
+.metric-cell{
+  background:var(--panel);
+  padding:20px;
+  text-align:center;
+  position:relative;
+}
+.metric-cell::after{
+  content:'';
+  position:absolute;bottom:0;left:50%;transform:translateX(-50%);
+  width:0;height:2px;background:var(--cyan);
+  transition:width 0.4s;
+}
+.metric-cell:hover::after{width:80%;}
+
+.metric-val{
+  font-family:var(--display);
+  font-size:36px;font-weight:700;
+  color:var(--cyan);
+  line-height:1;
+}
+.metric-lbl{
+  font-family:var(--mono);
+  font-size:9px;color:var(--text3);
+  letter-spacing:3px;margin-top:6px;
+  text-transform:uppercase;
+}
+
+/* ═══ FOOTER ═══ */
+footer{
+  border-top:1px solid var(--line2);
+  padding-top:28px;
+  display:flex;justify-content:space-between;align-items:center;
+  flex-wrap:wrap;gap:16px;
+}
+.footer-id{
+  font-family:var(--mono);
+  font-size:10px;color:var(--text3);
+  letter-spacing:3px;
+}
+.footer-copy{
+  font-family:var(--mono);
+  font-size:10px;color:var(--text3);
+  letter-spacing:2px;
+}
+
+/* ═══ SCAN LINE SWEEP ═══ */
+.sweep{
+  position:fixed;
+  top:-100%;left:0;right:0;
+  height:200px;
+  background:linear-gradient(transparent,rgba(0,200,255,0.03),transparent);
+  animation:sweep 4s linear infinite;
+  pointer-events:none;z-index:999;
+}
+@keyframes sweep{from{top:-200px}to{top:100vh}}
+
+/* ═══ RESPONSIVE ═══ */
+@media(max-width:600px){
+  .hero-stats{gap:28px;}
+  .header-status{display:none;}
+  .projects{grid-template-columns:1fr;}
+  footer{flex-direction:column;align-items:flex-start;}
+}
+</style>
+</head>
+<body>
+
+<div class="sweep"></div>
+<canvas id="particle-canvas"></canvas>
+
+<div class="wrap">
+
+  <!-- HEADER -->
+  <header>
+    <div class="logo-area">
+      <div class="logo-mark"><span>AS</span></div>
+      <div class="logo-text">
+        <div class="logo-name">ALSAIEL</div>
+        <div class="logo-sub">OPERATIONS CENTER // v2.0</div>
+      </div>
+    </div>
+    <div class="header-status">
+      <div class="status-item">
+        <div class="status-dot live"></div>
+        SYSTEMS ONLINE
+      </div>
+      <div class="status-item">
+        <div class="status-dot warn"></div>
+        PROJECTS: 1 LIVE
+      </div>
+      <div class="sys-time" id="clock">00:00:00</div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-eyebrow">// PERSONAL COMMAND CENTER — INITIALIZED</div>
+    <div class="hero-name" data-text="ALSAIEL">ALSAIEL</div>
+    <div class="hero-title">بانٍ للأنظمة · مهندس الأتمتة · مصمم المستقبل</div>
+    <div class="hero-line"></div>
+    <div class="hero-stats">
+      <div class="hstat">
+        <div class="hstat-val" id="proj-count">01</div>
+        <div class="hstat-lbl">LIVE SYSTEMS</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-val">∞</div>
+        <div class="hstat-lbl">BUILDING</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-val" id="uptime-val">99%</div>
+        <div class="hstat-lbl">UPTIME</div>
+      </div>
+      <div class="hstat">
+        <div class="hstat-val">AI</div>
+        <div class="hstat-lbl">POWERED</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PROJECTS -->
+  <div class="sec-hd">
+    <div class="sec-hd-label">// DEPLOYED SYSTEMS</div>
+    <div class="sec-hd-line"></div>
+    <div class="sec-hd-num">01 — ∞</div>
+  </div>
+
+  <div class="projects">
+
+    <!-- SADAD — LIVE -->
+    <a href="https://alsaiel.com/sadad" class="project-card featured" target="_blank">
+      <div class="corner tl"></div>
+      <div class="corner br"></div>
+      <div class="card-header">
+        <div class="card-id">SYS-001 // PRODUCTIVITY</div>
+        <div class="card-status active">
+          <div class="card-status-dot"></div>
+          LIVE
+        </div>
+      </div>
+      <div class="card-icon">🎯</div>
+      <div class="card-name">SADAD</div>
+      <div class="card-ar">نظام الإنجاز الذكي</div>
+      <div class="card-desc">نظام إنتاجية شخصي مدعوم بالذكاء الاصطناعي — مزامنة سحابية فورية، تتبع الأهداف اليومية، وتحليل ذكي للأداء عبر Claude AI.</div>
+      <div class="card-tags">
+        <span class="tag">SUPABASE</span>
+        <span class="tag">CLAUDE AI</span>
+        <span class="tag">VERCEL</span>
+        <span class="tag">REALTIME</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-metric"><strong id="sadad-tasks">—</strong> مهمة محفوظة</div>
+        <div class="card-arrow">← ENTER</div>
+      </div>
+    </a>
+
+    <!-- PROJECT 2 — COMING -->
+    <div class="project-card soon">
+      <div class="corner tl"></div>
+      <div class="corner br"></div>
+      <div class="card-header">
+        <div class="card-id">SYS-002 // AUTOMATION</div>
+        <div class="card-status planned">
+          <div class="card-status-dot"></div>
+          PLANNED
+        </div>
+      </div>
+      <div class="card-icon">⚡</div>
+      <div class="card-name">NEXUS</div>
+      <div class="card-ar">محور الأتمتة</div>
+      <div class="card-desc">نظام أتمتة متكامل يربط جميع الأدوات والعمليات — n8n، Webhooks، وتدفقات العمل الذكية.</div>
+      <div class="card-tags">
+        <span class="tag">N8N</span>
+        <span class="tag">AUTOMATION</span>
+        <span class="tag">WORKFLOWS</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-metric"><strong>Q3</strong> 2025</div>
+        <div class="card-arrow">— LOCKED</div>
+      </div>
+    </div>
+
+    <!-- PROJECT 3 — COMING -->
+    <div class="project-card soon">
+      <div class="corner tl"></div>
+      <div class="corner br"></div>
+      <div class="card-header">
+        <div class="card-id">SYS-003 // INTELLIGENCE</div>
+        <div class="card-status planned">
+          <div class="card-status-dot"></div>
+          PLANNED
+        </div>
+      </div>
+      <div class="card-icon">🧠</div>
+      <div class="card-name">CORTEX</div>
+      <div class="card-ar">الذاكرة الذكية</div>
+      <div class="card-desc">قاعدة معرفة شخصية مدعومة بالذكاء الاصطناعي — تلتقط الأفكار، تربط المعلومات، وتستحضرها عند الحاجة.</div>
+      <div class="card-tags">
+        <span class="tag">RAG</span>
+        <span class="tag">EMBEDDINGS</span>
+        <span class="tag">CLAUDE</span>
+      </div>
+      <div class="card-footer">
+        <div class="card-metric"><strong>Q4</strong> 2025</div>
+        <div class="card-arrow">— LOCKED</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- TERMINAL -->
+  <div class="sec-hd">
+    <div class="sec-hd-label">// SYSTEM LOG</div>
+    <div class="sec-hd-line"></div>
+  </div>
+
+  <div class="terminal-wrap">
+    <div class="terminal-bar">
+      <div class="t-dot r"></div>
+      <div class="t-dot y"></div>
+      <div class="t-dot g"></div>
+      <div class="terminal-title">ALSAIEL@OPS-CENTER:~$</div>
+    </div>
+    <div class="terminal-body">
+      <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">system.status --all</span></div>
+      <div class="t-line"><span class="t-out t-green">✓ SADAD v2.0 ......... OPERATIONAL</span></div>
+      <div class="t-line"><span class="t-out t-green">✓ SUPABASE ........... CONNECTED</span></div>
+      <div class="t-line"><span class="t-out t-green">✓ CLAUDE AI .......... ACTIVE</span></div>
+      <div class="t-line"><span class="t-out t-green">✓ VERCEL EDGE ........ DEPLOYED</span></div>
+      <div class="t-line"><span class="t-out t-gold">⚡ NEXUS .............. BUILDING</span></div>
+      <div class="t-line"><span class="t-out t-dim">○ CORTEX ............. PLANNED</span></div>
+      <br>
+      <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd">whoami --verbose</span></div>
+      <div class="t-line"><span class="t-out t-cyan">ALSAIEL // بانٍ للأنظمة الذكية</span></div>
+      <div class="t-line"><span class="t-out t-dim">المهمة: بناء أنظمة تقنية تحل مشكلات حقيقية</span></div>
+      <div class="t-line"><span class="t-out t-dim">الأدوات: AI · Automation · Full-Stack · Data</span></div>
+      <br>
+      <div class="t-line"><span class="t-prompt">$</span><span class="t-cmd t-cyan"><span class="cursor"></span></span></div>
+    </div>
+  </div>
+
+  <!-- METRICS -->
+  <div class="sec-hd">
+    <div class="sec-hd-label">// PERFORMANCE METRICS</div>
+    <div class="sec-hd-line"></div>
+  </div>
+
+  <div class="metrics">
+    <div class="metric-cell">
+      <div class="metric-val" id="m-days">1</div>
+      <div class="metric-lbl">DAYS ONLINE</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-val">3</div>
+      <div class="metric-lbl">TECH STACKS</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-val">∞</div>
+      <div class="metric-lbl">AMBITION</div>
+    </div>
+    <div class="metric-cell">
+      <div class="metric-val">0</div>
+      <div class="metric-lbl">LIMITS</div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-id">ALSAIEL.COM // OPS-CENTER // BUILD 2025.06</div>
+    <div class="footer-copy">ALL SYSTEMS NOMINAL — KEEP BUILDING</div>
+  </footer>
+
+</div>
+
+<script>
+// ═══ CLOCK ═══
+function updateClock() {
+  const now = new Date();
+  const h = String(now.getHours()).padStart(2,'0');
+  const m = String(now.getMinutes()).padStart(2,'0');
+  const s = String(now.getSeconds()).padStart(2,'0');
+  document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+}
+setInterval(updateClock, 1000);
+updateClock();
+
+// ═══ DAYS COUNTER ═══
+function calcDays() {
+  const launch = new Date('2025-06-05');
+  const now = new Date();
+  const days = Math.floor((now - launch) / (1000*60*60*24));
+  document.getElementById('m-days').textContent = Math.max(1, days);
+}
+calcDays();
+
+// ═══ PARTICLE SYSTEM ═══
+const canvas = document.getElementById('particle-canvas');
+const ctx = canvas.getContext('2d');
+
+function resize() {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+}
+resize();
+window.addEventListener('resize', resize);
+
+const particles = [];
+const PARTICLE_COUNT = 60;
+
+for (let i = 0; i < PARTICLE_COUNT; i++) {
+  particles.push({
+    x: Math.random() * window.innerWidth,
+    y: Math.random() * window.innerHeight,
+    vx: (Math.random() - 0.5) * 0.3,
+    vy: (Math.random() - 0.5) * 0.3,
+    size: Math.random() * 1.5 + 0.5,
+    opacity: Math.random() * 0.5 + 0.1,
+    color: Math.random() > 0.7 ? '#c9a84c' : '#00c8ff'
+  });
+}
+
+function drawParticles() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => {
+    p.x += p.vx; p.y += p.vy;
+    if (p.x < 0) p.x = canvas.width;
+    if (p.x > canvas.width) p.x = 0;
+    if (p.y < 0) p.y = canvas.height;
+    if (p.y > canvas.height) p.y = 0;
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.size, 0, Math.PI*2);
+    ctx.fillStyle = p.color;
+    ctx.globalAlpha = p.opacity;
+    ctx.fill();
+  });
+  // connections
+  ctx.globalAlpha = 1;
+  for (let i = 0; i < particles.length; i++) {
+    for (let j = i+1; j < particles.length; j++) {
+      const dx = particles[i].x - particles[j].x;
+      const dy = particles[i].y - particles[j].y;
+      const dist = Math.sqrt(dx*dx + dy*dy);
+      if (dist < 120) {
+        ctx.beginPath();
+        ctx.moveTo(particles[i].x, particles[i].y);
+        ctx.lineTo(particles[j].x, particles[j].y);
+        ctx.strokeStyle = '#00c8ff';
+        ctx.globalAlpha = (1 - dist/120) * 0.08;
+        ctx.lineWidth = 0.5;
+        ctx.stroke();
+      }
+    }
+  }
+  requestAnimationFrame(drawParticles);
+}
+drawParticles();
+
+// ═══ NUMBER COUNTER ANIMATION ═══
+function animateCount(el, target, duration=1500) {
+  const start = performance.now();
+  const update = (time) => {
+    const progress = Math.min((time-start)/duration, 1);
+    const val = Math.floor(progress * target);
+    el.textContent = String(val).padStart(2,'0');
+    if (progress < 1) requestAnimationFrame(update);
+  };
+  requestAnimationFrame(update);
+}
+
+// ═══ INTERSECTION OBSERVER ═══
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.animation = 'fadeUp 0.6s ease both';
+    }
+  });
+}, {threshold: 0.1});
+
+document.querySelectorAll('.project-card, .metric-cell').forEach(el => observer.observe(el));
+
+// ═══ STAGGER CARDS ═══
+document.querySelectorAll('.project-card').forEach((card, i) => {
+  card.style.animationDelay = `${i * 0.1}s`;
+  card.style.animation = `fadeUp 0.6s ${i*0.12}s ease both`;
+  card.style.opacity = '0';
+  setTimeout(() => {
+    card.style.opacity = '';
+    card.style.animation = `fadeUp 0.6s ease both`;
+  }, i * 120);
+});
+</script>
+</body>
+</html>
