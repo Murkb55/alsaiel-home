@@ -1,0 +1,1088 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>الرخصة المهنية للمدربين · alsaiel.com</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0d1117;
+  --bg2: #161b22;
+  --bg3: #21262d;
+  --border: rgba(255,255,255,0.08);
+  --border2: rgba(255,255,255,0.14);
+  --text: #e6edf3;
+  --text2: #8b949e;
+  --text3: #484f58;
+  --purple: #a78bfa;
+  --purple-bg: rgba(167,139,250,0.1);
+  --purple-border: rgba(167,139,250,0.25);
+  --teal: #34d399;
+  --teal-bg: rgba(52,211,153,0.1);
+  --teal-border: rgba(52,211,153,0.25);
+  --amber: #fbbf24;
+  --amber-bg: rgba(251,191,36,0.1);
+  --amber-border: rgba(251,191,36,0.25);
+  --coral: #fb7185;
+  --coral-bg: rgba(251,113,133,0.1);
+  --coral-border: rgba(251,113,133,0.25);
+  --blue: #60a5fa;
+  --blue-bg: rgba(96,165,250,0.1);
+  --blue-border: rgba(96,165,250,0.25);
+  --green-done: #22c55e;
+  --radius: 10px;
+  --radius-sm: 6px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Cairo', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* HERO */
+.hero {
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  padding: 2.5rem 1.5rem 2rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.hero::before {
+  content: '';
+  position: absolute;
+  top: -60px; left: 50%;
+  transform: translateX(-50%);
+  width: 400px; height: 200px;
+  background: radial-gradient(ellipse, rgba(167,139,250,0.12) 0%, transparent 70%);
+  pointer-events: none;
+}
+.hero-icon {
+  width: 64px; height: 64px;
+  background: var(--purple-bg);
+  border: 1px solid var(--purple-border);
+  border-radius: 16px;
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 1.25rem;
+  font-size: 28px;
+}
+.hero h1 {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: .4rem;
+}
+.hero p {
+  color: var(--text2);
+  font-size: .9rem;
+  margin-bottom: 1.5rem;
+}
+.hero-stats {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+.hero-stat {
+  background: var(--bg3);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: .5rem 1.25rem;
+  font-size: .85rem;
+  color: var(--text2);
+}
+.hero-stat span {
+  font-weight: 600;
+  color: var(--text);
+}
+
+/* PROGRESS BAR */
+.progress-wrap {
+  padding: 1rem 1.5rem;
+  background: var(--bg2);
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.progress-label {
+  display: flex;
+  justify-content: space-between;
+  font-size: .8rem;
+  color: var(--text2);
+  margin-bottom: .4rem;
+}
+.progress-label span { color: var(--teal); font-weight: 600; }
+.progress-bar {
+  height: 5px;
+  background: var(--bg3);
+  border-radius: 3px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--purple), var(--teal));
+  border-radius: 3px;
+  transition: width .4s ease;
+  width: 0%;
+}
+
+/* TABS */
+.tabs {
+  display: flex;
+  gap: 6px;
+  padding: 1rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  overflow-x: auto;
+  background: var(--bg);
+  scrollbar-width: none;
+}
+.tabs::-webkit-scrollbar { display: none; }
+.tab {
+  padding: 6px 16px;
+  border: 1px solid var(--border2);
+  border-radius: 20px;
+  font-size: .82rem;
+  font-family: 'Cairo', sans-serif;
+  cursor: pointer;
+  color: var(--text2);
+  background: transparent;
+  white-space: nowrap;
+  transition: all .15s;
+}
+.tab:hover { border-color: var(--purple-border); color: var(--purple); }
+.tab.on {
+  background: var(--purple-bg);
+  border-color: var(--purple-border);
+  color: var(--purple);
+  font-weight: 600;
+}
+
+/* MAIN */
+.main { max-width: 720px; margin: 0 auto; padding: 1.5rem; }
+.panel { display: none; }
+.panel.on { display: block; }
+
+/* SECTION LABEL */
+.section-label {
+  font-size: .72rem;
+  font-weight: 600;
+  color: var(--text3);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin: 1.5rem 0 .75rem;
+}
+.section-label:first-child { margin-top: 0; }
+
+/* DOMAIN CARD */
+.domain-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  margin-bottom: 1rem;
+  overflow: hidden;
+}
+.domain-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: .875rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+.domain-badge {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.d1 { background: var(--purple-bg); color: var(--purple); border: 1px solid var(--purple-border); }
+.d2 { background: var(--teal-bg); color: var(--teal); border: 1px solid var(--teal-border); }
+.d3 { background: var(--amber-bg); color: var(--amber); border: 1px solid var(--amber-border); }
+.d4 { background: var(--coral-bg); color: var(--coral); border: 1px solid var(--coral-border); }
+.domain-info h3 { font-size: .95rem; font-weight: 600; color: var(--text); }
+.domain-info p { font-size: .78rem; color: var(--text2); margin-top: 1px; }
+.domain-count { margin-right: auto; font-size: .78rem; color: var(--text3); background: var(--bg3); padding: 2px 10px; border-radius: 12px; }
+
+/* TOPIC ROW */
+.topic-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: .7rem 1.25rem;
+  cursor: pointer;
+  transition: background .1s;
+  border-bottom: 1px solid var(--border);
+  user-select: none;
+}
+.topic-row:last-child { border-bottom: none; }
+.topic-row:hover { background: var(--bg3); }
+.topic-row.done { opacity: .6; }
+.check {
+  width: 20px; height: 20px;
+  border: 1.5px solid var(--border2);
+  border-radius: 5px;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  transition: all .15s;
+  font-size: 11px;
+  color: transparent;
+}
+.topic-row.done .check {
+  background: var(--green-done);
+  border-color: var(--green-done);
+  color: #fff;
+}
+.topic-name {
+  flex: 1;
+  font-size: .88rem;
+  color: var(--text);
+}
+.topic-row.done .topic-name {
+  text-decoration: line-through;
+  color: var(--text2);
+}
+.type-badge {
+  font-size: .7rem;
+  padding: 2px 8px;
+  border-radius: 10px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.type-m { background: var(--purple-bg); color: var(--purple); }
+.type-t { background: var(--teal-bg); color: var(--teal); }
+.type-s { background: var(--amber-bg); color: var(--amber); }
+.pri-badge {
+  font-size: .68rem;
+  padding: 2px 7px;
+  border-radius: 8px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+.pri-h { background: rgba(251,113,133,.1); color: var(--coral); }
+.pri-m { background: var(--amber-bg); color: var(--amber); }
+.pri-l { background: var(--teal-bg); color: var(--teal); }
+
+/* LEGEND */
+.legend {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-top: 1rem;
+  padding: .875rem 1.25rem;
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: .78rem;
+  color: var(--text2);
+}
+
+/* MAP GRID */
+.map-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+.map-card {
+  border-radius: var(--radius);
+  padding: .875rem 1rem;
+  border: 1px solid;
+}
+.mc-purple { background: var(--purple-bg); border-color: var(--purple-border); }
+.mc-teal { background: var(--teal-bg); border-color: var(--teal-border); }
+.mc-amber { background: var(--amber-bg); border-color: var(--amber-border); }
+.mc-coral { background: var(--coral-bg); border-color: var(--coral-border); }
+.mc-blue { background: var(--blue-bg); border-color: var(--blue-border); }
+.mc-gray { background: var(--bg3); border-color: var(--border2); }
+.map-card-title {
+  font-size: .82rem;
+  font-weight: 700;
+  margin-bottom: .4rem;
+}
+.mc-purple .map-card-title { color: var(--purple); }
+.mc-teal .map-card-title { color: var(--teal); }
+.mc-amber .map-card-title { color: var(--amber); }
+.mc-coral .map-card-title { color: var(--coral); }
+.mc-blue .map-card-title { color: var(--blue); }
+.mc-gray .map-card-title { color: var(--text2); }
+.map-card-items {
+  font-size: .78rem;
+  color: var(--text2);
+  line-height: 1.8;
+}
+
+/* FLOW */
+.flow {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem;
+  margin-bottom: 1rem;
+}
+.flow-step {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: .5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+.flow-step:last-child { border-bottom: none; }
+.flow-tag {
+  font-size: .72rem;
+  padding: 3px 10px;
+  border-radius: 10px;
+  font-weight: 600;
+  white-space: nowrap;
+}
+.ft-basis { background: var(--purple-bg); color: var(--purple); }
+.ft-apply { background: var(--teal-bg); color: var(--teal); }
+.ft-sit { background: var(--amber-bg); color: var(--amber); }
+.flow-arrow { color: var(--text3); font-size: .8rem; }
+.flow-text { font-size: .85rem; color: var(--text); }
+
+/* REPEATED Q */
+.q-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: .65rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+  font-size: .85rem;
+  color: var(--text);
+}
+.q-row:last-child { border-bottom: none; }
+
+/* MINI MAP */
+.mini-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-bottom: 1rem;
+}
+.mini-card {
+  border-radius: var(--radius);
+  padding: .75rem .875rem;
+  border: 1px solid;
+}
+.mini-card.full { grid-column: span 2; }
+.mini-card .mini-title {
+  font-size: .8rem;
+  font-weight: 700;
+  margin-bottom: .3rem;
+}
+.mini-card .mini-items {
+  font-size: .75rem;
+  line-height: 1.75;
+}
+
+/* STATS ROW */
+.stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+  margin-bottom: 1.25rem;
+}
+.stat-card {
+  background: var(--bg2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: .875rem;
+  text-align: center;
+}
+.stat-num {
+  font-size: 1.75rem;
+  font-weight: 700;
+  color: var(--text);
+}
+.stat-lbl {
+  font-size: .75rem;
+  color: var(--text2);
+  margin-top: 2px;
+}
+
+/* ONBOARDING OVERLAY */
+.onboard-overlay {
+  position: fixed; inset: 0; z-index: 999;
+  background: rgba(13,17,23,0.97);
+  display: flex; align-items: center; justify-content: center;
+  padding: 1.5rem;
+}
+.onboard-box {
+  background: var(--bg2);
+  border: 1px solid var(--border2);
+  border-radius: 16px;
+  padding: 2rem 1.75rem;
+  max-width: 400px; width: 100%;
+  text-align: center;
+}
+.onboard-box h2 { font-size: 1.2rem; font-weight: 700; color: var(--text); margin-bottom: .4rem; }
+.onboard-box p { font-size: .85rem; color: var(--text2); margin-bottom: 1.5rem; line-height: 1.7; }
+.onboard-field { margin-bottom: 1rem; text-align: right; }
+.onboard-field label { display: block; font-size: .8rem; color: var(--text2); margin-bottom: 5px; }
+.onboard-field input {
+  width: 100%; padding: 10px 14px;
+  background: var(--bg3); border: 1px solid var(--border2);
+  border-radius: var(--radius-sm); color: var(--text);
+  font-family: 'Cairo', sans-serif; font-size: .95rem;
+  outline: none; transition: border .15s;
+}
+.onboard-field input:focus { border-color: rgba(167,139,250,0.6); }
+.onboard-btn {
+  width: 100%; padding: 11px;
+  background: var(--purple-bg); border: 1px solid var(--purple-border);
+  border-radius: var(--radius-sm); color: var(--purple);
+  font-family: 'Cairo', sans-serif; font-size: 1rem; font-weight: 600;
+  cursor: pointer; transition: all .15s; margin-top: .25rem;
+}
+.onboard-btn:hover { background: rgba(167,139,250,0.2); }
+.onboard-note { font-size: .75rem; color: var(--text3); margin-top: 1rem; }
+/* DAYS BAR */
+.days-bar {
+  background: var(--bg3);
+  border-bottom: 1px solid var(--border);
+  padding: .6rem 1.5rem;
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: .5rem;
+}
+.days-bar-left { font-size: .82rem; color: var(--text2); }
+.days-bar-left span { color: var(--text); font-weight: 600; }
+.days-badge {
+  font-size: .78rem; padding: 3px 12px;
+  border-radius: 12px; font-weight: 600;
+}
+.days-badge.green { background: var(--teal-bg); color: var(--teal); }
+.days-badge.amber { background: var(--amber-bg); color: var(--amber); }
+.days-badge.red { background: rgba(251,113,133,.1); color: var(--coral); }
+.edit-days-btn {
+  font-size: .75rem; color: var(--text3); background: none; border: none;
+  cursor: pointer; font-family: 'Cairo', sans-serif; padding: 0;
+  text-decoration: underline; text-underline-offset: 2px;
+}
+.edit-days-btn:hover { color: var(--text2); }
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 2rem 1rem;
+  font-size: .78rem;
+  color: var(--text3);
+  border-top: 1px solid var(--border);
+  margin-top: 2rem;
+}
+.footer a { color: var(--purple); text-decoration: none; }
+
+@media (max-width: 480px) {
+  .hero h1 { font-size: 1.3rem; }
+  .mini-grid { grid-template-columns: 1fr; }
+  .mini-card.full { grid-column: span 1; }
+  .stats-row { grid-template-columns: 1fr 1fr; }
+  .stats-row .stat-card:last-child { grid-column: span 2; }
+  .topic-name { font-size: .82rem; }
+}
+</style>
+</head>
+<body>
+
+<div class="onboard-overlay" id="onboard">
+  <div class="onboard-box">
+    <svg viewBox="0 0 80 80" width="72" height="72" xmlns="http://www.w3.org/2000/svg" style="display:block;margin:0 auto 1.25rem">
+      <circle cx="40" cy="40" r="38" fill="rgba(167,139,250,0.08)" stroke="rgba(167,139,250,0.3)" stroke-width="1.5"/>
+      <circle cx="40" cy="30" r="12" fill="rgba(167,139,250,0.15)" stroke="rgba(167,139,250,0.4)" stroke-width="1.5"/>
+      <circle cx="36" cy="28" r="2" fill="rgba(167,139,250,0.8)"/>
+      <circle cx="44" cy="28" r="2" fill="rgba(167,139,250,0.8)"/>
+      <path d="M36 35 Q40 38 44 35" stroke="rgba(52,211,153,0.8)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <rect x="28" y="44" width="24" height="20" rx="6" fill="rgba(167,139,250,0.15)" stroke="rgba(167,139,250,0.35)" stroke-width="1.2"/>
+      <rect x="20" y="50" width="10" height="3" rx="1.5" fill="rgba(167,139,250,0.3)"/>
+      <rect x="50" y="50" width="10" height="3" rx="1.5" fill="rgba(167,139,250,0.3)"/>
+    </svg>
+    <h2>أهلًا بك في خطة الرخصة المهنية</h2>
+    <p>أدخل اسمك وعدد الأيام المتبقية حتى اختبارك<br>وستتكيف الصفحة تلقائيًا مع جدولك</p>
+    <div class="onboard-field">
+      <label>اسمك</label>
+      <input type="text" id="ob-name" placeholder="مثال: محمد" maxlength="30"/>
+    </div>
+    <div class="onboard-field">
+      <label>عدد الأيام المتبقية للاختبار</label>
+      <input type="number" id="ob-days" placeholder="مثال: 18" min="1" max="365"/>
+    </div>
+    <button class="onboard-btn" onclick="startApp()">ابدأ خطتي ←</button>
+    <p class="onboard-note">يُحفظ تقدمك تلقائيًا على هذا الجهاز</p>
+  </div>
+</div>
+
+<div class="hero">
+  <div class="hero-illustration">
+    <svg viewBox="0 0 680 220" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:680px;display:block;margin:0 auto 1.5rem">
+
+      <!-- background glow -->
+      <ellipse cx="340" cy="110" rx="260" ry="90" fill="rgba(167,139,250,0.06)"/>
+
+      <!-- whiteboard / screen -->
+      <rect x="60" y="30" width="220" height="140" rx="8" fill="#1e2433" stroke="rgba(167,139,250,0.35)" stroke-width="1.5"/>
+      <rect x="60" y="30" width="220" height="18" rx="8" fill="rgba(167,139,250,0.18)"/>
+      <circle cx="75" cy="39" r="4" fill="rgba(167,139,250,0.5)"/>
+      <circle cx="89" cy="39" r="4" fill="rgba(52,211,153,0.5)"/>
+      <circle cx="103" cy="39" r="4" fill="rgba(251,113,133,0.4)"/>
+
+      <!-- chart on screen -->
+      <rect x="80" y="60" width="18" height="50" rx="3" fill="rgba(167,139,250,0.5)"/>
+      <rect x="106" y="75" width="18" height="35" rx="3" fill="rgba(52,211,153,0.5)"/>
+      <rect x="132" y="50" width="18" height="60" rx="3" fill="rgba(167,139,250,0.35)"/>
+      <rect x="158" y="68" width="18" height="42" rx="3" fill="rgba(52,211,153,0.35)"/>
+      <rect x="184" y="42" width="18" height="68" rx="3" fill="rgba(251,191,36,0.5)"/>
+      <rect x="210" y="58" width="18" height="52" rx="3" fill="rgba(167,139,250,0.5)"/>
+      <!-- axis -->
+      <line x1="78" y1="114" x2="234" y2="114" stroke="rgba(255,255,255,0.12)" stroke-width="1"/>
+
+      <!-- screen text lines -->
+      <rect x="80" y="122" width="60" height="4" rx="2" fill="rgba(255,255,255,0.08)"/>
+      <rect x="148" y="122" width="40" height="4" rx="2" fill="rgba(255,255,255,0.06)"/>
+      <rect x="80" y="132" width="90" height="4" rx="2" fill="rgba(255,255,255,0.05)"/>
+      <rect x="80" y="142" width="50" height="4" rx="2" fill="rgba(255,255,255,0.06)"/>
+
+      <!-- screen stand -->
+      <rect x="155" y="170" width="10" height="18" rx="2" fill="rgba(167,139,250,0.2)"/>
+      <rect x="135" y="186" width="50" height="5" rx="2" fill="rgba(167,139,250,0.15)"/>
+
+      <!-- trainer figure -->
+      <circle cx="318" cy="62" r="18" fill="rgba(167,139,250,0.15)" stroke="rgba(167,139,250,0.4)" stroke-width="1.5"/>
+      <!-- head detail -->
+      <circle cx="313" cy="59" r="2" fill="rgba(167,139,250,0.7)"/>
+      <circle cx="323" cy="59" r="2" fill="rgba(167,139,250,0.7)"/>
+      <path d="M313 67 Q318 70 323 67" stroke="rgba(52,211,153,0.7)" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+      <!-- body -->
+      <rect x="305" y="82" width="26" height="38" rx="6" fill="rgba(167,139,250,0.2)" stroke="rgba(167,139,250,0.35)" stroke-width="1"/>
+      <!-- pointer arm -->
+      <line x1="305" y1="92" x2="282" y2="108" stroke="rgba(167,139,250,0.5)" stroke-width="2" stroke-linecap="round"/>
+      <circle cx="280" cy="109" r="3" fill="rgba(167,139,250,0.7)"/>
+      <!-- legs -->
+      <rect x="308" y="118" width="8" height="28" rx="4" fill="rgba(167,139,250,0.2)"/>
+      <rect x="320" y="118" width="8" height="28" rx="4" fill="rgba(167,139,250,0.2)"/>
+
+      <!-- trainees row -->
+      <!-- trainee 1 -->
+      <circle cx="390" cy="115" r="13" fill="rgba(52,211,153,0.12)" stroke="rgba(52,211,153,0.35)" stroke-width="1"/>
+      <circle cx="387" cy="113" r="2" fill="rgba(52,211,153,0.6)"/>
+      <circle cx="393" cy="113" r="2" fill="rgba(52,211,153,0.6)"/>
+      <rect x="381" y="130" width="18" height="26" rx="5" fill="rgba(52,211,153,0.15)" stroke="rgba(52,211,153,0.25)" stroke-width="1"/>
+      <!-- trainee 2 -->
+      <circle cx="430" cy="112" r="13" fill="rgba(251,191,36,0.1)" stroke="rgba(251,191,36,0.3)" stroke-width="1"/>
+      <circle cx="427" cy="110" r="2" fill="rgba(251,191,36,0.6)"/>
+      <circle cx="433" cy="110" r="2" fill="rgba(251,191,36,0.6)"/>
+      <rect x="421" y="127" width="18" height="26" rx="5" fill="rgba(251,191,36,0.1)" stroke="rgba(251,191,36,0.2)" stroke-width="1"/>
+      <!-- trainee 3 -->
+      <circle cx="470" cy="115" r="13" fill="rgba(251,113,133,0.1)" stroke="rgba(251,113,133,0.3)" stroke-width="1"/>
+      <circle cx="467" cy="113" r="2" fill="rgba(251,113,133,0.6)"/>
+      <circle cx="473" cy="113" r="2" fill="rgba(251,113,133,0.6)"/>
+      <rect x="461" y="130" width="18" height="26" rx="5" fill="rgba(251,113,133,0.1)" stroke="rgba(251,113,133,0.2)" stroke-width="1"/>
+      <!-- trainee 4 -->
+      <circle cx="510" cy="112" r="13" fill="rgba(96,165,250,0.1)" stroke="rgba(96,165,250,0.3)" stroke-width="1"/>
+      <circle cx="507" cy="110" r="2" fill="rgba(96,165,250,0.6)"/>
+      <circle cx="513" cy="110" r="2" fill="rgba(96,165,250,0.6)"/>
+      <rect x="501" y="127" width="18" height="26" rx="5" fill="rgba(96,165,250,0.1)" stroke="rgba(96,165,250,0.2)" stroke-width="1"/>
+
+      <!-- desks under trainees -->
+      <rect x="372" y="156" width="36" height="5" rx="2" fill="rgba(255,255,255,0.06)"/>
+      <rect x="412" y="156" width="36" height="5" rx="2" fill="rgba(255,255,255,0.06)"/>
+      <rect x="452" y="156" width="36" height="5" rx="2" fill="rgba(255,255,255,0.06)"/>
+      <rect x="492" y="156" width="36" height="5" rx="2" fill="rgba(255,255,255,0.06)"/>
+
+      <!-- thought bubbles from trainees -->
+      <circle cx="398" cy="98" r="5" fill="rgba(52,211,153,0.15)" stroke="rgba(52,211,153,0.3)" stroke-width="1"/>
+      <circle cx="406" cy="90" r="8" fill="rgba(52,211,153,0.12)" stroke="rgba(52,211,153,0.25)" stroke-width="1"/>
+      <!-- lightbulb in bubble -->
+      <circle cx="406" cy="89" r="3" fill="rgba(52,211,153,0.5)"/>
+      <line x1="406" y1="93" x2="406" y2="96" stroke="rgba(52,211,153,0.5)" stroke-width="1.5" stroke-linecap="round"/>
+
+      <!-- floating labels -->
+      <rect x="550" y="40" width="90" height="22" rx="6" fill="rgba(167,139,250,0.1)" stroke="rgba(167,139,250,0.25)" stroke-width="1"/>
+      <text x="595" y="55" text-anchor="middle" font-family="Cairo,sans-serif" font-size="10" fill="rgba(167,139,250,0.8)">نظريات التعلم</text>
+
+      <rect x="555" y="75" width="80" height="22" rx="6" fill="rgba(52,211,153,0.08)" stroke="rgba(52,211,153,0.2)" stroke-width="1"/>
+      <text x="595" y="90" text-anchor="middle" font-family="Cairo,sans-serif" font-size="10" fill="rgba(52,211,153,0.7)">استراتيجيات</text>
+
+      <rect x="548" y="110" width="94" height="22" rx="6" fill="rgba(251,191,36,0.08)" stroke="rgba(251,191,36,0.2)" stroke-width="1"/>
+      <text x="595" y="125" text-anchor="middle" font-family="Cairo,sans-serif" font-size="10" fill="rgba(251,191,36,0.7)">التقويم والقياس</text>
+
+      <rect x="553" y="145" width="84" height="22" rx="6" fill="rgba(251,113,133,0.08)" stroke="rgba(251,113,133,0.2)" stroke-width="1"/>
+      <text x="595" y="160" text-anchor="middle" font-family="Cairo,sans-serif" font-size="10" fill="rgba(251,113,133,0.7)">القيم المهنية</text>
+
+      <!-- connecting dots -->
+      <circle cx="545" cy="51" r="2" fill="rgba(167,139,250,0.4)"/>
+      <circle cx="545" cy="86" r="2" fill="rgba(52,211,153,0.4)"/>
+      <circle cx="545" cy="121" r="2" fill="rgba(251,191,36,0.4)"/>
+      <circle cx="545" cy="156" r="2" fill="rgba(251,113,133,0.4)"/>
+      <line x1="545" y1="53" x2="545" y2="84" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="545" y1="88" x2="545" y2="119" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="3,3"/>
+      <line x1="545" y1="123" x2="545" y2="154" stroke="rgba(255,255,255,0.06)" stroke-width="1" stroke-dasharray="3,3"/>
+
+      <!-- floor line -->
+      <line x1="60" y1="190" x2="620" y2="190" stroke="rgba(255,255,255,0.05)" stroke-width="1"/>
+    </svg>
+  </div>
+  <h1>الرخصة المهنية للمدربين</h1>
+  <p id="hero-sub">خطة دراسة تفاعلية · 45 دقيقة / جلسة</p>
+  <div class="hero-stats">
+    <div class="hero-stat"><span>4</span> مجالات</div>
+    <div class="hero-stat"><span>28</span> موضوعًا</div>
+    <div class="hero-stat"><span id="hero-days">—</span> يومًا</div>
+  </div>
+</div>
+
+<div class="days-bar" id="days-bar">
+  <div class="days-bar-left" id="days-bar-text">مرحبًا</div>
+  <div style="display:flex;align-items:center;gap:8px">
+    <span class="days-badge green" id="days-badge">— يوم</span>
+    <button class="edit-days-btn" onclick="resetOnboard()">تعديل</button>
+  </div>
+</div>
+
+<div class="progress-wrap">
+  <div class="progress-label">
+    <span id="prog-label">0 / 28 موضوعًا</span>
+    <span id="prog-pct" style="color:var(--text2)">0%</span>
+  </div>
+  <div class="progress-bar"><div class="progress-fill" id="prog-fill"></div></div>
+</div>
+
+<div class="tabs">
+  <button class="tab on" onclick="switchTab('tracker',this)">جدول المتابعة</button>
+  <button class="tab" onclick="switchTab('map',this)">خريطة المحتوى</button>
+  <button class="tab" onclick="switchTab('mini',this)">الخريطة المختصرة</button>
+</div>
+
+<div class="main">
+
+<!-- TRACKER -->
+<div id="tracker" class="panel on">
+  <div class="stats-row">
+    <div class="stat-card"><div class="stat-num" id="s-done">0</div><div class="stat-lbl">أتممت</div></div>
+    <div class="stat-card"><div class="stat-num" id="s-left">28</div><div class="stat-lbl">متبقي</div></div>
+    <div class="stat-card"><div class="stat-num" id="s-pct">0%</div><div class="stat-lbl">الإنجاز</div></div>
+  </div>
+
+  <p class="section-label">المجال الأول · المعرفة المهنية</p>
+  <div class="domain-card">
+    <div class="domain-header">
+      <div class="domain-badge d1">م١</div>
+      <div class="domain-info">
+        <h3>المعرفة المهنية</h3>
+        <p>المتدرب · مبادئ التدريب · نظريات التعلم</p>
+      </div>
+      <div class="domain-count" id="dc-0">0/7</div>
+    </div>
+    <div onclick="toggle(0)" class="topic-row"><div class="check" id="c0">✓</div><span class="topic-name">خصائص المتدربين والفروق الفردية</span><span class="type-badge type-m">مفاهيمي</span><span class="pri-badge pri-h">عالية</span></div>
+    <div onclick="toggle(1)" class="topic-row"><div class="check" id="c1">✓</div><span class="topic-name">الدافعية واحتياجات المتدربين</span><span class="type-badge type-m">مفاهيمي</span><span class="pri-badge pri-h">عالية</span></div>
+    <div onclick="toggle(2)" class="topic-row"><div class="check" id="c2">✓</div><span class="topic-name">مفهوم التدريب وأهدافه وخصائصه</span><span class="type-badge type-m">مفاهيمي</span><span class="pri-badge pri-h">عالية</span></div>
+    <div onclick="toggle(3)" class="topic-row"><div class="check" id="c3">✓</div><span class="topic-name">أنواع التدريب ومكونات العملية التدريبية</span><span class="type-badge type-m">مفاهيمي</span><span class="pri-badge pri-m">متوسطة</span></div>
+    <div onclick="toggle(4)" class="topic-row"><div class="check" id="c4">✓</div><span class="topic-name">النظرية السلوكية والمعرفية وتطبيقاتهما</span><span class="type-badge type-m">مفاهيمي</span><span class="pri-badge pri-h">عالية</span></div>
+    <div onclick="toggle(5)" class="topic-row"><div class="check" id="c5">✓</div><span class="topic-name">النظرية البنائية والاجتماعية وتطبيقاتهما</span><span class="type-badge type-m">مفاهيمي</span><span class="pri-badge pri-h">عالية</span></div>
+    <div onclick="toggle(6)" class="topic-row"><div class="check" id="c6">✓</div><span class="topic-name">توظيف النظريات في مواقف تدريبية</span><span class="type-badge type-s">موقفي</span><span class="pri-badge pri-h">عالية</span></div>
+  </div>
+
+  <p class="section-label">المجال الثاني · الممارسات المهنية</p>
+  <div class="domain-card">
+    <div class="domain-header">
+      <div class="domain-badge d2">م٢</div>
+      <div class="domain-info">
+        <h3>الممارسات المهنية</h3>
+        <p>احتياج · تصميم · استراتيجيات · تنفيذ · تقويم</p>
+      </div>
+      <div class="domain-count" id="dc-1">0/14</div>
+    </div>
+    <div onclick="toggle(7)" class="topic-row"><div class="check" id="c7">✓</div><span class="topic-name">مفهوم الاحتياج التدريبي ومصادره وأدواته</span><span class="type-badge type-t">تطبيقي</span><span class="pri-badge pri-h">عالية</span></div>
+    <div onclick="toggle(8)" class="topic-row"><div class="check" id="c8">✓</div><span class="topic-name">تحليل الفجوة التدريبية</span><span class="type-badge type-s">موقفي</span><span class="pri-badge pri-h">عالية</span></div>
+    <div onclick="toggle(9)" class="topic-row"><div class="check" id="c9">✓</div><span class="topic-name">بناء الخطة التدريبية</span><span class="type-badge type-t">تطبيقي</span><span class="pri-badge pri-h">عالية</span></div>
+    <div onclick="toggle(10)" class="topic-row"><div class="check" id="c10">✓</div><span class="topic-name">صياغة نواتج التعلم والأهداف التدريبية</span><span class="type-badge type-t">تطبيقي</span><span class="pri-badge pri-h">عالية</span></div>
+    <div onclick="toggle(11)" class="topic-row"><div class="check" id="c11">✓</div><span class="topic-name">تحليل المحتوى وتسلسل الخبرات</span><span class="type-badge type-t">تطبيقي</span><span class="pri-badge pri-m">متوسطة</span></div>
+    <div onclick="toggle(12)" class="topic-row"><div class="check" id="c12">✓</div><span class="topic-name">استراتيجيات التدريب: المحاضرة والنقاش والعصف</span><span class="type-badge type-m">مفاهيمي</span><span class="pri-badge pri-h">عالية</span></div>
+    <div onclick="toggle(13)" class="topic-row"><div class="check" id="c13">✓</div><span class="topic-name">دراسة الحالة · لعب الأدوار · التعلم التعاوني</span><span class="type-badge type-m">مفاهيمي</span><span class="pri-badge pri-h">عالية</span></div>
+    <div onclick="toggle(14)" class="topic-row"><div class="check" id="c14">✓</div><span class="topic-name">اختيار الاستراتيجية المناسبة للموقف</span><span class="type-badge type-s">موقفي</span><span class="pri-badge pri-h">عالية</span></div>
+    <div onclick="toggle(15)" class="topic-row"><div class="check" id="c15">✓</div><span class="topic-name">التهيئة وافتتاح الجلسة وإدارة الوقت</span><span class="type-badge type-t">تطبيقي</span><span class="pri-badge pri-h">عالية</span></div>
+    <div onclick="toggle(16)" class="topic-row"><div class="check" id="c16">✓</div><span class="topic-name">إدارة التفاعل والمواقف الطارئة والأسئلة</span><span class="type-badge type-s">موقفي</span><span class="pri-badge pri-h">عالية</span></div>
+    <div onclick="toggle(17)" class="topic-row"><div class="check" id="c17">✓</div><span class="topic-name">الوسائل والمواد التدريبية ومعايير اختيارها</span><span class="type-badge type-t">تطبيقي</span><span class="pri-badge pri-m">متوسطة</span></div>
+    <div onclick="toggle(18)" class="topic-row"><div class="check" id="c18">✓</div><span class="topic-name">التقويم القبلي والبنائي والختامي</span><span class="type-badge type-m">مفاهيمي</span><span class="pri-badge pri-h">عالية</span></div>
+    <div onclick="toggle(19)" class="topic-row"><div class="check" id="c19">✓</div><span class="topic-name">أدوات القياس والتغذية الراجعة الفعالة</span><span class="type-badge type-t">تطبيقي</span><span class="pri-badge pri-h">عالية</span></div>
+    <div onclick="toggle(20)" class="topic-row"><div class="check" id="c20">✓</div><span class="topic-name">قياس نواتج التعلم وأثر التدريب</span><span class="type-badge type-t">تطبيقي</span><span class="pri-badge pri-m">متوسطة</span></div>
+  </div>
+
+  <p class="section-label">المجال الثالث · القيم والمسؤوليات</p>
+  <div class="domain-card">
+    <div class="domain-header">
+      <div class="domain-badge d3">م٣</div>
+      <div class="domain-info">
+        <h3>القيم والمسؤوليات المهنية</h3>
+        <p>أخلاقيات · عدالة · التزام · قرار مهني</p>
+      </div>
+      <div class="domain-count" id="dc-2">0/4</div>
+    </div>
+    <div onclick="toggle(21)" class="topic-row"><div class="check" id="c21">✓</div><span class="topic-name">أخلاقيات مهنة التدريب والمسؤولية المهنية</span><span class="type-badge type-m">مفاهيمي</span><span class="pri-badge pri-h">عالية</span></div>
+    <div onclick="toggle(22)" class="topic-row"><div class="check" id="c22">✓</div><span class="topic-name">العدالة والإنصاف واحترام التنوع</span><span class="type-badge type-s">موقفي</span><span class="pri-badge pri-h">عالية</span></div>
+    <div onclick="toggle(23)" class="topic-row"><div class="check" id="c23">✓</div><span class="topic-name">الالتزام بالأنظمة والضوابط المهنية</span><span class="type-badge type-m">مفاهيمي</span><span class="pri-badge pri-m">متوسطة</span></div>
+    <div onclick="toggle(24)" class="topic-row"><div class="check" id="c24">✓</div><span class="topic-name">اتخاذ القرار المهني السليم في المواقف</span><span class="type-badge type-s">موقفي</span><span class="pri-badge pri-h">عالية</span></div>
+  </div>
+
+  <p class="section-label">المجال الرابع · مهارات المستقبل</p>
+  <div class="domain-card">
+    <div class="domain-header">
+      <div class="domain-badge d4">م٤</div>
+      <div class="domain-info">
+        <h3>مهارات المستقبل</h3>
+        <p>تفكير نقدي · تعلم مستمر · سوق العمل</p>
+      </div>
+      <div class="domain-count" id="dc-3">0/3</div>
+    </div>
+    <div onclick="toggle(25)" class="topic-row"><div class="check" id="c25">✓</div><span class="topic-name">التفكير النقدي وحل المشكلات والمرونة</span><span class="type-badge type-m">مفاهيمي</span><span class="pri-badge pri-m">متوسطة</span></div>
+    <div onclick="toggle(26)" class="topic-row"><div class="check" id="c26">✓</div><span class="topic-name">التعلم المستمر والتطوير المهني</span><span class="type-badge type-m">مفاهيمي</span><span class="pri-badge pri-m">متوسطة</span></div>
+    <div onclick="toggle(27)" class="topic-row"><div class="check" id="c27">✓</div><span class="topic-name">دمج مهارات المستقبل في التدريب</span><span class="type-badge type-t">تطبيقي</span><span class="pri-badge pri-m">متوسطة</span></div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><span class="type-badge type-m">مفاهيمي</span>اقرأ وافهم</div>
+    <div class="legend-item"><span class="type-badge type-t">تطبيقي</span>تدرب على أسئلة</div>
+    <div class="legend-item"><span class="type-badge type-s">موقفي</span>حلل واختر</div>
+    <div class="legend-item"><span class="pri-badge pri-h">عالية</span>أولوية قصوى</div>
+  </div>
+</div>
+
+<!-- MAP -->
+<div id="map" class="panel">
+  <svg viewBox="0 0 680 180" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;margin-bottom:1.25rem">
+    <!-- cycle title -->
+    <text x="340" y="22" text-anchor="middle" font-family="Cairo,sans-serif" font-size="11" fill="rgba(255,255,255,0.25)">دورة التدريب المتكاملة</text>
+
+    <!-- center circle -->
+    <circle cx="340" cy="100" r="32" fill="rgba(167,139,250,0.08)" stroke="rgba(167,139,250,0.25)" stroke-width="1.5"/>
+    <text x="340" y="96" text-anchor="middle" font-family="Cairo,sans-serif" font-size="9" fill="rgba(167,139,250,0.7)">المدرب</text>
+    <text x="340" y="110" text-anchor="middle" font-family="Cairo,sans-serif" font-size="9" fill="rgba(167,139,250,0.5)">المحترف</text>
+
+    <!-- node 1 - top: احتياج -->
+    <circle cx="340" cy="38" r="22" fill="rgba(52,211,153,0.1)" stroke="rgba(52,211,153,0.3)" stroke-width="1.5"/>
+    <text x="340" y="36" text-anchor="middle" font-family="Cairo,sans-serif" font-size="9" fill="rgba(52,211,153,0.8)">تحديد</text>
+    <text x="340" y="47" text-anchor="middle" font-family="Cairo,sans-serif" font-size="9" fill="rgba(52,211,153,0.6)">الاحتياج</text>
+
+    <!-- node 2 - top right: تصميم -->
+    <circle cx="462" cy="62" r="22" fill="rgba(167,139,250,0.1)" stroke="rgba(167,139,250,0.3)" stroke-width="1.5"/>
+    <text x="462" y="60" text-anchor="middle" font-family="Cairo,sans-serif" font-size="9" fill="rgba(167,139,250,0.8)">تصميم</text>
+    <text x="462" y="71" text-anchor="middle" font-family="Cairo,sans-serif" font-size="9" fill="rgba(167,139,250,0.6)">البرنامج</text>
+
+    <!-- node 3 - bottom right: تنفيذ -->
+    <circle cx="462" cy="138" r="22" fill="rgba(251,191,36,0.1)" stroke="rgba(251,191,36,0.3)" stroke-width="1.5"/>
+    <text x="462" y="136" text-anchor="middle" font-family="Cairo,sans-serif" font-size="9" fill="rgba(251,191,36,0.8)">تنفيذ</text>
+    <text x="462" y="147" text-anchor="middle" font-family="Cairo,sans-serif" font-size="9" fill="rgba(251,191,36,0.6)">الجلسة</text>
+
+    <!-- node 4 - bottom: تقويم -->
+    <circle cx="340" cy="162" r="22" fill="rgba(251,113,133,0.1)" stroke="rgba(251,113,133,0.3)" stroke-width="1.5"/>
+    <text x="340" y="160" text-anchor="middle" font-family="Cairo,sans-serif" font-size="9" fill="rgba(251,113,133,0.8)">تقويم</text>
+    <text x="340" y="171" text-anchor="middle" font-family="Cairo,sans-serif" font-size="9" fill="rgba(251,113,133,0.6)">وقياس</text>
+
+    <!-- node 5 - bottom left: تغذية -->
+    <circle cx="218" cy="138" r="22" fill="rgba(96,165,250,0.1)" stroke="rgba(96,165,250,0.3)" stroke-width="1.5"/>
+    <text x="218" y="136" text-anchor="middle" font-family="Cairo,sans-serif" font-size="9" fill="rgba(96,165,250,0.8)">تغذية</text>
+    <text x="218" y="147" text-anchor="middle" font-family="Cairo,sans-serif" font-size="9" fill="rgba(96,165,250,0.6)">راجعة</text>
+
+    <!-- node 6 - top left: نظريات -->
+    <circle cx="218" cy="62" r="22" fill="rgba(251,113,133,0.08)" stroke="rgba(251,113,133,0.25)" stroke-width="1.5"/>
+    <text x="218" y="60" text-anchor="middle" font-family="Cairo,sans-serif" font-size="9" fill="rgba(251,113,133,0.7)">نظريات</text>
+    <text x="218" y="71" text-anchor="middle" font-family="Cairo,sans-serif" font-size="9" fill="rgba(251,113,133,0.5)">التعلم</text>
+
+    <!-- arrows connecting nodes clockwise -->
+    <path d="M353 42 Q410 35 444 55" stroke="rgba(52,211,153,0.35)" stroke-width="1.5" fill="none" stroke-dasharray="4,3" marker-end="url(#arr1)"/>
+    <path d="M469 84 Q476 100 469 116" stroke="rgba(167,139,250,0.35)" stroke-width="1.5" fill="none" stroke-dasharray="4,3" marker-end="url(#arr2)"/>
+    <path d="M444 152 Q393 170 363 162" stroke="rgba(251,191,36,0.35)" stroke-width="1.5" fill="none" stroke-dasharray="4,3" marker-end="url(#arr3)"/>
+    <path d="M318 162 Q268 168 236 150" stroke="rgba(251,113,133,0.35)" stroke-width="1.5" fill="none" stroke-dasharray="4,3" marker-end="url(#arr4)"/>
+    <path d="M211 116 Q204 100 211 80" stroke="rgba(96,165,250,0.35)" stroke-width="1.5" fill="none" stroke-dasharray="4,3" marker-end="url(#arr5)"/>
+    <path d="M236 50 Q280 35 318 38" stroke="rgba(251,113,133,0.35)" stroke-width="1.5" fill="none" stroke-dasharray="4,3" marker-end="url(#arr6)"/>
+
+    <!-- spokes to center -->
+    <line x1="340" y1="60" x2="340" y2="68" stroke="rgba(52,211,153,0.15)" stroke-width="1"/>
+    <line x1="441" y1="74" x2="367" y2="85" stroke="rgba(167,139,250,0.15)" stroke-width="1"/>
+    <line x1="441" y1="126" x2="367" y2="113" stroke="rgba(251,191,36,0.15)" stroke-width="1"/>
+    <line x1="340" y1="140" x2="340" y2="132" stroke="rgba(251,113,133,0.15)" stroke-width="1"/>
+    <line x1="239" y1="126" x2="313" y2="113" stroke="rgba(96,165,250,0.15)" stroke-width="1"/>
+    <line x1="239" y1="74" x2="313" y2="85" stroke="rgba(251,113,133,0.15)" stroke-width="1"/>
+
+    <defs>
+      <marker id="arr1" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="rgba(52,211,153,0.5)"/></marker>
+      <marker id="arr2" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="rgba(167,139,250,0.5)"/></marker>
+      <marker id="arr3" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="rgba(251,191,36,0.5)"/></marker>
+      <marker id="arr4" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="rgba(251,113,133,0.5)"/></marker>
+      <marker id="arr5" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="rgba(96,165,250,0.5)"/></marker>
+      <marker id="arr6" markerWidth="6" markerHeight="6" refX="5" refY="3" orient="auto"><path d="M0,0 L6,3 L0,6 Z" fill="rgba(251,113,133,0.5)"/></marker>
+    </defs>
+  </svg>
+
+  <p class="section-label">المجالات الأربعة</p>
+  <div class="map-grid">
+    <div class="map-card mc-purple">
+      <div class="map-card-title">م١ · المعرفة المهنية</div>
+      <div class="map-card-items">المتدرب وخصائصه<br>مبادئ التدريب<br>نظريات التعلم الأربع<br>توظيف النظريات</div>
+    </div>
+    <div class="map-card mc-teal">
+      <div class="map-card-title">م٢ · الممارسات</div>
+      <div class="map-card-items">تحديد الاحتياج<br>تصميم البرامج<br>استراتيجيات التدريب<br>تنفيذ الجلسة<br>الوسائل والتقويم</div>
+    </div>
+    <div class="map-card mc-amber">
+      <div class="map-card-title">م٣ · القيم</div>
+      <div class="map-card-items">أخلاقيات المهنة<br>العدالة والإنصاف<br>الالتزام المهني<br>اتخاذ القرار</div>
+    </div>
+    <div class="map-card mc-coral">
+      <div class="map-card-title">م٤ · مهارات المستقبل</div>
+      <div class="map-card-items">التفكير النقدي<br>التعلم المستمر<br>دمجها في التدريب</div>
+    </div>
+  </div>
+
+  <p class="section-label">تسلسل الدراسة المنطقي</p>
+  <div class="flow">
+    <div class="flow-step"><span class="flow-tag ft-basis">أساس أول</span><span class="flow-arrow">←</span><span class="flow-text">نظريات التعلم الأربع + خصائص المتدرب</span></div>
+    <div class="flow-step"><span class="flow-tag ft-basis">أساس ثانٍ</span><span class="flow-arrow">←</span><span class="flow-text">مبادئ التدريب وأنواعه ومكوناته</span></div>
+    <div class="flow-step"><span class="flow-tag ft-apply">تطبيق</span><span class="flow-arrow">←</span><span class="flow-text">تحديد الاحتياج ← تصميم البرنامج ← صياغة الأهداف</span></div>
+    <div class="flow-step"><span class="flow-tag ft-apply">تطبيق</span><span class="flow-arrow">←</span><span class="flow-text">الاستراتيجيات ← تنفيذ الجلسة ← التقويم</span></div>
+    <div class="flow-step"><span class="flow-tag ft-sit">موقف</span><span class="flow-arrow">←</span><span class="flow-text">القيم والقرار المهني + مهارات المستقبل</span></div>
+  </div>
+
+  <p class="section-label">أكثر الموضوعات تكرارًا في الأسئلة</p>
+  <div class="domain-card">
+    <div class="q-row"><span>اختيار الاستراتيجية التدريبية الأنسب للموقف</span><span class="pri-badge pri-h">كثير جدًا</span></div>
+    <div class="q-row"><span>تمييز النظريات وتطبيقاتها على المواقف</span><span class="pri-badge pri-h">كثير جدًا</span></div>
+    <div class="q-row"><span>تحليل مواقف المتدرب داخل الجلسة</span><span class="pri-badge pri-h">كثير جدًا</span></div>
+    <div class="q-row"><span>صياغة الهدف التدريبي الصحيح</span><span class="pri-badge pri-h">كثير</span></div>
+    <div class="q-row"><span>اختيار نوع التقويم المناسب</span><span class="pri-badge pri-h">كثير</span></div>
+    <div class="q-row"><span>أفضل تصرف مهني للمدرب في موقف معين</span><span class="pri-badge pri-m">متوسط</span></div>
+    <div class="q-row"><span>تمييز ما يحله التدريب وما لا يحله</span><span class="pri-badge pri-m">متوسط</span></div>
+  </div>
+</div>
+
+<!-- MINI MAP -->
+<div id="mini" class="panel">
+  <svg viewBox="0 0 680 72" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;margin-bottom:1.25rem">
+    <!-- domain 1 icon: brain/knowledge -->
+    <rect x="20" y="8" width="140" height="56" rx="10" fill="rgba(167,139,250,0.08)" stroke="rgba(167,139,250,0.2)" stroke-width="1"/>
+    <!-- brain shape simplified -->
+    <circle cx="65" cy="30" r="12" fill="none" stroke="rgba(167,139,250,0.5)" stroke-width="1.5"/>
+    <path d="M58 26 Q65 20 72 26 Q78 32 72 38 Q65 44 58 38 Q52 32 58 26" fill="rgba(167,139,250,0.15)" stroke="rgba(167,139,250,0.4)" stroke-width="1"/>
+    <line x1="65" y1="25" x2="65" y2="35" stroke="rgba(167,139,250,0.4)" stroke-width="1" stroke-dasharray="2,2"/>
+    <line x1="59" y1="30" x2="71" y2="30" stroke="rgba(167,139,250,0.4)" stroke-width="1" stroke-dasharray="2,2"/>
+    <text x="90" y="27" font-family="Cairo,sans-serif" font-size="11" font-weight="700" fill="rgba(167,139,250,0.8)">المعرفة</text>
+    <text x="90" y="42" font-family="Cairo,sans-serif" font-size="10" fill="rgba(167,139,250,0.5)">المهنية</text>
+    <text x="90" y="56" font-family="Cairo,sans-serif" font-size="9" fill="rgba(167,139,250,0.35)">7 موضوعات</text>
+
+    <!-- domain 2 icon: practice/hands -->
+    <rect x="175" y="8" width="140" height="56" rx="10" fill="rgba(52,211,153,0.08)" stroke="rgba(52,211,153,0.2)" stroke-width="1"/>
+    <!-- clipboard icon -->
+    <rect x="210" y="20" width="20" height="24" rx="3" fill="none" stroke="rgba(52,211,153,0.5)" stroke-width="1.5"/>
+    <rect x="216" y="17" width="8" height="5" rx="2" fill="rgba(52,211,153,0.3)" stroke="rgba(52,211,153,0.5)" stroke-width="1"/>
+    <line x1="214" y1="29" x2="226" y2="29" stroke="rgba(52,211,153,0.4)" stroke-width="1"/>
+    <line x1="214" y1="34" x2="226" y2="34" stroke="rgba(52,211,153,0.4)" stroke-width="1"/>
+    <line x1="214" y1="39" x2="222" y2="39" stroke="rgba(52,211,153,0.4)" stroke-width="1"/>
+    <text x="244" y="27" font-family="Cairo,sans-serif" font-size="11" font-weight="700" fill="rgba(52,211,153,0.8)">الممارسات</text>
+    <text x="244" y="42" font-family="Cairo,sans-serif" font-size="10" fill="rgba(52,211,153,0.5)">المهنية</text>
+    <text x="244" y="56" font-family="Cairo,sans-serif" font-size="9" fill="rgba(52,211,153,0.35)">14 موضوعًا</text>
+
+    <!-- domain 3 icon: values/star -->
+    <rect x="330" y="8" width="140" height="56" rx="10" fill="rgba(251,191,36,0.08)" stroke="rgba(251,191,36,0.2)" stroke-width="1"/>
+    <!-- star shape -->
+    <polygon points="375,18 378,26 387,26 380,31 383,40 375,35 367,40 370,31 363,26 372,26" fill="rgba(251,191,36,0.15)" stroke="rgba(251,191,36,0.5)" stroke-width="1.2"/>
+    <text x="398" y="27" font-family="Cairo,sans-serif" font-size="11" font-weight="700" fill="rgba(251,191,36,0.8)">القيم</text>
+    <text x="398" y="42" font-family="Cairo,sans-serif" font-size="10" fill="rgba(251,191,36,0.5)">والمسؤوليات</text>
+    <text x="398" y="56" font-family="Cairo,sans-serif" font-size="9" fill="rgba(251,191,36,0.35)">4 موضوعات</text>
+
+    <!-- domain 4 icon: future/rocket -->
+    <rect x="485" y="8" width="140" height="56" rx="10" fill="rgba(251,113,133,0.08)" stroke="rgba(251,113,133,0.2)" stroke-width="1"/>
+    <!-- rocket simplified -->
+    <ellipse cx="530" cy="28" rx="7" ry="12" fill="rgba(251,113,133,0.15)" stroke="rgba(251,113,133,0.5)" stroke-width="1.5"/>
+    <path d="M523 34 L520 42 L530 37 L540 42 L537 34" fill="rgba(251,113,133,0.1)" stroke="rgba(251,113,133,0.35)" stroke-width="1"/>
+    <circle cx="530" cy="27" r="3" fill="rgba(251,113,133,0.4)"/>
+    <!-- flame -->
+    <path d="M527 42 Q530 48 533 42" fill="rgba(251,191,36,0.4)" stroke="rgba(251,191,36,0.5)" stroke-width="1"/>
+    <text x="550" y="27" font-family="Cairo,sans-serif" font-size="11" font-weight="700" fill="rgba(251,113,133,0.8)">مهارات</text>
+    <text x="550" y="42" font-family="Cairo,sans-serif" font-size="10" fill="rgba(251,113,133,0.5)">المستقبل</text>
+    <text x="550" y="56" font-family="Cairo,sans-serif" font-size="9" fill="rgba(251,113,133,0.35)">3 موضوعات</text>
+  </svg>
+
+  <p class="section-label">نظرة شاملة على المنهج كاملًا</p>
+  <div class="mini-grid">
+    <div class="mini-card mc-gray">
+      <div class="mini-title" style="color:var(--text2)">مدخل الرخصة</div>
+      <div class="mini-items" style="color:var(--text3)">ما الرخصة؟ · هدفها<br>طبيعة الاختبار<br>الالتزامات المهنية</div>
+    </div>
+    <div class="mini-card mc-purple">
+      <div class="mini-title">المتدرب</div>
+      <div class="mini-items">الخصائص · الفروق<br>الدافعية · الاحتياجات</div>
+    </div>
+    <div class="mini-card mc-purple">
+      <div class="mini-title">نظريات التعلم</div>
+      <div class="mini-items">سلوكية · معرفية<br>بنائية · اجتماعية<br>+ توظيفها</div>
+    </div>
+    <div class="mini-card mc-purple">
+      <div class="mini-title">مبادئ التدريب</div>
+      <div class="mini-items">المفهوم · الأهداف<br>الخصائص · الأنواع</div>
+    </div>
+    <div class="mini-card mc-teal">
+      <div class="mini-title">الاحتياج والتصميم</div>
+      <div class="mini-items">تحديد الاحتياج<br>الفجوة · بناء الخطة<br>صياغة الأهداف</div>
+    </div>
+    <div class="mini-card mc-teal">
+      <div class="mini-title">الاستراتيجيات</div>
+      <div class="mini-items">محاضرة · نقاش · عصف<br>حالة · أدوار · تعاوني<br>اختيار الأنسب</div>
+    </div>
+    <div class="mini-card mc-teal">
+      <div class="mini-title">تنفيذ الجلسة</div>
+      <div class="mini-items">التهيئة · الوقت<br>التفاعل · الطوارئ<br>الوسائل</div>
+    </div>
+    <div class="mini-card mc-teal">
+      <div class="mini-title">التقويم</div>
+      <div class="mini-items">قبلي · بنائي · ختامي<br>أدوات القياس<br>التغذية الراجعة</div>
+    </div>
+    <div class="mini-card mc-amber">
+      <div class="mini-title">القيم والأخلاقيات</div>
+      <div class="mini-items">أخلاقيات المهنة<br>العدالة · القرار المهني</div>
+    </div>
+    <div class="mini-card mc-coral">
+      <div class="mini-title">مهارات المستقبل</div>
+      <div class="mini-items">تفكير نقدي · مرونة<br>تعلم مستمر<br>دمجها في التدريب</div>
+    </div>
+    <div class="mini-card mc-blue full">
+      <div class="mini-title" style="color:var(--blue)">الأسئلة الموقفية · تكرر دائمًا</div>
+      <div class="mini-items" style="color:var(--text2)">اختيار الاستراتيجية · تطبيق النظرية · تحليل الموقف · صياغة الهدف · نوع التقويم · القرار المهني · ما يحله التدريب</div>
+    </div>
+  </div>
+</div>
+
+</div>
+
+<div class="footer">
+  <p>alsaiel.com · الرخصة المهنية للمدربين</p>
+</div>
+
+<script>
+const TOTAL = 28;
+const domainRanges = [[0,6],[7,20],[21,24],[25,27]];
+const domainTotals = [7,14,4,3];
+const KEY = 'rkhsa_progress';
+const UKEY = 'rkhsa_user';
+
+let state = JSON.parse(localStorage.getItem(KEY) || '[]');
+if (!state.length) state = Array(TOTAL).fill(false);
+
+let userInfo = JSON.parse(localStorage.getItem(UKEY) || 'null');
+
+function startApp() {
+  const name = document.getElementById('ob-name').value.trim() || 'صديقي';
+  const days = parseInt(document.getElementById('ob-days').value) || 0;
+  if (!days || days < 1) {
+    document.getElementById('ob-days').focus();
+    document.getElementById('ob-days').style.borderColor = 'var(--coral)';
+    return;
+  }
+  const examDate = new Date();
+  examDate.setDate(examDate.getDate() + days);
+  userInfo = { name, days, startDays: days, startDate: Date.now(), examDate: examDate.toISOString() };
+  localStorage.setItem(UKEY, JSON.stringify(userInfo));
+  document.getElementById('onboard').style.display = 'none';
+  applyUserInfo();
+  render();
+}
+
+function resetOnboard() {
+  localStorage.removeItem(UKEY);
+  document.getElementById('ob-name').value = '';
+  document.getElementById('ob-days').value = '';
+  document.getElementById('onboard').style.display = 'flex';
+}
+
+function getDaysLeft() {
+  if (!userInfo) return null;
+  const exam = new Date(userInfo.examDate);
+  const now = new Date();
+  const diff = Math.ceil((exam - now) / (1000 * 60 * 60 * 24));
+  return Math.max(0, diff);
+}
+
+function applyUserInfo() {
+  if (!userInfo) return;
+  const left = getDaysLeft();
+  const name = userInfo.name;
+
+  document.getElementById('hero-days').textContent = left;
+  document.getElementById('hero-sub').textContent = `خطة دراسة تفاعلية · ${left} يوم متبقٍ · 45 دقيقة / جلسة`;
+
+  const done = state.filter(Boolean).length;
+  const remaining = TOTAL - done;
+  const perDay = left > 0 ? Math.ceil(remaining / left) : remaining;
+
+  document.getElementById('days-bar-text').innerHTML =
+    `مرحبًا <span>${name}</span> · يُنصح بـ <span>${perDay} موضوع${perDay===1?'':'ات'}</span> يوميًا للإنهاء قبل الاختبار`;
+
+  const badge = document.getElementById('days-badge');
+  badge.textContent = `${left} يوم`;
+  badge.className = 'days-badge ' + (left > 14 ? 'green' : left > 7 ? 'amber' : 'red');
+}
+
+function render() {
+  let done = 0;
+  state.forEach((v,i) => {
+    const row = document.querySelector(`#c${i}`)?.parentElement;
+    const box = document.getElementById(`c${i}`);
+    if (!row || !box) return;
+    if (v) {
+      row.classList.add('done');
+      box.style.background = '#22c55e';
+      box.style.borderColor = '#22c55e';
+      done++;
+    } else {
+      row.classList.remove('done');
+      box.style.background = '';
+      box.style.borderColor = '';
+    }
+  });
+  domainRanges.forEach((r, di) => {
+    const d = state.slice(r[0], r[1]+1).filter(Boolean).length;
+    const el = document.getElementById(`dc-${di}`);
+    if (el) el.textContent = `${d}/${domainTotals[di]}`;
+  });
+  const pct = Math.round(done/TOTAL*100);
+  document.getElementById('prog-fill').style.width = pct+'%';
+  document.getElementById('prog-label').textContent = `${done} / ${TOTAL} موضوعًا`;
+  document.getElementById('prog-pct').textContent = pct+'%';
+  document.getElementById('s-done').textContent = done;
+  document.getElementById('s-left').textContent = TOTAL - done;
+  document.getElementById('s-pct').textContent = pct+'%';
+  localStorage.setItem(KEY, JSON.stringify(state));
+  if (userInfo) applyUserInfo();
+}
+
+function toggle(i) {
+  state[i] = !state[i];
+  render();
+}
+
+function switchTab(id, btn) {
+  document.querySelectorAll('.panel').forEach(p => p.classList.remove('on'));
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('on'));
+  document.getElementById(id).classList.add('on');
+  btn.classList.add('on');
+}
+
+if (userInfo) {
+  document.getElementById('onboard').style.display = 'none';
+  applyUserInfo();
+}
+render();
+
+</script>
+</body>
+</html>
