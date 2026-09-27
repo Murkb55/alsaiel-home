@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MKA Labs – Smart TikTok Content Tools</title>
+<meta name="description" content="MKA Labs builds intelligent tools for TikTok content management, scheduling, and analytics.">
+<style>
+  :root {
+    --bg: #0a0f1e;
+    --surface: #111827;
+    --card: #1a2235;
+    --border: #1e2d45;
+    --volt: #00E5A0;
+    --volt2: #00bfff;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --white: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 2rem;
+    border-bottom: 1px solid var(--border);
+    position: sticky; top: 0;
+    background: rgba(10,15,30,0.95);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+  }
+  .nav-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+  .logo-mark {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: linear-gradient(135deg, var(--volt), var(--volt2));
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 0.9rem; color: #000;
+  }
+  .logo-text { font-weight: 700; font-size: 1.1rem; color: var(--white); }
+  .logo-text span { color: var(--volt); }
+  .nav-links { display: flex; gap: 1.5rem; }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.9rem; transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--volt); }
+
+  /* HERO */
+  .hero {
+    text-align: center;
+    padding: 6rem 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -100px; left: 50%;
+    transform: translateX(-50%);
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(0,229,160,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .badge {
+    display: inline-block;
+    background: rgba(0,229,160,0.1);
+    border: 1px solid rgba(0,229,160,0.3);
+    color: var(--volt);
+    padding: 0.3rem 1rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  h1 {
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    font-weight: 800;
+    color: var(--white);
+    line-height: 1.2;
+    margin-bottom: 1.2rem;
+  }
+  h1 span { color: var(--volt); }
+  .hero-sub {
+    font-size: 1.1rem;
+    color: var(--muted);
+    max-width: 560px;
+    margin: 0 auto 2.5rem;
+  }
+  .btn-group { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn {
+    padding: 0.75rem 1.8rem;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .btn-primary {
+    background: var(--volt);
+    color: #000;
+  }
+  .btn-primary:hover { background: #00c98e; }
+  .btn-outline {
+    border: 1px solid var(--border);
+    color: var(--text);
+    background: transparent;
+  }
+  .btn-outline:hover { border-color: var(--volt); color: var(--volt); }
+
+  /* VISUAL */
+  .hero-visual {
+    margin: 3rem auto 0;
+    max-width: 700px;
+    position: relative;
+  }
+  .mockup {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 1.5rem;
+    text-align: left;
+  }
+  .mockup-bar {
+    display: flex; gap: 0.4rem; margin-bottom: 1rem;
+  }
+  .dot { width: 10px; height: 10px; border-radius: 50%; }
+  .dot-r { background: #ff5f57; }
+  .dot-y { background: #ffbd2e; }
+  .dot-g { background: #28c840; }
+  .mockup-content { display: flex; gap: 1rem; }
+  .sidebar {
+    width: 140px; flex-shrink: 0;
+    background: var(--card);
+    border-radius: 8px;
+    padding: 1rem;
+  }
+  .side-item {
+    display: flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; color: var(--muted);
+    padding: 0.4rem 0.3rem;
+    border-radius: 4px;
+    margin-bottom: 0.2rem;
+    transition: background 0.2s;
+  }
+  .side-item.active { background: rgba(0,229,160,0.1); color: var(--volt); }
+  .side-icon { font-size: 0.85rem; }
+  .main-area { flex: 1; }
+  .stat-row { display: flex; gap: 0.6rem; margin-bottom: 0.8rem; }
+  .stat-card {
+    flex: 1;
+    background: var(--card);
+    border-radius: 8px;
+    padding: 0.8rem;
+    font-size: 0.75rem;
+  }
+  .stat-num { font-size: 1.2rem; font-weight: 700; color: var(--volt); }
+  .stat-lbl { color: var(--muted); font-size: 0.7rem; }
+  .sched-block {
+    background: var(--card);
+    border-radius: 8px;
+    padding: 0.8rem;
+  }
+  .sched-row {
+    display: flex; align-items: center; gap: 0.6rem;
+    font-size: 0.72rem; color: var(--muted);
+    padding: 0.4rem 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .sched-row:last-child { border-bottom: none; }
+  .sched-dot {
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--volt); flex-shrink: 0;
+  }
+  .sched-dot.b { background: var(--volt2); }
+  .sched-time { color: var(--volt); font-weight: 600; min-width: 40px; }
+
+  /* SECTION */
+  section { padding: 5rem 2rem; max-width: 1000px; margin: 0 auto; }
+  .section-label {
+    color: var(--volt); font-size: 0.8rem; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em;
+    margin-bottom: 0.8rem;
+  }
+  h2 { font-size: clamp(1.6rem, 3vw, 2.2rem); font-weight: 700; color: var(--white); margin-bottom: 1rem; }
+  .section-sub { color: var(--muted); max-width: 520px; }
+
+  /* FEATURES */
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 1.5rem;
+    margin-top: 3rem;
+  }
+  .feat-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.8rem;
+    transition: border-color 0.3s;
+  }
+  .feat-card:hover { border-color: rgba(0,229,160,0.4); }
+  .feat-icon {
+    width: 44px; height: 44px;
+    background: rgba(0,229,160,0.1);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+  .feat-card h3 { font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 0.5rem; }
+  .feat-card p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+
+  /* HOW */
+  .steps { display: flex; flex-direction: column; gap: 2rem; margin-top: 3rem; }
+  .step { display: flex; gap: 1.5rem; align-items: flex-start; }
+  .step-num {
+    width: 40px; height: 40px; border-radius: 50%;
+    background: rgba(0,229,160,0.1);
+    border: 1px solid rgba(0,229,160,0.3);
+    color: var(--volt);
+    font-weight: 800; font-size: 0.9rem;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .step-body h3 { color: var(--white); font-size: 1rem; margin-bottom: 0.3rem; }
+  .step-body p { color: var(--muted); font-size: 0.88rem; }
+
+  /* ABOUT */
+  .about-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 3rem;
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .about-box .info { flex: 1; min-width: 260px; }
+  .about-box .info p { color: var(--muted); font-size: 0.9rem; line-height: 1.7; margin-top: 0.8rem; }
+  .about-links { display: flex; gap: 1rem; margin-top: 1.5rem; }
+  .link-chip {
+    display: inline-block;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    padding: 0.4rem 0.9rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    text-decoration: none;
+    transition: all 0.2s;
+  }
+  .link-chip:hover { border-color: var(--volt); color: var(--volt); }
+
+  /* FOOTER */
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 2rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.85rem;
+  }
+  footer a { color: var(--volt); text-decoration: none; }
+  footer a:hover { text-decoration: underline; }
+  .footer-links { display: flex; gap: 1.5rem; justify-content: center; margin-bottom: 1rem; flex-wrap: wrap; }
+
+  @media (max-width: 600px) {
+    nav { padding: 1rem; }
+    .nav-links { gap: 1rem; }
+    .hero { padding: 4rem 1rem 2.5rem; }
+    section { padding: 3.5rem 1rem; }
+    .mockup-content { flex-direction: column; }
+    .sidebar { width: 100%; }
+    .about-box { padding: 1.8rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/mka-labs">
+    <div class="logo-mark">MK</div>
+    <span class="logo-text">MKA <span>Labs</span></span>
+  </a>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#about">About</a>
+    <a href="/mka-labs/privacy">Privacy</a>
+    <a href="/mka-labs/terms">Terms</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div class="badge">TikTok Content Intelligence</div>
+  <h1>Smarter <span>TikTok</span> Content<br>Management</h1>
+  <p class="hero-sub">
+    MKA Labs builds tools that help creators and brands schedule, manage,
+    and analyze TikTok content — all in one place.
+  </p>
+  <div class="btn-group">
+    <a href="#features" class="btn btn-primary">Explore Features</a>
+    <a href="#about" class="btn btn-outline">About MKA Labs</a>
+  </div>
+
+  <div class="hero-visual">
+    <div class="mockup">
+      <div class="mockup-bar">
+        <div class="dot dot-r"></div>
+        <div class="dot dot-y"></div>
+        <div class="dot dot-g"></div>
+      </div>
+      <div class="mockup-content">
+        <div class="sidebar">
+          <div class="side-item active"><span class="side-icon">📅</span> Schedule</div>
+          <div class="side-item"><span class="side-icon">📊</span> Analytics</div>
+          <div class="side-item"><span class="side-icon">🎬</span> Videos</div>
+          <div class="side-item"><span class="side-icon">📝</span> Drafts</div>
+          <div class="side-item"><span class="side-icon">⚙️</span> Settings</div>
+        </div>
+        <div class="main-area">
+          <div class="stat-row">
+            <div class="stat-card"><div class="stat-num">24</div><div class="stat-lbl">Scheduled</div></div>
+            <div class="stat-card"><div class="stat-num">89k</div><div class="stat-lbl">Total Views</div></div>
+            <div class="stat-card"><div class="stat-num">4.2k</div><div class="stat-lbl">Followers</div></div>
+          </div>
+          <div class="sched-block">
+            <div class="sched-row"><div class="sched-dot"></div><span class="sched-time">10:00</span> Morning motivation video</div>
+            <div class="sched-row"><div class="sched-dot b"></div><span class="sched-time">14:00</span> Behind-the-scenes clip</div>
+            <div class="sched-row"><div class="sched-dot"></div><span class="sched-time">20:00</span> Product highlight reel</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="features">
+  <div class="section-label">What We Build</div>
+  <h2>Tools built for TikTok creators</h2>
+  <p class="section-sub">From scheduling to insights, MKA Labs tools are designed to save time and amplify your reach.</p>
+
+  <div class="features-grid">
+    <div class="feat-card">
+      <div class="feat-icon">📅</div>
+      <h3>Smart Scheduling</h3>
+      <p>Plan and schedule TikTok posts in advance. Never miss the best time to publish with intelligent timing recommendations.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">📊</div>
+      <h3>Content Analytics</h3>
+      <p>Track views, engagement, and follower growth over time. Understand what content resonates with your audience.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🗂️</div>
+      <h3>Video Management</h3>
+      <p>Browse, organize, and manage your TikTok video library. Access published content and drafts in one place.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🔒</div>
+      <h3>Privacy First</h3>
+      <p>Your access tokens are stored locally on your device. We never sell or share your data. You stay in control.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">⚡</div>
+      <h3>TikTok API Integration</h3>
+      <p>Built directly on TikTok's official API. Secure, reliable, and always up to date with platform changes.</p>
+    </div>
+    <div class="feat-card">
+      <div class="feat-icon">🧠</div>
+      <h3>AI-Powered Insights</h3>
+      <p>Get smart suggestions for captions, hashtags, and posting times based on your account's performance data.</p>
+    </div>
+  </div>
+</section>
+
+<section id="how">
+  <div class="section-label">How It Works</div>
+  <h2>Simple to get started</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-body">
+        <h3>Connect Your TikTok Account</h3>
+        <p>Authorize MKA Labs through TikTok's official OAuth flow. We only request the permissions we need.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-body">
+        <h3>Manage Your Content</h3>
+        <p>Browse your videos, schedule new posts, and track performance — all from a clean, organized dashboard.</p>
+      </div>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-body">
+        <h3>Grow with Data</h3>
+        <p>Use insights to understand what works, optimize your posting strategy, and grow your audience over time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about">
+  <div class="about-box">
+    <div class="info">
+      <div class="section-label">About</div>
+      <h2 style="font-size:1.6rem;">MKA Labs</h2>
+      <p>
+        MKA Labs is an independent software lab building smart tools for social media
+        creators and digital professionals. We focus on TikTok content workflows — making
+        scheduling, analytics, and content management simple and powerful.
+      </p>
+      <p style="margin-top:0.8rem;">
+        Our tools integrate with TikTok's official API to give you a reliable, secure
+        experience. Your data stays yours — we don't sell it, we don't share it.
+      </p>
+      <div class="about-links">
+        <a class="link-chip" href="/mka-labs/privacy">Privacy Policy</a>
+        <a class="link-chip" href="/mka-labs/terms">Terms of Service</a>
+        <a class="link-chip" href="mailto:contact@alsaiel.com">Contact</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-links">
+    <a href="/mka-labs">MKA Labs</a>
+    <a href="/mka-labs/privacy">Privacy Policy</a>
+    <a href="/mka-labs/terms">Terms of Service</a>
+    <a href="mailto:contact@alsaiel.com">Contact</a>
+  </div>
+  <p>© 2026 MKA Labs · Part of <a href="https://alsaiel.com">alsaiel.com</a> · All rights reserved.</p>
+</footer>
+
+</body>
+</html>
