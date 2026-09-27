@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Terms of Service – MKA Labs</title>
+<meta name="description" content="MKA Labs Terms of Service — rules for using our TikTok content tools.">
+<style>
+  :root {
+    --bg: #0a0f1e;
+    --surface: #111827;
+    --card: #1a2235;
+    --border: #1e2d45;
+    --volt: #00E5A0;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --white: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 2rem;
+    border-bottom: 1px solid var(--border);
+    background: rgba(10,15,30,0.98);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+  .logo-mark {
+    width: 32px; height: 32px; border-radius: 7px;
+    background: linear-gradient(135deg, #00E5A0, #00bfff);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 0.8rem; color: #000;
+  }
+  .logo-text { font-weight: 700; font-size: 1rem; color: var(--white); }
+  .logo-text span { color: var(--volt); }
+  .back-link {
+    color: var(--muted); text-decoration: none; font-size: 0.88rem;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--volt); }
+
+  .page-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 3.5rem 2rem 5rem;
+  }
+  .page-header {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .label {
+    display: inline-block;
+    background: rgba(0,229,160,0.1);
+    border: 1px solid rgba(0,229,160,0.25);
+    color: var(--volt);
+    padding: 0.25rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 1rem;
+  }
+  h1 { font-size: 2rem; font-weight: 800; color: var(--white); margin-bottom: 0.5rem; }
+  .meta { color: var(--muted); font-size: 0.88rem; }
+
+  .toc {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  .toc h3 { font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; }
+  .toc ol { padding-left: 1.2rem; }
+  .toc li { margin-bottom: 0.4rem; }
+  .toc a { color: var(--volt); text-decoration: none; font-size: 0.9rem; }
+  .toc a:hover { text-decoration: underline; }
+
+  .section { margin-bottom: 3rem; }
+  h2 {
+    font-size: 1.2rem; font-weight: 700; color: var(--white);
+    margin-bottom: 1rem;
+    padding-top: 0.5rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  h2::before {
+    content: '';
+    display: inline-block;
+    width: 4px; height: 1.2em;
+    background: var(--volt);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  p { color: var(--text); font-size: 0.93rem; margin-bottom: 0.9rem; }
+  ul, ol { padding-left: 1.4rem; margin-bottom: 0.9rem; }
+  li { font-size: 0.93rem; color: var(--text); margin-bottom: 0.4rem; }
+  strong { color: var(--white); }
+
+  .warning-box {
+    background: rgba(255, 150, 0, 0.07);
+    border: 1px solid rgba(255, 150, 0, 0.25);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    margin: 1rem 0 1.2rem;
+  }
+  .warning-box p { margin: 0; color: var(--text); }
+
+  .highlight-box {
+    background: rgba(0,229,160,0.06);
+    border: 1px solid rgba(0,229,160,0.2);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    margin: 1rem 0 1.2rem;
+  }
+  .highlight-box p { margin: 0; }
+
+  .contact-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.8rem;
+    text-align: center;
+    margin-top: 3rem;
+  }
+  .contact-box h3 { color: var(--white); margin-bottom: 0.5rem; }
+  .contact-box p { color: var(--muted); margin-bottom: 1rem; font-size: 0.9rem; }
+  .contact-box a {
+    display: inline-block;
+    background: var(--volt);
+    color: #000;
+    font-weight: 700;
+    padding: 0.65rem 1.6rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+  }
+  .contact-box a:hover { background: #00c98e; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 1.8rem 2rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.82rem;
+    margin-top: 4rem;
+  }
+  footer a { color: var(--volt); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .page-wrap { padding: 2rem 1rem 4rem; }
+    nav { padding: 1rem; }
+    h1 { font-size: 1.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/mka-labs">
+    <div class="logo-mark">MK</div>
+    <span class="logo-text">MKA <span>Labs</span></span>
+  </a>
+  <a class="back-link" href="/mka-labs">← Back to MKA Labs</a>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="page-header">
+    <div class="label">Legal</div>
+    <h1>Terms of Service</h1>
+    <p class="meta">Effective date: September 27, 2026 &nbsp;·&nbsp; Last updated: September 27, 2026</p>
+  </div>
+
+  <div class="toc">
+    <h3>Contents</h3>
+    <ol>
+      <li><a href="#acceptance">Acceptance of Terms</a></li>
+      <li><a href="#service">Description of Service</a></li>
+      <li><a href="#eligibility">Eligibility</a></li>
+      <li><a href="#tiktok">TikTok API &amp; Platform Rules</a></li>
+      <li><a href="#acceptable-use">Acceptable Use</a></li>
+      <li><a href="#prohibited">Prohibited Activities</a></li>
+      <li><a href="#intellectual-property">Intellectual Property</a></li>
+      <li><a href="#disclaimer">Disclaimer of Warranties</a></li>
+      <li><a href="#liability">Limitation of Liability</a></li>
+      <li><a href="#termination">Termination</a></li>
+      <li><a href="#governing-law">Governing Law</a></li>
+      <li><a href="#changes">Changes to Terms</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ol>
+  </div>
+
+  <div class="section" id="acceptance">
+    <h2>1. Acceptance of Terms</h2>
+    <p>
+      By accessing or using any MKA Labs tool, platform, or service (collectively, the "Service"),
+      you agree to be bound by these Terms of Service ("Terms"). If you do not agree to
+      these Terms, do not use the Service.
+    </p>
+    <p>
+      These Terms apply to all users of MKA Labs tools, including individuals and organizations.
+    </p>
+  </div>
+
+  <div class="section" id="service">
+    <h2>2. Description of Service</h2>
+    <p>
+      MKA Labs provides software tools for TikTok content management, scheduling, and analytics.
+      Our Service integrates with TikTok's official API to allow you to:
+    </p>
+    <ul>
+      <li>View and manage your TikTok videos and content.</li>
+      <li>Schedule TikTok posts to be published at future times.</li>
+      <li>View analytics and performance data for your TikTok account.</li>
+      <li>Receive AI-assisted suggestions for content optimization.</li>
+    </ul>
+    <p>
+      The Service is provided as-is and may be updated, changed, or discontinued
+      at any time without prior notice.
+    </p>
+  </div>
+
+  <div class="section" id="eligibility">
+    <h2>3. Eligibility</h2>
+    <p>
+      You must be at least 13 years old (or the minimum age required in your country)
+      to use MKA Labs tools. By using our Service, you represent that you meet this
+      age requirement.
+    </p>
+    <p>
+      You must also have a valid TikTok account and agree to TikTok's Terms of Service
+      to use any feature that connects to TikTok.
+    </p>
+  </div>
+
+  <div class="section" id="tiktok">
+    <h2>4. TikTok API &amp; Platform Rules</h2>
+    <p>
+      Our Service operates using TikTok's official API. By using MKA Labs tools, you
+      acknowledge and agree that:
+    </p>
+    <ul>
+      <li>You are subject to TikTok's own <a href="https://www.tiktok.com/legal/terms-of-service" target="_blank" rel="noopener" style="color:var(--volt);">Terms of Service</a> and <a href="https://www.tiktok.com/legal/privacy-policy" target="_blank" rel="noopener" style="color:var(--volt);">Privacy Policy</a>.</li>
+      <li>MKA Labs is an independent developer and is not affiliated with, endorsed by, or sponsored by TikTok.</li>
+      <li>TikTok may revoke or limit API access at any time, which could affect the availability of our Service.</li>
+      <li>You will not use our Service to violate TikTok's community guidelines, platform policies, or terms of service.</li>
+    </ul>
+    <div class="highlight-box">
+      <p><strong>Note:</strong> MKA Labs is an independent third-party tool. TikTok is a trademark of ByteDance Ltd. We have no official relationship with TikTok.</p>
+    </div>
+  </div>
+
+  <div class="section" id="acceptable-use">
+    <h2>5. Acceptable Use</h2>
+    <p>You agree to use the Service only for lawful purposes and in ways that:</p>
+    <ul>
+      <li>Comply with all applicable local, national, and international laws and regulations.</li>
+      <li>Respect the rights and dignity of other people.</li>
+      <li>Are consistent with TikTok's platform policies and community guidelines.</li>
+      <li>Do not harm, interfere with, or disrupt MKA Labs or TikTok's services.</li>
+    </ul>
+  </div>
+
+  <div class="section" id="prohibited">
+    <h2>6. Prohibited Activities</h2>
+    <p>You may not use MKA Labs tools to:</p>
+    <ul>
+      <li>Automate actions that violate TikTok's terms, such as artificial engagement, spam, or fake followers.</li>
+      <li>Scrape, copy, or redistribute TikTok content in ways that violate intellectual property rights.</li>
+      <li>Attempt to reverse-engineer, decompile, or hack any part of our Service.</li>
+      <li>Use our Service to distribute illegal, harmful, or abusive content.</li>
+      <li>Share your access credentials or allow unauthorized third parties to access your account through our tools.</li>
+      <li>Use our Service for commercial resale or redistribution without our written consent.</li>
+      <li>Conduct any activity that compromises the security or integrity of TikTok's API or MKA Labs systems.</li>
+    </ul>
+    <div class="warning-box">
+      <p><strong>Violation of these terms may result in immediate termination of your access to MKA Labs tools.</strong></p>
+    </div>
+  </div>
+
+  <div class="section" id="intellectual-property">
+    <h2>7. Intellectual Property</h2>
+    <p>
+      All code, design, documentation, and materials that make up MKA Labs tools are the
+      intellectual property of MKA Labs and its licensors. These Terms do not grant you
+      any right to use our branding, trademarks, or proprietary technology beyond what
+      is necessary to use the Service as intended.
+    </p>
+    <p>
+      Your TikTok content remains your own. MKA Labs does not claim ownership of any
+      content you create or manage through our tools.
+    </p>
+  </div>
+
+  <div class="section" id="disclaimer">
+    <h2>8. Disclaimer of Warranties</h2>
+    <p>
+      The Service is provided <strong>"as is"</strong> and <strong>"as available"</strong> without
+      warranties of any kind, express or implied. We do not warrant that:
+    </p>
+    <ul>
+      <li>The Service will be uninterrupted, error-free, or secure.</li>
+      <li>Results obtained through the Service will be accurate or reliable.</li>
+      <li>Scheduled posts will be published at the exact time specified (subject to TikTok API availability).</li>
+    </ul>
+    <p>
+      Use of the Service is at your own risk. We disclaim all warranties to the fullest
+      extent permitted by applicable law.
+    </p>
+  </div>
+
+  <div class="section" id="liability">
+    <h2>9. Limitation of Liability</h2>
+    <p>
+      To the maximum extent permitted by law, MKA Labs and its operators shall not be
+      liable for any indirect, incidental, special, consequential, or punitive damages
+      arising from your use of, or inability to use, the Service.
+    </p>
+    <p>
+      This includes but is not limited to: loss of revenue, loss of data, failed
+      scheduled posts, TikTok API downtime, or any other interruption of service.
+    </p>
+    <p>
+      Our total liability to you for any claim arising from these Terms or your use
+      of the Service shall not exceed the amount you paid us in the 12 months preceding
+      the claim (or USD $50 if no payment was made).
+    </p>
+  </div>
+
+  <div class="section" id="termination">
+    <h2>10. Termination</h2>
+    <p>
+      We reserve the right to suspend or terminate your access to MKA Labs tools at
+      any time, with or without notice, if we believe you have violated these Terms
+      or if required by law.
+    </p>
+    <p>
+      You may stop using our Service at any time by unlinking your TikTok account and
+      ceasing to use our tools. See the <a href="/mka-labs/privacy#unlink" style="color:var(--volt);">Privacy Policy</a>
+      for instructions on how to unlink your account.
+    </p>
+  </div>
+
+  <div class="section" id="governing-law">
+    <h2>11. Governing Law</h2>
+    <p>
+      These Terms are governed by the laws of the Kingdom of Saudi Arabia, without
+      regard to its conflict of law principles. Any disputes arising from these Terms
+      shall be subject to the exclusive jurisdiction of the competent courts in the
+      Kingdom of Saudi Arabia.
+    </p>
+  </div>
+
+  <div class="section" id="changes">
+    <h2>12. Changes to Terms</h2>
+    <p>
+      We may update these Terms at any time. Updated Terms will be posted on this page
+      with a revised "Last updated" date. Your continued use of the Service after
+      changes are posted constitutes acceptance of the updated Terms.
+    </p>
+    <p>
+      We encourage you to review these Terms periodically.
+    </p>
+  </div>
+
+  <div class="section" id="contact">
+    <h2>13. Contact</h2>
+    <p>
+      If you have any questions about these Terms of Service, please contact us:
+    </p>
+  </div>
+
+  <div class="contact-box">
+    <h3>Questions about these Terms?</h3>
+    <p>We'll respond within 48 hours.</p>
+    <a href="mailto:contact@alsaiel.com">contact@alsaiel.com</a>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 MKA Labs · <a href="/mka-labs">Home</a> · <a href="/mka-labs/privacy">Privacy Policy</a> · <a href="/mka-labs/terms">Terms of Service</a> · Part of <a href="https://alsaiel.com">alsaiel.com</a></p>
+</footer>
+
+</body>
+</html>
