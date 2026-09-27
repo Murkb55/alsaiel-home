@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy – MKA Labs</title>
+<meta name="description" content="MKA Labs Privacy Policy — how we handle your TikTok data.">
+<style>
+  :root {
+    --bg: #0a0f1e;
+    --surface: #111827;
+    --card: #1a2235;
+    --border: #1e2d45;
+    --volt: #00E5A0;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --white: #ffffff;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.2rem 2rem;
+    border-bottom: 1px solid var(--border);
+    background: rgba(10,15,30,0.98);
+  }
+  .nav-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; }
+  .logo-mark {
+    width: 32px; height: 32px; border-radius: 7px;
+    background: linear-gradient(135deg, #00E5A0, #00bfff);
+    display: flex; align-items: center; justify-content: center;
+    font-weight: 800; font-size: 0.8rem; color: #000;
+  }
+  .logo-text { font-weight: 700; font-size: 1rem; color: var(--white); }
+  .logo-text span { color: var(--volt); }
+  .back-link {
+    color: var(--muted); text-decoration: none; font-size: 0.88rem;
+    transition: color 0.2s;
+  }
+  .back-link:hover { color: var(--volt); }
+
+  .page-wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 3.5rem 2rem 5rem;
+  }
+  .page-header {
+    margin-bottom: 3rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .label {
+    display: inline-block;
+    background: rgba(0,229,160,0.1);
+    border: 1px solid rgba(0,229,160,0.25);
+    color: var(--volt);
+    padding: 0.25rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 1rem;
+  }
+  h1 { font-size: 2rem; font-weight: 800; color: var(--white); margin-bottom: 0.5rem; }
+  .meta { color: var(--muted); font-size: 0.88rem; }
+
+  .toc {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    margin-bottom: 3rem;
+  }
+  .toc h3 { font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 1rem; }
+  .toc ol { padding-left: 1.2rem; }
+  .toc li { margin-bottom: 0.4rem; }
+  .toc a { color: var(--volt); text-decoration: none; font-size: 0.9rem; }
+  .toc a:hover { text-decoration: underline; }
+
+  .section { margin-bottom: 3rem; }
+  .section:last-of-type { margin-bottom: 0; }
+  h2 {
+    font-size: 1.2rem; font-weight: 700; color: var(--white);
+    margin-bottom: 1rem;
+    padding-top: 0.5rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  h2::before {
+    content: '';
+    display: inline-block;
+    width: 4px; height: 1.2em;
+    background: var(--volt);
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+  p { color: var(--text); font-size: 0.93rem; margin-bottom: 0.9rem; }
+  ul, ol { padding-left: 1.4rem; margin-bottom: 0.9rem; }
+  li { font-size: 0.93rem; color: var(--text); margin-bottom: 0.4rem; }
+  strong { color: var(--white); }
+
+  .highlight-box {
+    background: rgba(0,229,160,0.06);
+    border: 1px solid rgba(0,229,160,0.2);
+    border-radius: 10px;
+    padding: 1.2rem 1.4rem;
+    margin: 1rem 0 1.2rem;
+  }
+  .highlight-box p { margin: 0; color: var(--text); }
+
+  .contact-box {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.8rem;
+    text-align: center;
+    margin-top: 3rem;
+  }
+  .contact-box h3 { color: var(--white); margin-bottom: 0.5rem; }
+  .contact-box p { color: var(--muted); margin-bottom: 1rem; font-size: 0.9rem; }
+  .contact-box a {
+    display: inline-block;
+    background: var(--volt);
+    color: #000;
+    font-weight: 700;
+    padding: 0.65rem 1.6rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: background 0.2s;
+  }
+  .contact-box a:hover { background: #00c98e; }
+
+  footer {
+    border-top: 1px solid var(--border);
+    padding: 1.8rem 2rem;
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.82rem;
+    margin-top: 4rem;
+  }
+  footer a { color: var(--volt); text-decoration: none; }
+
+  @media (max-width: 600px) {
+    .page-wrap { padding: 2rem 1rem 4rem; }
+    nav { padding: 1rem; }
+    h1 { font-size: 1.6rem; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="/mka-labs">
+    <div class="logo-mark">MK</div>
+    <span class="logo-text">MKA <span>Labs</span></span>
+  </a>
+  <a class="back-link" href="/mka-labs">← Back to MKA Labs</a>
+</nav>
+
+<div class="page-wrap">
+
+  <div class="page-header">
+    <div class="label">Legal</div>
+    <h1>Privacy Policy</h1>
+    <p class="meta">Effective date: September 27, 2026 &nbsp;·&nbsp; Last updated: September 27, 2026</p>
+  </div>
+
+  <div class="toc">
+    <h3>Contents</h3>
+    <ol>
+      <li><a href="#overview">Overview</a></li>
+      <li><a href="#data-collected">Data We Access from TikTok</a></li>
+      <li><a href="#why-we-use">Why We Use Your Data</a></li>
+      <li><a href="#storage">How Data Is Stored</a></li>
+      <li><a href="#sharing">Data Sharing &amp; Third Parties</a></li>
+      <li><a href="#retention">Data Retention</a></li>
+      <li><a href="#rights">Your Rights &amp; Controls</a></li>
+      <li><a href="#unlink">How to Unlink Your Account</a></li>
+      <li><a href="#children">Children's Privacy</a></li>
+      <li><a href="#changes">Changes to This Policy</a></li>
+      <li><a href="#contact">Contact Us</a></li>
+    </ol>
+  </div>
+
+  <div class="section" id="overview">
+    <h2>1. Overview</h2>
+    <p>
+      MKA Labs ("we," "us," or "our") is an independent software lab that builds tools
+      for TikTok content management and scheduling. This Privacy Policy explains how we
+      collect, use, and protect information when you use our services, including our
+      integration with the TikTok API.
+    </p>
+    <div class="highlight-box">
+      <p><strong>Short version:</strong> We access only the TikTok data necessary to provide our service.
+      Your access tokens are stored locally on your device. We do not sell your data, and we do not
+      share it with any third party for advertising or commercial purposes.</p>
+    </div>
+  </div>
+
+  <div class="section" id="data-collected">
+    <h2>2. Data We Access from TikTok</h2>
+    <p>
+      When you connect your TikTok account to MKA Labs, we may access the following
+      data through TikTok's official API, depending on the permissions you grant:
+    </p>
+    <ul>
+      <li><strong>Account information:</strong> Your TikTok username, display name, and profile picture (public information).</li>
+      <li><strong>Video data:</strong> A list of videos you have published, including titles, descriptions, view counts, and engagement metrics.</li>
+      <li><strong>Scheduling data:</strong> Post scheduling information that you create within our tool.</li>
+      <li><strong>Analytics data:</strong> Aggregated engagement metrics (views, likes, shares, comments) for your content.</li>
+    </ul>
+    <p>
+      We access only the data required to provide the features you use. We do not access
+      your private messages, followers list, or any data not directly related to content
+      management and scheduling.
+    </p>
+  </div>
+
+  <div class="section" id="why-we-use">
+    <h2>3. Why We Use Your Data</h2>
+    <p>We use the data accessed through TikTok's API solely to provide and improve our service:</p>
+    <ul>
+      <li>To display your TikTok content and analytics within our dashboard.</li>
+      <li>To schedule and publish posts on your behalf at the times you choose.</li>
+      <li>To generate insights and recommendations based on your content performance.</li>
+      <li>To authenticate your sessions securely using your access token.</li>
+    </ul>
+    <p>
+      We do not use your data for advertising, profiling, or any purpose beyond
+      delivering the features of MKA Labs tools.
+    </p>
+  </div>
+
+  <div class="section" id="storage">
+    <h2>4. How Data Is Stored</h2>
+    <p>
+      <strong>Access tokens are stored locally on your device</strong> — in your browser's
+      local storage or in a local configuration file, depending on how you use our tools.
+      These tokens are never transmitted to or stored on MKA Labs servers.
+    </p>
+    <p>
+      Content data (such as your video list and analytics) is fetched directly from TikTok's
+      API when you use the application and is not permanently stored on our servers.
+      Any temporary caching that occurs is short-lived and is cleared when your session ends.
+    </p>
+    <p>
+      If you use a server-based version of our tools, minimal operational data (such as
+      scheduled post metadata) may be stored on our servers solely for the purpose of
+      executing scheduled tasks. This data is encrypted at rest and is deleted once the
+      scheduled action is completed.
+    </p>
+  </div>
+
+  <div class="section" id="sharing">
+    <h2>5. Data Sharing &amp; Third Parties</h2>
+    <p>
+      <strong>We do not sell, rent, or trade your personal data to any third party.</strong>
+    </p>
+    <p>We may share limited data in these specific circumstances only:</p>
+    <ul>
+      <li><strong>TikTok:</strong> Data is exchanged with TikTok's API as necessary to provide our service (scheduling, publishing, reading analytics). This is governed by TikTok's own Privacy Policy.</li>
+      <li><strong>Legal requirements:</strong> We may disclose information if required by law, court order, or valid government request.</li>
+      <li><strong>Safety:</strong> We may share data if we believe it is necessary to protect the rights, safety, or property of MKA Labs, our users, or the public.</li>
+    </ul>
+    <p>
+      We do not share your data with advertisers, data brokers, analytics platforms,
+      or any third party for marketing purposes.
+    </p>
+  </div>
+
+  <div class="section" id="retention">
+    <h2>6. Data Retention</h2>
+    <p>
+      We retain your data only for as long as necessary to provide our service. If you
+      unlink your TikTok account or stop using MKA Labs tools, any stored data associated
+      with your account will be deleted within 30 days.
+    </p>
+    <p>
+      Access tokens stored locally on your device persist until you revoke access or
+      clear your local storage. We have no control over or access to locally stored tokens.
+    </p>
+  </div>
+
+  <div class="section" id="rights">
+    <h2>7. Your Rights &amp; Controls</h2>
+    <p>You have the right to:</p>
+    <ul>
+      <li><strong>Access:</strong> Request a copy of any data we hold about you.</li>
+      <li><strong>Correction:</strong> Ask us to correct any inaccurate data.</li>
+      <li><strong>Deletion:</strong> Request that we delete your data from our systems.</li>
+      <li><strong>Portability:</strong> Receive your data in a structured, machine-readable format.</li>
+      <li><strong>Withdraw consent:</strong> Unlink your TikTok account at any time to stop further data access.</li>
+    </ul>
+    <p>
+      To exercise any of these rights, contact us at <a href="mailto:contact@alsaiel.com" style="color:var(--volt);">contact@alsaiel.com</a>.
+    </p>
+  </div>
+
+  <div class="section" id="unlink">
+    <h2>8. How to Unlink Your Account</h2>
+    <p>You can stop MKA Labs from accessing your TikTok data at any time:</p>
+    <ol>
+      <li>Open the MKA Labs tool and go to <strong>Settings</strong>.</li>
+      <li>Select <strong>Disconnect TikTok Account</strong> and confirm.</li>
+      <li>Additionally, go to your TikTok account settings → <strong>Privacy</strong> → <strong>Apps and Websites</strong> → find MKA Labs and click <strong>Remove access</strong>.</li>
+    </ol>
+    <p>
+      After unlinking, we will no longer be able to access your TikTok data.
+      Any locally stored tokens are cleared when you disconnect through the app.
+    </p>
+  </div>
+
+  <div class="section" id="children">
+    <h2>9. Children's Privacy</h2>
+    <p>
+      MKA Labs tools are not intended for users under the age of 13. We do not knowingly
+      collect personal data from children under 13. If you believe a child has provided
+      us with personal data, please contact us and we will take steps to delete it promptly.
+    </p>
+  </div>
+
+  <div class="section" id="changes">
+    <h2>10. Changes to This Policy</h2>
+    <p>
+      We may update this Privacy Policy from time to time. When we do, we will update the
+      "Last updated" date at the top of this page. We encourage you to review this policy
+      periodically.
+    </p>
+    <p>
+      Continued use of MKA Labs tools after changes are posted constitutes your acceptance
+      of the updated policy.
+    </p>
+  </div>
+
+  <div class="section" id="contact">
+    <h2>11. Contact Us</h2>
+    <p>
+      If you have questions, concerns, or requests regarding this Privacy Policy or how
+      we handle your data, please contact us:
+    </p>
+  </div>
+
+  <div class="contact-box">
+    <h3>Privacy Questions?</h3>
+    <p>We'll respond within 48 hours.</p>
+    <a href="mailto:contact@alsaiel.com">contact@alsaiel.com</a>
+  </div>
+
+</div>
+
+<footer>
+  <p>© 2026 MKA Labs · <a href="/mka-labs">Home</a> · <a href="/mka-labs/privacy">Privacy Policy</a> · <a href="/mka-labs/terms">Terms of Service</a> · Part of <a href="https://alsaiel.com">alsaiel.com</a></p>
+</footer>
+
+</body>
+</html>
