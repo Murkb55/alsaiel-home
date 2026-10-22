@@ -363,6 +363,16 @@ section {
 .project-thumb.grad-1 { background: var(--grad-card-1); }
 .project-thumb.grad-2 { background: var(--grad-card-2); }
 .project-thumb.grad-3 { background: var(--grad-card-3); }
+.project-thumb.tahayya-thumb {
+  display: flex; align-items: center; justify-content: center;
+  padding: 0; background: #F7F5F0;
+}
+.project-thumb.tahayya-thumb img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+}
+.project-name .name-en {
+  font-family: 'Space Grotesk', sans-serif; letter-spacing: 1px;
+}
 
 .ui-block {
   background: rgba(255,255,255,0.12);
@@ -668,6 +678,28 @@ a, button { cursor: pointer; }
           </p>
           <a href="https://sadad.alsaiel.com" class="project-link" target="_blank" rel="noopener" aria-label="زيارة مشروع SADAD">
             زيارة المشروع
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h7M9 8l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- TAHAYYA -->
+      <article class="project-card glass reveal" aria-label="منصة تهيّأ">
+        <div class="project-thumb tahayya-thumb">
+          <img src="assets/tahayya/og.png" width="1200" height="630" loading="lazy" decoding="async" alt="شعار منصة تهيّأ | TAHAYYA">
+        </div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="project-tag">EdTech</span>
+            <span class="project-tag">Exams</span>
+            <span class="project-tag">Arabic RTL</span>
+          </div>
+          <h3 class="project-name">تهيّأ | <span class="name-en">TAHAYYA</span> — منصة تعليمية رقمية</h3>
+          <p class="project-desc">
+            منصة رقمية للاستعداد للاختبارات المهنية — تدريب تفاعلي على أسئلة بإجابات مراجَعة، ومحاكاة لظروف الاختبار، ومراجعة متباعدة لتثبيت ما أخطأت فيه، ونتائج توضّح مستواك.
+          </p>
+          <a href="https://tahayya.alsaiel.com" class="project-link" target="_blank" rel="noopener" aria-label="زيارة منصة تهيّأ">
+            زيارة المنصة
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h7M9 8l4 4-4 4"/></svg>
           </a>
         </div>

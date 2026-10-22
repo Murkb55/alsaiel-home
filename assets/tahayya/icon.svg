@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="تهيّأ"><title>تهيّأ</title><rect width="512" height="512" rx="112" fill="#F7F5F0"/><g transform="translate(76 86) scale(3)">
+  <path d="M60 110 C44 102 26 100 8 102 L8 90 C26 88 44 90 60 98 Z" fill="#0F3D3A"/>
+  <path d="M60 110 C76 102 94 100 112 102 L112 90 C94 88 76 90 60 98 Z" fill="#2E7D73"/>
+  <rect x="72" y="66" width="16" height="24" rx="3" fill="#7FB8AC"/>
+  <rect x="52" y="48" width="16" height="42" rx="3" fill="#2E7D73"/>
+  <rect x="32" y="30" width="16" height="60" rx="3" fill="#0F3D3A"/>
+  <path d="M40 2 L50 12 L40 22 L30 12 Z" fill="#D4B483"/>
+</g></svg>
