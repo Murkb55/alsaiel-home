@@ -363,6 +363,20 @@ section {
 .project-thumb.grad-1 { background: var(--grad-card-1); }
 .project-thumb.grad-2 { background: var(--grad-card-2); }
 .project-thumb.grad-3 { background: var(--grad-card-3); }
+.project-thumb.dall-thumb {
+  display: flex; align-items: center; justify-content: center;
+  gap: 18px; padding: 0; background: #F7F4EE;
+}
+.dall-thumb img { width: 84px; height: 84px; display: block; }
+.dall-text { display: flex; flex-direction: column; align-items: flex-start; gap: 4px; }
+.dall-mark {
+  font-family: 'IBM Plex Sans Arabic', 'Cairo', sans-serif;
+  font-size: 2.6rem; font-weight: 600; line-height: 1; color: #1D4E5F;
+}
+.dall-sub {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 0.8rem; letter-spacing: 0.4em; color: #5B6B67;
+}
 .project-thumb.waqa-thumb {
   display: flex; flex-direction: column; align-items: center; justify-content: center;
   gap: 10px; padding: 0; background: #F2EEE5;
@@ -709,6 +723,33 @@ a, button { cursor: pointer; }
             منصة رقمية للاستعداد للاختبارات المهنية — تدريب تفاعلي على أسئلة بإجابات مراجَعة، ومحاكاة لظروف الاختبار، ومراجعة متباعدة لتثبيت ما أخطأت فيه، ونتائج توضّح مستواك.
           </p>
           <a href="https://tahayya.alsaiel.com" class="project-link" target="_blank" rel="noopener" aria-label="زيارة منصة تهيّأ">
+            زيارة المنصة
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h7M9 8l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- DALL -->
+      <article class="project-card glass reveal" aria-label="منصة دال">
+        <div class="project-thumb dall-thumb" role="img" aria-label="شعار دال | DALL">
+          <img src="assets/dall/symbol.svg" width="84" height="84" loading="lazy" decoding="async" alt="">
+          <span class="dall-text">
+            <span class="dall-mark">دال</span>
+            <span class="dall-sub">DALL</span>
+          </span>
+        </div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="project-status beta">نسخة أولية</span>
+            <span class="project-tag">Marketplace</span>
+            <span class="project-tag">Next.js</span>
+            <span class="project-tag">Arabic RTL</span>
+          </div>
+          <h3 class="project-name">دال | <span class="name-en">DALL</span> — سوق خدمات سعودي</h3>
+          <p class="project-desc">
+            منصة تربط العميل بمقدمي الخدمة: يصف العميل ما يحتاجه بكلامه، فيرتّب دال الطلب ويصله لمزودين مناسبين، ويقارن بين عروضهم ويختار الأنسب.
+          </p>
+          <a href="https://dallnow.com" class="project-link" target="_blank" rel="noopener" aria-label="زيارة منصة دال">
             زيارة المنصة
             <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h7M9 8l4 4-4 4"/></svg>
           </a>
