@@ -7,6 +7,6 @@
  * whatsappMessage: opening message; it is URL-encoded automatically.
  */
 window.SITE_CONFIG = {
-  whatsappNumber: '',
+  whatsappNumber: '966508980503',
   whatsappMessage: 'السلام عليكم، اطلعت على موقع الصايل ومشاريعه، وأرغب في التواصل بخصوص أحد الأعمال التقنية.'
 };
