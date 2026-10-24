@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ALSAIEL — Systems Builder</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Space+Grotesk:wght@300;400;500;600;700&family=IBM+Plex+Sans+Arabic:wght@600&display=swap" rel="stylesheet">
 
 <style>
 /* ─── Reset ─── */
@@ -363,6 +363,20 @@ section {
 .project-thumb.grad-1 { background: var(--grad-card-1); }
 .project-thumb.grad-2 { background: var(--grad-card-2); }
 .project-thumb.grad-3 { background: var(--grad-card-3); }
+.project-thumb.waqa-thumb {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  gap: 10px; padding: 0; background: #F2EEE5;
+}
+.waqa-mark {
+  font-family: 'IBM Plex Sans Arabic', 'Cairo', sans-serif;
+  font-size: 3.4rem; font-weight: 600; line-height: 1; color: #0D0D0C;
+}
+.waqa-sub {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: 0.8rem; letter-spacing: 0.45em; padding-inline-start: 0.45em;
+  color: #AAA297; text-transform: uppercase;
+}
+.waqa-rule { width: 36px; height: 2px; background: #B88A4A; border-radius: 2px; }
 .project-thumb.tahayya-thumb {
   display: flex; align-items: center; justify-content: center;
   padding: 0; background: #F7F5F0;
@@ -756,11 +770,10 @@ a, button { cursor: pointer; }
 
       <!-- WAQA -->
       <article class="project-card glass reveal" aria-label="موقع وَقْع">
-        <div class="project-thumb grad-2" aria-hidden="true">
-          <div class="ui-block"></div>
-          <div class="ui-block tall"></div>
-          <div class="ui-block"></div>
-          <div class="ui-block"></div>
+        <div class="project-thumb waqa-thumb" role="img" aria-label="شعار وَقْع | WAQA">
+          <span class="waqa-mark">وَقْع</span>
+          <span class="waqa-rule"></span>
+          <span class="waqa-sub">WAQA</span>
         </div>
         <div class="project-body">
           <div class="project-tags">
