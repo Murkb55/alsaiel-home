@@ -2,83 +2,88 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>ALSAIEL — Systems Builder</title>
-<meta name="description" content="الصايل — مهندس أنظمة ذكية وأتمتة. أنظمة ومنصات تعمل فعلًا: تهيّأ، دال، سايان، SADAD، وَقْع.">
+<meta name="description" content="الصايل — مهندس أنظمة ذكية وأتمتة. منصات تعمل فعلًا: تهيّأ، دال، وَقْع، وغيرها.">
+<meta name="theme-color" content="#070910">
+<link rel="canonical" href="https://alsaiel.com/">
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
 <meta property="og:type" content="website">
 <meta property="og:locale" content="ar_SA">
+<meta property="og:site_name" content="ALSAIEL">
 <meta property="og:title" content="ALSAIEL — Systems Builder">
-<meta property="og:description" content="مهندس أنظمة ذكية وأتمتة. أنظمة ومنصات تعمل فعلًا.">
-<link rel="canonical" href="https://alsaiel.com/">
-<meta name="theme-color" content="#070910">
+<meta property="og:description" content="مهندس أنظمة ذكية وأتمتة. منصات تعمل فعلًا: تهيّأ، دال، وَقْع، وغيرها.">
+<meta property="og:url" content="https://alsaiel.com/">
+<meta property="og:image" content="https://alsaiel.com/assets/og.png">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@500;800&family=IBM+Plex+Sans+Arabic:wght@400;500&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
 <style>
 :root {
   --ink: #070910; --panel: #0E121C; --panel-2: #151B29;
   --line: rgba(170,185,255,.14); --text: #EEF1FB; --muted: #9AA4C0;
-  --violet: #7C6CFF; --cyan: #4FD8E8; --teal: #4FB8A8; --amber: #F4B86A; --blue: #6E98FF;
-  --accent: var(--teal);
+  --violet: #7C6CFF; --cyan: #4FD8E8; --amber: #F4B86A;
+  --accent: #4FB8A8;
   --display: 'Noto Kufi Arabic', 'IBM Plex Sans Arabic', sans-serif;
   --body: 'IBM Plex Sans Arabic', 'Noto Kufi Arabic', sans-serif;
   --ease: cubic-bezier(.2,.7,.2,1);
 }
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { color-scheme: dark; scroll-behavior: smooth; }
+html { color-scheme: dark; scroll-behavior: smooth; scroll-padding-top: 72px; }
 body { background: var(--ink); color: var(--text); font: 400 1rem/1.8 var(--body); -webkit-font-smoothing: antialiased; overflow-x: clip; }
-a { color: inherit; text-decoration: none; }
+a { color: inherit; text-decoration: none; -webkit-tap-highlight-color: transparent; }
 img { display: block; max-width: 100%; height: auto; }
 button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; touch-action: manipulation; }
 :focus-visible { outline: 2px solid var(--cyan); outline-offset: 3px; border-radius: 6px; }
 .skip { position: absolute; inset-inline-start: 12px; top: -60px; background: var(--cyan); color: #00131a; padding: 8px 14px; border-radius: 8px; z-index: 100; }
 .skip:focus { top: 12px; }
 .wrap { width: min(1200px, 100% - 40px); margin-inline: auto; }
-h2.title { font: 800 clamp(1.8rem, 3.6vw, 2.8rem)/1.35 var(--display); text-wrap: balance; max-width: 16em; }
+h2.title { font: 800 clamp(1.7rem, 3.6vw, 2.8rem)/1.4 var(--display); text-wrap: balance; max-width: 16em; }
 .eyebrow { color: var(--cyan); font-size: .92rem; margin-bottom: 10px; }
 
-/* Ambient pointer light + scroll progress */
 .light { position: fixed; inset: 0; z-index: 0; pointer-events: none; background: radial-gradient(560px circle at var(--mx, 75%) var(--my, 18%), rgba(124,108,255,.15), transparent 62%); }
 .progress { position: fixed; inset-inline: 0; top: 0; height: 3px; z-index: 40; background: linear-gradient(90deg, var(--violet), var(--cyan)); transform-origin: 100% 50%; transform: scaleX(var(--p, 0)); }
 
-/* Nav */
-header { position: fixed; inset-inline: 0; top: 0; z-index: 30; transition: background-color .3s, border-color .3s; border-bottom: 1px solid transparent; }
-header.solid { background: rgba(7,9,16,.78); backdrop-filter: blur(14px); border-color: var(--line); }
-.nav { display: flex; align-items: center; justify-content: space-between; height: 66px; }
-.brand { font: 800 1.15rem var(--display); letter-spacing: .14em; direction: ltr; }
-.nav ul { display: flex; gap: 28px; list-style: none; color: var(--muted); font-size: .95rem; }
+header { position: fixed; inset-inline: 0; top: 0; z-index: 30; transition: background-color .3s, border-color .3s; border-bottom: 1px solid transparent; padding-top: env(safe-area-inset-top); }
+header.solid { background: rgba(7,9,16,.82); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); border-color: var(--line); }
+.nav { display: flex; align-items: center; justify-content: space-between; gap: 16px; height: 66px; }
+.brand { font: 800 1.15rem var(--display); letter-spacing: .14em; direction: ltr; min-height: 44px; display: inline-flex; align-items: center; }
+.nav ul { display: flex; gap: 26px; list-style: none; color: var(--muted); font-size: .95rem; }
 .nav ul a { padding: 10px 0; transition: color .2s; } .nav ul a:hover { color: var(--text); }
-.btn { display: inline-flex; align-items: center; gap: 10px; min-height: 46px; padding: 0 24px; border-radius: 999px; font-weight: 500; transition: background-color .25s, border-color .25s, transform .25s; }
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 46px; padding: 0 24px; border-radius: 999px; font-weight: 500; transition: background-color .25s, border-color .25s, transform .25s; }
 .btn-solid { background: var(--text); color: var(--ink); } .btn-solid:hover { background: #fff; transform: translateY(-2px); }
 .btn-line { border: 1px solid var(--line); } .btn-line:hover { border-color: var(--cyan); }
-@media (max-width: 760px) { .nav ul { display: none; } }
+@media (max-width: 900px) { .nav ul { display: none; } }
 
-/* HERO: one orchestrated entrance */
-.hero { position: relative; min-height: min(100svh, 980px); display: grid; align-items: center; padding: 110px 0 70px; overflow: clip; z-index: 1; }
+/* HERO */
+.hero { position: relative; min-height: min(100svh, 980px); display: grid; align-items: center; padding: 110px 0 80px; overflow: clip; z-index: 1; }
 .hero .grid { position: absolute; inset: 0; pointer-events: none;
   background-image: linear-gradient(var(--line) 1px, transparent 1px), linear-gradient(90deg, var(--line) 1px, transparent 1px); background-size: 72px 72px;
   -webkit-mask-image: radial-gradient(ellipse 70% 65% at 50% 35%, #000 15%, transparent 75%); mask-image: radial-gradient(ellipse 70% 65% at 50% 35%, #000 15%, transparent 75%); }
 .hero .wrap { position: relative; display: grid; grid-template-columns: 1.05fr 1fr; gap: 40px; align-items: center; }
-.hero h1 { font: 800 clamp(2.6rem, 6.4vw, 5.4rem)/1.2 var(--display); text-wrap: balance; }
-.hero h1 .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .12em; }
+.hero h1 { font: 800 clamp(2.3rem, 6.4vw, 5.4rem)/1.22 var(--display); text-wrap: balance; }
+.hero h1 .w { display: inline-block; overflow: hidden; vertical-align: top; padding-bottom: .14em; }
 .hero h1 .w > span { display: inline-block; }
 .hero h1 .grad > span { background: linear-gradient(100deg, var(--violet), var(--cyan) 75%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-.lead { margin-top: 24px; max-width: 32em; color: var(--muted); font-size: 1.12rem; }
-.cta { margin-top: 34px; display: flex; flex-wrap: wrap; gap: 12px; }
+.lead { margin-top: 22px; max-width: 32em; color: var(--muted); font-size: clamp(1rem, 1.5vw, 1.12rem); }
+.cta { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; }
 .stage { position: relative; aspect-ratio: 5 / 4.2; perspective: 1500px; }
 .frame { position: absolute; border-radius: 16px; overflow: hidden; border: 1px solid var(--line); background: var(--panel);
   box-shadow: 0 50px 90px -35px rgba(0,0,0,.9);
   transform: translate3d(0, var(--fy, 0), 0) rotateY(var(--ry, -11deg)) rotateX(var(--rx, 4deg)); transition: transform .5s var(--ease); will-change: transform; }
 .frame .bar { height: 26px; display: flex; align-items: center; gap: 6px; padding: 0 12px; background: var(--panel-2); border-bottom: 1px solid var(--line); }
-.frame .bar i { width: 8px; height: 8px; border-radius: 50%; background: #2A3150; }
+.frame .bar i { width: 8px; height: 8px; border-radius: 50%; background: #2A3150; flex: none; }
+.frame .host { margin-inline-start: 8px; font-size: .72rem; color: var(--muted); direction: ltr; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .fa { inset: 2% 0 auto 12%; width: 88%; z-index: 1; }
 .fb { inset: auto 6% 2% auto; width: 56%; z-index: 2; --fy: 14px; --rx: 2deg; }
-.fc { inset: auto auto 0 4%; width: 27%; z-index: 3; border-radius: 24px; --ry: -6deg; }
+.fc { inset: auto auto 0 4%; width: 27%; z-index: 3; border-radius: 22px; --ry: -6deg; }
 .hint { position: absolute; inset-inline: 0; bottom: 22px; display: flex; justify-content: center; z-index: 2; color: var(--muted); font-size: .85rem; }
 .hint span { display: grid; justify-items: center; gap: 8px; }
 .hint i { width: 22px; height: 36px; border: 1.5px solid var(--muted); border-radius: 12px; position: relative; }
 .hint i::after { content: ""; position: absolute; top: 7px; left: 50%; width: 3px; height: 7px; margin-left: -1.5px; border-radius: 3px; background: var(--cyan); }
-@media (max-width: 900px) { .hero .wrap { grid-template-columns: 1fr; } .stage { max-width: 540px; width: 100%; } .hint { display: none; } }
+@media (max-width: 900px) { .hero { padding-top: 96px; } .hero .wrap { grid-template-columns: 1fr; } .stage { max-width: 540px; width: 100%; } .hint { display: none; } }
 @media (prefers-reduced-motion: no-preference) {
   .hero h1 .w > span { transform: translateY(110%); animation: up .9s var(--ease) forwards; animation-delay: calc(var(--i) * 90ms + 150ms); }
   .lead, .cta { opacity: 0; animation: fade .9s var(--ease) forwards; } .lead { animation-delay: .75s; } .cta { animation-delay: .9s; }
@@ -88,76 +93,64 @@ header.solid { background: rgba(7,9,16,.78); backdrop-filter: blur(14px); border
 @keyframes up { to { transform: none; } } @keyframes fade { from { opacity: 0; translate: 0 22px; } to { opacity: 1; translate: 0; } }
 @keyframes dot { 0%,100% { transform: translateY(0); opacity: 1; } 60% { transform: translateY(10px); opacity: .2; } }
 
-/* REEL: scroll-pinned chapters */
-.reel { position: relative; z-index: 1; height: 340vh; }
-.reel .pin { position: sticky; top: 0; height: 100svh; display: grid; align-items: center; overflow: clip; }
-.reel .pin::before { content: ""; position: absolute; inset: 0; pointer-events: none; transition: background .8s;
-  background: radial-gradient(700px circle at 30% 50%, color-mix(in srgb, var(--accent) 24%, transparent), transparent 70%); }
-.reel .wrap { position: relative; display: grid; grid-template-columns: 1fr 1.3fr; gap: 48px; align-items: center; }
-.panels { position: relative; min-height: 340px; }
-.panel { position: absolute; inset: 0; display: flex; flex-direction: column; justify-content: center; gap: 14px; opacity: 0; transform: translateY(24px); pointer-events: none; transition: opacity .55s var(--ease), transform .55s var(--ease); }
-.panel.on { opacity: 1; transform: none; pointer-events: auto; }
-.panel h3 { font: 800 clamp(2rem, 4vw, 3.2rem)/1.25 var(--display); }
-.panel h3 small { display: block; font: 500 .95rem var(--body); letter-spacing: .24em; color: var(--muted); direction: ltr; text-align: right; margin-top: 4px; }
-.panel p { color: var(--muted); max-width: 30em; }
-.chip { display: inline-flex; align-items: center; gap: 8px; width: fit-content; padding: 4px 14px; border-radius: 999px; font-size: .85rem; border: 1px solid; }
+/* REEL — base (also the no-JS / reduced-motion layout): projects flow vertically */
+.reel { position: relative; z-index: 1; padding: 80px 0 20px; }
+.projs { display: grid; gap: 90px; }
+.proj { display: grid; grid-template-columns: 1fr 1.3fr; gap: 48px; align-items: center; }
+.copy { display: flex; flex-direction: column; justify-content: center; gap: 14px; }
+.id { display: flex; align-items: center; gap: 12px; }
+.logo { width: 52px; height: 52px; border-radius: 14px; display: grid; place-items: center; flex: none; overflow: hidden; }
+.logo img { width: 34px; height: 34px; }
+.logo.tahayya { background: #F7F5F0; } .logo.dall { background: #F7F4EE; } .logo.waqa { background: #F2EEE5; color: #0D0D0C; font: 700 1.25rem/1 var(--display); }
+.copy h3 { font: 800 clamp(1.9rem, 4vw, 3rem)/1.3 var(--display); }
+.copy h3 small { display: block; font: 500 .9rem var(--body); letter-spacing: .24em; color: var(--muted); direction: ltr; text-align: right; margin-top: 2px; }
+.copy p { color: var(--muted); max-width: 31em; }
+.chip { display: inline-flex; align-items: center; gap: 8px; width: fit-content; padding: 3px 14px; border-radius: 999px; font-size: .85rem; border: 1px solid; }
 .chip::before { content: ""; width: 7px; height: 7px; border-radius: 50%; background: currentColor; }
 .chip.ok { color: #5BD6A4; border-color: rgba(91,214,164,.4); } .chip.wip { color: var(--amber); border-color: rgba(244,184,106,.4); } .chip.soon { color: var(--muted); border-color: var(--line); }
 .visit { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; color: var(--accent); font-weight: 500; width: fit-content; }
 .visit svg { transition: transform .25s; } .visit:hover svg { transform: translateX(-4px); }
-.dots { position: absolute; inset-inline-start: 0; bottom: -52px; display: flex; gap: 8px; }
-.dots button { width: 34px; height: 44px; display: grid; place-items: center; }
+.show { position: relative; padding-bottom: 6%; }
+.show .desk { position: relative; inset: auto; width: 100%; --ry: -5deg; --rx: 2deg; opacity: 1; animation: none; }
+.shot-frame { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #F4F2EC; }
+.shot-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: right top; opacity: 0; transition: opacity .6s; }
+.shot-frame img.on, .shot-frame img:first-child { opacity: 1; }
+.show .phone { position: absolute; width: 22%; border-radius: 20px; inset: auto auto 0 2%; opacity: 1; animation: none; --ry: -6deg; z-index: 2; }
+.show .phone img { width: 100%; }
+.dots { display: none; }
+@media (max-width: 900px) { .proj { grid-template-columns: 1fr; gap: 26px; } .projs { gap: 70px; } }
+
+/* REEL — pinned mode (JS adds .pinned; layout decided in JS) */
+.reel.pinned { height: calc(100svh * 3.4); padding: 0; }
+.reel.pinned .pin { position: sticky; top: 0; height: 100svh; display: grid; align-items: center; overflow: clip; padding-top: 66px; }
+.reel.pinned .pin::before { content: ""; position: absolute; inset: 0; pointer-events: none; background: radial-gradient(700px circle at 30% 50%, color-mix(in srgb, var(--accent) 24%, transparent), transparent 70%); }
+.reel.pinned .projs { position: relative; display: grid; gap: 0; }
+.reel.pinned .proj { grid-area: 1 / 1; opacity: 0; visibility: hidden; transform: translateY(26px); transition: opacity .55s var(--ease), transform .6s var(--ease), visibility 0s linear .55s; }
+.reel.pinned .proj.on { opacity: 1; visibility: visible; transform: none; transition-delay: 0s; }
+.reel.pinned .dots { display: flex; gap: 8px; position: absolute; inset-inline: 0; bottom: max(16px, env(safe-area-inset-bottom)); justify-content: center; z-index: 3; }
+.dots button { width: 40px; height: 44px; display: grid; place-items: center; }
 .dots button::before { content: ""; width: 100%; height: 4px; border-radius: 4px; background: var(--line); transition: background-color .4s; }
 .dots button.on::before { background: var(--accent); }
-.dots button span { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+@media (max-width: 900px) {
+  .reel.pinned .pin { align-items: center; padding-top: 74px; padding-bottom: 60px; }
+  .reel.pinned .proj { gap: 18px; }
+  .reel.pinned .copy { gap: 10px; }
+  .reel.pinned .copy h3 { font-size: clamp(1.6rem, 7vw, 2.2rem); }
+  .reel.pinned .copy p { font-size: .94rem; line-height: 1.7; }
+  .reel.pinned .logo { width: 44px; height: 44px; } .reel.pinned .logo img { width: 28px; height: 28px; }
+}
 
-.show { position: relative; aspect-ratio: 16 / 11; }
-.scene { position: absolute; inset: 0; display: grid; place-items: center; opacity: 0; transform: scale(.96) translateY(18px); transition: opacity .6s var(--ease), transform .7s var(--ease); pointer-events: none; }
-.scene.on { opacity: 1; transform: none; }
-.scene .frame { position: relative; inset: auto; width: 100%; --ry: -5deg; --rx: 2deg; }
-.scene .frame img { width: 100%; aspect-ratio: 16 / 10; object-fit: cover; object-position: right top; }
-.shot-frame { position: relative; width: 100%; aspect-ratio: 16 / 10; overflow: hidden; }
-.shot-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: right top; opacity: 0; transition: opacity .5s; }
-.shot-frame img.on { opacity: 1; }
-.pipeline { width: min(100%, 460px); display: grid; gap: 7px; list-style: none; }
-.pipeline li { display: flex; align-items: center; gap: 12px; padding: 8px 14px; border-radius: 10px; border: 1px solid var(--line); background: rgba(255,255,255,.02); color: var(--muted); font-size: .94rem; transition: background-color .35s, border-color .35s, color .35s; }
-.pipeline li::before { content: ""; width: 9px; height: 9px; border-radius: 50%; border: 2px solid currentColor; flex: none; }
-.pipeline li.done { color: var(--text); } .pipeline li.done::before { background: var(--amber); border-color: var(--amber); }
-.pipeline li.now { color: #fff; background: rgba(244,184,106,.16); border-color: var(--amber); } .pipeline li.now::before { background: var(--amber); border-color: var(--amber); }
-.setup { width: min(100%, 400px); padding: 26px; border: 1px dashed var(--line); border-radius: 18px; background: rgba(255,255,255,.02); color: var(--muted); }
-.setup b { display: block; color: var(--text); font: 800 1.15rem var(--display); margin-bottom: 8px; }
-
-/* Stacked layout (mobile / reduced motion): chapters flow normally */
-.stacked .reel { height: auto; padding: 70px 0; }
-.stacked .reel .pin { position: static; height: auto; display: block; overflow: visible; }
-.stacked .reel .wrap { display: block; }
-.stacked .chapter { display: grid; gap: 26px; margin-bottom: 70px; }
-.stacked .panels { min-height: 0; } .stacked .panel { position: static; opacity: 1; transform: none; pointer-events: auto; }
-.stacked .show { aspect-ratio: auto; } .stacked .scene { position: static; opacity: 1; transform: none; }
-.stacked .shot-frame { aspect-ratio: auto; } .stacked .shot-frame img { position: static; opacity: 1; display: none; height: auto; } .stacked .shot-frame img:first-child { display: block; } .stacked .dots { display: none; } .stacked .reel .pin::before { display: none; }
-.chapter { display: contents; }
-.stacked .chapter .panels, .stacked .chapter .show { width: 100%; }
-.stacked .stage-col { display: grid; gap: 26px; } .stacked .scene.sx { display: none; }
-
-/* Gallery of the rest */
+/* OTHER WORKS */
 .more { position: relative; z-index: 1; padding: 100px 0 40px; }
-.tiles { margin-top: 36px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-.tile { position: relative; border-radius: 22px; padding: 22px; background: var(--panel); border: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; overflow: hidden; isolation: isolate; transition: transform .35s var(--ease), border-color .3s; min-height: 260px; }
+.tiles { margin-top: 34px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.tile { position: relative; border-radius: 22px; padding: 22px; background: var(--panel); border: 1px solid var(--line); display: flex; flex-direction: column; gap: 10px; overflow: hidden; isolation: isolate; transition: transform .35s var(--ease), border-color .3s; min-height: 250px; }
 .tile::before { content: ""; position: absolute; inset: 0; z-index: -1; opacity: 0; transition: opacity .3s; background: radial-gradient(320px circle at var(--px, 50%) var(--py, 0), color-mix(in srgb, var(--c, #7C6CFF) 24%, transparent), transparent 65%); }
 .tile:hover { border-color: color-mix(in srgb, var(--c, #7C6CFF) 55%, transparent); } .tile:hover::before { opacity: 1; } a.tile:hover { transform: translateY(-4px); }
-.tile h3 { font: 800 1.3rem var(--display); } .tile h3 small { font: 400 .8rem var(--body); color: var(--muted); letter-spacing: .18em; margin-inline-start: 8px; direction: ltr; display: inline-block; }
+.tile h3 { font: 800 1.25rem var(--display); } .tile h3 small { font: 400 .8rem var(--body); color: var(--muted); letter-spacing: .18em; margin-inline-start: 8px; direction: ltr; display: inline-block; }
 .tile p { color: var(--muted); font-size: .94rem; }
-.mark { display: grid; place-items: center; min-height: 92px; border-radius: 14px; background: #F7F4EE; } .mark img { width: 54px; height: 54px; }
-.mark.waqa { background: #F2EEE5; color: #0D0D0C; font: 700 2.3rem/1 var(--display); } .mark.dark { background: var(--panel-2); color: var(--muted); font: 800 1.6rem var(--display); }
-@media (max-width: 980px) { .tiles { grid-template-columns: repeat(2, 1fr); } } @media (max-width: 520px) { .tiles { grid-template-columns: 1fr; } }
+.mark { display: grid; place-items: center; min-height: 84px; border-radius: 14px; background: var(--panel-2); color: var(--muted); font: 800 1.5rem var(--display); direction: ltr; }
+@media (max-width: 980px) { .tiles { grid-template-columns: repeat(2, 1fr); } } @media (max-width: 520px) { .tiles { grid-template-columns: 1fr; } .tile { min-height: 0; } }
 
-.services { position: relative; z-index: 1; padding: 70px 0; }
-.svc-grid { margin-top: 30px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
-.svc { padding: 22px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); }
-.svc h3 { font: 800 1.05rem var(--display); margin-bottom: 6px; } .svc p { color: var(--muted); font-size: .92rem; }
-@media (max-width: 900px) { .svc-grid { grid-template-columns: repeat(2, 1fr); } } @media (max-width: 520px) { .svc-grid { grid-template-columns: 1fr; } }
-
-/* About */
 .about { position: relative; z-index: 1; padding: 70px 0 20px; }
 .about-grid { margin-top: 30px; display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
 .about-card { padding: clamp(22px, 3vw, 34px); border: 1px solid var(--line); border-radius: 22px; background: var(--panel); }
@@ -166,25 +159,29 @@ header.solid { background: rgba(7,9,16,.78); backdrop-filter: blur(14px); border
 .skill-tags { list-style: none; display: flex; flex-wrap: wrap; gap: 8px; }
 .skill-tags li { padding: 5px 14px; border-radius: 999px; border: 1px solid var(--line); color: var(--cyan); font-size: .88rem; direction: ltr; }
 @media (max-width: 760px) { .about-grid { grid-template-columns: 1fr; } }
-/* Contact form */
-.cform { max-width: 640px; margin: 0 auto; display: grid; gap: 12px; text-align: start; }
-.frow { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-@media (max-width: 560px) { .frow { grid-template-columns: 1fr; } }
-.cform input, .cform textarea { width: 100%; padding: 14px 16px; min-height: 48px; border-radius: 14px; border: 1px solid var(--line); background: rgba(255,255,255,.04); color: var(--text); font: inherit; resize: vertical; transition: border-color .25s, background-color .25s; }
-.cform input::placeholder, .cform textarea::placeholder { color: #7F89A6; }
-.cform input:focus-visible, .cform textarea:focus-visible { outline: 2px solid var(--cyan); outline-offset: 2px; border-color: transparent; }
-.cform .btn { justify-content: center; border: 0; font-size: 1rem; }
-.cform .btn:disabled { cursor: default; background: #5BD6A4; }
-.final { position: relative; z-index: 1; margin: 60px auto 40px; text-align: center; padding: clamp(48px, 8vw, 110px) 20px; border: 1px solid var(--line); border-radius: 30px; background: radial-gradient(640px circle at 50% 0, rgba(124,108,255,.24), transparent 70%), var(--panel); }
-.final h2 { font: 800 clamp(2rem, 4.6vw, 3.6rem)/1.3 var(--display); } .final p { color: var(--muted); margin: 14px auto 28px; max-width: 30em; }
-footer { position: relative; z-index: 1; padding: 30px 0 50px; color: var(--muted); font-size: .9rem; border-top: 1px solid var(--line); margin-top: 60px; }
+.services { position: relative; z-index: 1; padding: 70px 0; }
+.svc-grid { margin-top: 30px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
+.svc { padding: 22px; border: 1px solid var(--line); border-radius: 16px; background: var(--panel); }
+.svc h3 { font: 800 1.05rem var(--display); margin-bottom: 6px; } .svc p { color: var(--muted); font-size: .92rem; }
+@media (max-width: 900px) { .svc-grid { grid-template-columns: repeat(2, 1fr); } } @media (max-width: 520px) { .svc-grid { grid-template-columns: 1fr; } }
 
-/* Reveal on scroll (gallery + services only) */
+/* CONTACT — WhatsApp */
+.contact { position: relative; z-index: 1; margin: 50px auto 30px; text-align: center; padding: clamp(46px, 8vw, 100px) clamp(18px, 4vw, 40px); border: 1px solid var(--line); border-radius: 30px; overflow: hidden;
+  background: radial-gradient(640px circle at 50% 0, rgba(37,211,102,.16), transparent 70%), radial-gradient(640px circle at 80% 100%, rgba(124,108,255,.18), transparent 70%), var(--panel); }
+.contact h2 { font: 800 clamp(1.9rem, 4.6vw, 3.4rem)/1.35 var(--display); text-wrap: balance; }
+.contact p { color: var(--muted); margin: 14px auto 28px; max-width: 30em; }
+.wa { display: inline-flex; align-items: center; justify-content: center; gap: 12px; min-height: 56px; padding: 0 30px; border-radius: 999px; background: #25D366; color: #052E16; font: 800 1.05rem var(--display); transition: transform .25s, background-color .25s; box-shadow: 0 14px 40px -14px rgba(37,211,102,.7); }
+.wa:hover { transform: translateY(-3px); background: #3DE07B; }
+.wa svg { width: 26px; height: 26px; flex: none; }
+.wa[hidden] { display: none; }
+@media (max-width: 520px) { .wa { width: 100%; } }
+footer { position: relative; z-index: 1; padding: 30px 0 calc(50px + env(safe-area-inset-bottom)); color: var(--muted); font-size: .9rem; border-top: 1px solid var(--line); margin-top: 50px; }
+
 @media (prefers-reduced-motion: no-preference) {
-  .rv { opacity: 0; transform: translateY(26px); transition: opacity .8s var(--ease), transform .8s var(--ease); transition-delay: calc(var(--d, 0) * 70ms); }
-  .rv.in { opacity: 1; transform: none; }
+  .js .rv { opacity: 0; transform: translateY(26px); transition: opacity .8s var(--ease), transform .8s var(--ease); transition-delay: calc(var(--d, 0) * 70ms); }
+  .js .rv.in { opacity: 1; transform: none; }
 }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .frame, .panel, .scene, .tile { transition: none; } }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .frame, .proj, .tile, .shot-frame img { transition: none; } }
 </style>
 </head>
 <body>
@@ -222,10 +219,10 @@ footer { position: relative; z-index: 1; padding: 30px 0 50px; color: var(--mute
           <a class="btn btn-line" href="#contact">تواصل معي</a>
         </div>
       </div>
-      <div class="stage" id="stage" role="img" aria-label="لقطات من واجهة منصة تهيّأ على الكمبيوتر والجوال">
+      <div class="stage" id="stage" role="img" aria-label="لقطات من منصات تهيّأ ودال ووَقْع">
         <div class="frame fa"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="assets/tahayya/tahayya-hero.webp" width="2000" height="1250" alt="" fetchpriority="high"></div>
-        <div class="frame fb"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="assets/tahayya/tahayya-dashboard.webp" width="2000" height="1513" alt=""></div>
-        <div class="frame fc"><img src="assets/tahayya/tahayya-mobile-landing.webp" width="780" height="1688" alt=""></div>
+        <div class="frame fb"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div><img src="assets/dall/dall-1.jpg" width="2000" height="1250" alt=""></div>
+        <div class="frame fc"><img src="assets/waqa/waqa-m.jpg" width="780" height="1688" alt=""></div>
       </div>
     </div>
     <div class="hint" aria-hidden="true"><span><i></i>مرّر للأسفل</span></div>
@@ -234,55 +231,72 @@ footer { position: relative; z-index: 1; padding: 30px 0 50px; color: var(--mute
   <section class="reel" id="reel" aria-label="الأعمال الرئيسية">
     <div class="pin">
       <div class="wrap">
-        <div class="chapter">
-          <div class="panels" id="panels">
-            <article class="panel on" data-i="0">
-              <span class="chip ok">منشور — نسخة تجريبية</span>
-              <h3>تهيّأ <small>TAHAYYA</small></h3>
+        <div class="projs" id="projs">
+
+          <article class="proj" data-i="0" style="--accent:#4FB8A8" aria-labelledby="p0">
+            <div class="copy">
+              <div class="id"><span class="logo tahayya"><img src="assets/tahayya/icon.svg" width="34" height="34" alt="" loading="lazy"></span><span class="chip ok">منشور — نسخة تجريبية</span></div>
+              <h3 id="p0">تهيّأ <small>TAHAYYA</small></h3>
               <p>منصة رقمية للاستعداد للاختبارات المهنية: تدريب على أسئلة بإجابات مراجَعة، ومحاكاة لظروف الاختبار، ومراجعة متباعدة، ونتائج توضح مستواك.</p>
               <a class="visit" href="https://tahayya.alsaiel.com" target="_blank" rel="noopener" aria-label="زيارة منصة تهيّأ">زيارة المنصة <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
-            </article>
-            <article class="panel" data-i="1">
-              <span class="chip wip">نسخة أولية</span>
-              <h3>سايان <small>SAYANAH</small></h3>
-              <p>نظام لتسجيل طلبات صيانة الأجهزة ومتابعتها: العميل والجهاز، وحالة الإصلاح مع سجل تغيّرها، ثم التسليم. تتقدم المراحل أثناء تمريرك كما هي معرّفة في النظام.</p>
-              <a class="visit" href="https://sayanah.alsaiel.com" target="_blank" rel="noopener" aria-label="زيارة نظام سايان">زيارة النظام <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
-            </article>
-            <article class="panel" data-i="2">
-              <span class="chip ok">منشور</span>
-              <h3>SADAD <small>نظام الإنجاز الذكي</small></h3>
-              <p>نظام إنتاجية شخصي يعتمد على قاعدة Supabase يربطها المستخدم بنفسه، ويدعم مساعد Claude AI اختياريًا.</p>
-              <a class="visit" href="https://sadad.alsaiel.com" target="_blank" rel="noopener" aria-label="زيارة نظام SADAD">زيارة النظام <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
-            </article>
-            <div class="dots" id="dots" role="group" aria-label="التنقل بين المشاريع">
-              <button type="button" class="on" aria-label="تهيّأ"><span>تهيّأ</span></button>
-              <button type="button" aria-label="سايان"><span>سايان</span></button>
-              <button type="button" aria-label="SADAD"><span>SADAD</span></button>
             </div>
-          </div>
-          <div class="show stage-col" id="show">
-            <div class="scene on" data-i="0"><div class="frame"><div class="bar" aria-hidden="true"><i></i><i></i><i></i></div>
-              <div class="shot-frame" id="shots"><img class="on" src="assets/tahayya/tahayya-hero.webp" width="2000" height="1250" alt="الصفحة الرئيسية لمنصة تهيّأ"><img src="assets/tahayya/tahayya-dashboard.webp" width="2000" height="1513" alt="لوحة التقدم في تهيّأ ببيانات تجريبية" loading="lazy"><img src="assets/tahayya/tahayya-result.webp" width="2000" height="1791" alt="صفحة النتيجة في تهيّأ ببيانات تجريبية" loading="lazy"></div></div></div>
-            <div class="scene sx" data-i="1"><ol class="pipeline" id="pipeline" aria-label="مراحل طلب الصيانة في سايان"></ol></div>
-            <div class="scene sx" data-i="2"><div class="setup"><b>الصفحة العامة اليوم</b>شاشة ربط تطلب رابط مشروع Supabase والمفتاح العام. لا لقطات عرض متاحة حاليًا، وسنضيف واحدة عند توفرها.</div></div>
-          </div>
+            <div class="show">
+              <div class="frame desk"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="host">tahayya.alsaiel.com</span></div>
+                <div class="shot-frame"><img class="on" src="assets/tahayya/tahayya-hero.webp" width="2000" height="1250" alt="الصفحة الرئيسية لمنصة تهيّأ"><img src="assets/tahayya/tahayya-dashboard.webp" width="2000" height="1513" alt="لوحة التقدم في تهيّأ ببيانات تجريبية" loading="lazy"><img src="assets/tahayya/tahayya-result.webp" width="2000" height="1791" alt="صفحة النتيجة في تهيّأ ببيانات تجريبية" loading="lazy"></div></div>
+              <div class="frame phone"><img src="assets/tahayya/tahayya-mobile-landing.webp" width="780" height="1688" alt="منصة تهيّأ على الجوال" loading="lazy"></div>
+            </div>
+          </article>
+
+          <article class="proj" data-i="1" style="--accent:#5FA3B8" aria-labelledby="p1">
+            <div class="copy">
+              <div class="id"><span class="logo dall"><img src="assets/dall/symbol.svg" width="34" height="34" alt="" loading="lazy"></span><span class="chip wip">نسخة أولية</span></div>
+              <h3 id="p1">دال <small>DALL</small></h3>
+              <p>سوق خدمات سعودي: يصف العميل ما يحتاجه بكلامه العادي، فيرتّب دال الطلب ويصله لمزودين مناسبين، ويقارن عروضهم ويختار الأنسب.</p>
+              <a class="visit" href="https://dallnow.com" target="_blank" rel="noopener" aria-label="زيارة منصة دال">زيارة المنصة <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
+            </div>
+            <div class="show">
+              <div class="frame desk"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="host">dallnow.com</span></div>
+                <div class="shot-frame"><img class="on" src="assets/dall/dall-1.jpg" width="2000" height="1250" alt="الصفحة الرئيسية لمنصة دال" loading="lazy"><img src="assets/dall/dall-2.jpg" width="2000" height="1250" alt="خطوة وصف الاحتياج في طلب جديد على دال" loading="lazy"><img src="assets/dall/dall-3.jpg" width="2000" height="1250" alt="صفحة مقدمي الخدمة في دال" loading="lazy"></div></div>
+              <div class="frame phone"><img src="assets/dall/dall-m.jpg" width="780" height="1688" alt="منصة دال على الجوال" loading="lazy"></div>
+            </div>
+          </article>
+
+          <article class="proj" data-i="2" style="--accent:#D9B679" aria-labelledby="p2">
+            <div class="copy">
+              <div class="id"><span class="logo waqa" aria-hidden="true">وَقْع</span><span class="chip ok">منشور</span></div>
+              <h3 id="p2">وَقْع <small>WAQA</small></h3>
+              <p>موقع تعريفي بالعربية لوكالة تسويق وإبداع في الرياض: هوية بصرية، وعرض للخدمات وطريقة العمل، وقسم للأعمال المختارة.</p>
+              <a class="visit" href="https://waqa.vercel.app" target="_blank" rel="noopener" aria-label="زيارة موقع وَقْع">زيارة الموقع <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M19 12H5M12 19l-7-7 7-7"/></svg></a>
+            </div>
+            <div class="show">
+              <div class="frame desk"><div class="bar" aria-hidden="true"><i></i><i></i><i></i><span class="host">waqa.vercel.app</span></div>
+                <div class="shot-frame"><img class="on" src="assets/waqa/waqa-1.jpg" width="1920" height="1200" alt="الصفحة الرئيسية لموقع وَقْع" loading="lazy"><img src="assets/waqa/waqa-2.jpg" width="1920" height="1200" alt="صفحة الخدمات في موقع وَقْع" loading="lazy"><img src="assets/waqa/waqa-3.jpg" width="1920" height="1200" alt="صفحة من نحن في موقع وَقْع" loading="lazy"></div></div>
+              <div class="frame phone"><img src="assets/waqa/waqa-m.jpg" width="780" height="1688" alt="موقع وَقْع على الجوال" loading="lazy"></div>
+            </div>
+          </article>
+
         </div>
+      </div>
+      <div class="dots" id="dots" role="group" aria-label="التنقل بين المشاريع">
+        <button type="button" class="on" aria-label="تهيّأ"></button>
+        <button type="button" aria-label="دال"></button>
+        <button type="button" aria-label="وَقْع"></button>
       </div>
     </div>
   </section>
 
   <section class="more wrap" id="more">
     <p class="eyebrow rv">أعمال أخرى</p>
-    <h2 class="title rv">منشورة، وقيد التطوير.</h2>
+    <h2 class="title rv">أنظمة أخرى، بحالتها الفعلية.</h2>
     <div class="tiles">
-      <a class="tile rv" style="--c:#6FA8B8;--d:0" href="https://dallnow.com" target="_blank" rel="noopener" aria-label="زيارة منصة دال">
-        <div class="mark"><img src="assets/dall/symbol.svg" width="54" height="54" alt="" loading="lazy"></div><span class="chip wip">نسخة أولية</span>
-        <h3>دال <small>DALL</small></h3><p>سوق خدمات سعودي: يصف العميل حاجته بكلامه، فيصله لمزودين مناسبين ويقارن عروضهم.</p></a>
-      <a class="tile rv" style="--c:#D9B679;--d:1" href="https://waqa.vercel.app" target="_blank" rel="noopener" aria-label="زيارة موقع وَقْع">
-        <div class="mark waqa" aria-hidden="true">وَقْع</div><span class="chip ok">منشور</span>
-        <h3>وَقْع <small>WAQA</small></h3><p>موقع تعريفي بالعربية لوكالة تسويق وإبداع في الرياض.</p></a>
-      <div class="tile rv" style="--c:#E58AA6;--d:2"><div class="mark dark" aria-hidden="true">NEXUS</div><span class="chip wip">قيد التطوير</span><h3>NEXUS</h3><p>منظومة أتمتة تربط أدوات العمل.</p></div>
-      <div class="tile rv" style="--c:#E58AA6;--d:3"><div class="mark dark" aria-hidden="true">CORTEX</div><span class="chip soon">قريبًا</span><h3>CORTEX</h3><p>قاعدة معرفة شخصية مدعومة بالذكاء الاصطناعي.</p></div>
+      <a class="tile rv" style="--c:#F4B86A;--d:0" href="https://sayanah.alsaiel.com" target="_blank" rel="noopener" aria-label="زيارة نظام سايان">
+        <div class="mark" aria-hidden="true">سايان</div><span class="chip wip">نسخة أولية</span>
+        <h3>سايان <small>SAYANAH</small></h3><p>نظام إدارة طلبات الصيانة: العميل والجهاز، وحالة الإصلاح وسجل تغيّرها، ثم التسليم.</p></a>
+      <a class="tile rv" style="--c:#6E98FF;--d:1" href="https://sadad.alsaiel.com" target="_blank" rel="noopener" aria-label="زيارة نظام SADAD">
+        <div class="mark" aria-hidden="true">SADAD</div><span class="chip ok">منشور</span>
+        <h3>SADAD <small>الإنجاز الذكي</small></h3><p>نظام إنتاجية شخصي على قاعدة Supabase يربطها المستخدم بنفسه، ومساعد Claude AI اختياري.</p></a>
+      <div class="tile rv" style="--c:#E58AA6;--d:2"><div class="mark" aria-hidden="true">NEXUS</div><span class="chip wip">قيد التطوير</span><h3>NEXUS</h3><p>منظومة أتمتة تربط أدوات العمل.</p></div>
+      <div class="tile rv" style="--c:#E58AA6;--d:3"><div class="mark" aria-hidden="true">CORTEX</div><span class="chip soon">قريبًا</span><h3>CORTEX</h3><p>قاعدة معرفة شخصية مدعومة بالذكاء الاصطناعي.</p></div>
     </div>
   </section>
 
@@ -316,82 +330,85 @@ footer { position: relative; z-index: 1; padding: 30px 0 50px; color: var(--mute
   </section>
 
   <section class="wrap" id="contact">
-    <div class="final rv">
+    <div class="contact rv">
       <h2>لنبني شيئًا يعمل.</h2>
-      <p>فكرة في ذهنك أو مشروع تريد تنفيذه؟ أو مجرد سؤال — أنا هنا.</p>
-      <form id="contact-form" class="cform" novalidate aria-label="نموذج التواصل">
-        <div class="frow">
-          <input type="text" name="name" autocomplete="name" placeholder="الاسم الكامل" aria-label="الاسم الكامل" required>
-          <input type="email" name="email" autocomplete="email" inputmode="email" spellcheck="false" placeholder="البريد الإلكتروني" aria-label="البريد الإلكتروني" required>
-        </div>
-        <input type="text" name="subject" autocomplete="off" placeholder="موضوع الرسالة" aria-label="موضوع الرسالة">
-        <textarea name="message" rows="5" autocomplete="off" placeholder="اكتب رسالتك هنا…" aria-label="نص الرسالة"></textarea>
-        <button type="submit" class="btn btn-solid" id="submit-btn">إرسال الرسالة</button>
-      </form>
+      <p>عندك مشروع أو فكرة تعاون؟ راسلني مباشرة على واتساب، وسأرد عليك بتفاصيل ما يناسب مشروعك.</p>
+      <a class="wa" id="wa-btn" href="#contact" target="_blank" rel="noopener" hidden>
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" focusable="false"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
+        <span>تواصل عبر واتساب</span>
+      </a>
     </div>
   </section>
 </main>
 <footer><div class="wrap">© ALSAIEL — alsaiel.com</div></footer>
 
+<script src="site-config.js"></script>
 <script>
 (function () {
   var root = document.documentElement, reduce = matchMedia('(prefers-reduced-motion: reduce)');
-  var states = ['مستلم','بانتظار الفحص','تحت الفحص','بانتظار موافقة العميل','تمت موافقة العميل','تحت الإصلاح','تم الإصلاح','جاهز للتسليم','تم التسليم']; /* main statuses from the system schema (subset of 14) */
-  var ol = document.getElementById('pipeline');
-  var items = states.map(function (s) { var li = document.createElement('li'); li.textContent = s; ol.appendChild(li); return li; });
-  function paintPipe(n) { items.forEach(function (li, k) { li.className = k < n ? 'done' : (k === n ? 'now' : ''); }); }
 
-  var reel = document.getElementById('reel'), panels = [].slice.call(document.querySelectorAll('.panel')), scenes = [].slice.call(document.querySelectorAll('.scene')),
-      dots = [].slice.call(document.querySelectorAll('#dots button')), shotImgs = [].slice.call(document.querySelectorAll('#shots img')), accents = ['#4FB8A8', '#F4B86A', '#6E98FF'];
-  var stacked = false, cur = -1, shotCur = -1, pipeCur = -1;
+  /* ---------- Contact: WhatsApp Click-to-Chat, values come from site-config.js ---------- */
+  function initContact() {
+    var cfg = window.SITE_CONFIG || {}, btn = document.getElementById('wa-btn');
+    var num = String(cfg.whatsappNumber || '');
+    if (/^\d{8,15}$/.test(num)) {
+      btn.href = 'https://wa.me/' + num + '?text=' + encodeURIComponent(cfg.whatsappMessage || '');
+      btn.hidden = false;
+    } else { btn.hidden = true; btn.setAttribute('href', '#contact'); }
+  }
+  window.initContact = initContact;
+  initContact();
+
+  /* ---------- Pinned project reel ---------- */
+  var reel = document.getElementById('reel'), projs = [].slice.call(document.querySelectorAll('.proj')), dots = [].slice.call(document.querySelectorAll('#dots button'));
+  var imgSets = projs.map(function (p) { return [].slice.call(p.querySelectorAll('.shot-frame img')); });
+  var cur = -1, imgCur = [], pinned = false;
   function setChapter(i) {
     if (i === cur) return; cur = i;
-    panels.forEach(function (p, k) { p.classList.toggle('on', k === i); });
-    scenes.forEach(function (s, k) { s.classList.toggle('on', k === i); });
+    projs.forEach(function (p, k) { var on = k === i; p.classList.toggle('on', on); p.inert = !on; if (on) p.removeAttribute('aria-hidden'); else p.setAttribute('aria-hidden', 'true'); });
     dots.forEach(function (d, k) { d.classList.toggle('on', k === i); if (k === i) d.setAttribute('aria-current', 'true'); else d.removeAttribute('aria-current'); });
-    root.style.setProperty('--accent', accents[i]);
+    root.style.setProperty('--accent', projs[i].style.getPropertyValue('--accent'));
+  }
+  function showImg(ci, ii) {
+    if (imgCur[ci] === ii) return; imgCur[ci] = ii;
+    imgSets[ci].forEach(function (im, k) { im.classList.toggle('on', k === ii); });
   }
   function update() {
     var y = scrollY, max = root.scrollHeight - innerHeight;
     root.style.setProperty('--p', max > 0 ? Math.min(1, y / max).toFixed(4) : 0);
     document.getElementById('hdr').classList.toggle('solid', y > 40);
-    if (stacked) return;
+    if (!pinned) return;
     var r = reel.getBoundingClientRect(), total = reel.offsetHeight - innerHeight;
     var t = Math.max(0, Math.min(.9999, -r.top / total));
     var ch = Math.min(2, Math.floor(t * 3)), within = t * 3 - ch;
     setChapter(ch);
-    if (ch === 0) { var si = Math.min(shotImgs.length - 1, Math.floor(within * shotImgs.length)); if (si !== shotCur) { shotCur = si; shotImgs.forEach(function (im, k) { im.classList.toggle('on', k === si); }); } }
-    if (ch === 1) { var pi = Math.min(states.length - 1, Math.floor(within * states.length)); if (pi !== pipeCur) { pipeCur = pi; paintPipe(pi); } }
+    showImg(ch, Math.min(imgSets[ch].length - 1, Math.floor(within * imgSets[ch].length)));
   }
   function layout() {
-    stacked = reduce.matches || innerWidth <= 900;
-    root.classList.toggle('stacked', stacked);
-    if (stacked) { panels.forEach(function (p) { p.classList.add('on'); }); scenes.forEach(function (s) { s.classList.add('on'); }); paintPipe(items.length - 1); root.style.setProperty('--accent', accents[0]); }
-    else { cur = -1; pipeCur = -1; shotCur = -1; panels.forEach(function (p) { p.classList.remove('on'); }); scenes.forEach(function (s) { s.classList.remove('on'); }); }
+    /* Pinned storytelling needs motion and enough height; otherwise projects simply flow. */
+    var want = !reduce.matches && innerHeight >= 640;
+    reel.classList.toggle('pinned', want);
+    if (want !== pinned || !want) {
+      pinned = want; cur = -1; imgCur = [];
+      projs.forEach(function (p) { p.classList.remove('on'); p.inert = false; p.removeAttribute('aria-hidden'); });
+      if (!want) { root.style.setProperty('--accent', '#4FB8A8'); imgSets.forEach(function (s) { s.forEach(function (im, k) { im.classList.toggle('on', k === 0); }); }); }
+    }
     update();
   }
   var tick = 0; addEventListener('scroll', function () { if (tick) return; tick = requestAnimationFrame(function () { tick = 0; update(); }); }, { passive: true });
-  addEventListener('resize', layout); reduce.addEventListener && reduce.addEventListener('change', layout);
+  addEventListener('resize', layout);
+  if (reduce.addEventListener) reduce.addEventListener('change', layout);
   dots.forEach(function (d, k) { d.addEventListener('click', function () { var total = reel.offsetHeight - innerHeight; scrollTo({ top: reel.offsetTop + total * (k + .5) / 3, behavior: reduce.matches ? 'auto' : 'smooth' }); }); });
   layout();
 
-  /* Reveal (gallery / services) */
+  /* ---------- Reveal on scroll ---------- */
   var rv = [].slice.call(document.querySelectorAll('.rv'));
   if ('IntersectionObserver' in window && !reduce.matches) {
-    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: .15 });
+    var io = new IntersectionObserver(function (es) { es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }); }, { threshold: .12 });
     rv.forEach(function (n) { io.observe(n); });
   } else { rv.forEach(function (n) { n.classList.add('in'); }); }
 
-  /* Contact form: same behaviour as the previous page (visual confirmation only) */
-  var form = document.getElementById('contact-form');
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var btn = document.getElementById('submit-btn');
-    btn.textContent = 'تم الإرسال ✓'; btn.disabled = true;
-    setTimeout(function () { btn.textContent = 'إرسال الرسالة'; btn.disabled = false; form.reset(); }, 3000);
-  });
-
-  /* Pointer: ambient light, hero parallax, tile spotlight */
+  /* ---------- Pointer effects (fine pointers only) ---------- */
   if (reduce.matches || !matchMedia('(pointer: fine)').matches) return;
   var light = document.querySelector('.light'), stage = document.getElementById('stage'), raf = 0, px = 0, py = 0;
   addEventListener('pointermove', function (e) {
