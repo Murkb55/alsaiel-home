@@ -407,6 +407,25 @@ section {
 }
 .project-link:hover { gap: 10px; }
 
+.projects-group-title {
+  font-size: var(--text-xl); font-weight: 700;
+  margin: var(--space-xl) 0 var(--space-lg);
+  font-family: 'Cairo', sans-serif;
+}
+.projects-group-title:first-of-type { margin-top: 0; }
+.projects-grid + .projects-group-title { margin-top: var(--space-2xl); }
+.project-card { display: flex; flex-direction: column; }
+.project-body { flex: 1; display: flex; flex-direction: column; }
+.project-body .project-link { margin-top: auto; }
+.project-status {
+  font-size: var(--text-xs); font-weight: 700;
+  padding: 4px 12px; border-radius: var(--radius-pill);
+  border: 1px solid; background: transparent;
+}
+.project-status.live { color: #34D399; border-color: rgba(52,211,153,0.4); background: rgba(52,211,153,0.1); }
+.project-status.beta { color: var(--accent-secondary); border-color: rgba(6,182,212,0.4); background: rgba(6,182,212,0.1); }
+.project-status.wip  { color: var(--accent-warm); border-color: rgba(245,158,11,0.4); background: rgba(245,158,11,0.1); }
+
 /* ─── Services Section ─── */
 #services { background: var(--bg-surface); }
 .services-grid {
@@ -656,32 +675,8 @@ a, button { cursor: pointer; }
     <h2 class="section-title reveal">مشاريع حقيقية، نتائج ملموسة</h2>
     <p class="section-sub reveal">كل مشروع بُني لحل مشكلة فعلية — لا demos، لا نماذج وهمية.</p>
 
+    <h3 class="projects-group-title reveal">المشاريع والأنظمة الفعلية</h3>
     <div class="projects-grid">
-
-      <!-- SADAD -->
-      <article class="project-card glass reveal" aria-label="مشروع SADAD">
-        <div class="project-thumb grad-1" aria-hidden="true">
-          <div class="ui-block"></div>
-          <div class="ui-block tall"></div>
-          <div class="ui-block"></div>
-          <div class="ui-block"></div>
-        </div>
-        <div class="project-body">
-          <div class="project-tags">
-            <span class="project-tag">AI</span>
-            <span class="project-tag">SaaS</span>
-            <span class="project-tag">WhatsApp</span>
-          </div>
-          <h3 class="project-name">SADAD — نظام الإنجاز الذكي</h3>
-          <p class="project-desc">
-            نظام إنتاجية شخصي مدعوم بـ Claude AI — إضافة مهام بواتساب، مزامنة سحابية فورية، تنبيهات ذكية، وداشبورد تحليلي.
-          </p>
-          <a href="https://sadad.alsaiel.com" class="project-link" target="_blank" rel="noopener" aria-label="زيارة مشروع SADAD">
-            زيارة المشروع
-            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h7M9 8l4 4-4 4"/></svg>
-          </a>
-        </div>
-      </article>
 
       <!-- TAHAYYA -->
       <article class="project-card glass reveal" aria-label="منصة تهيّأ">
@@ -690,6 +685,7 @@ a, button { cursor: pointer; }
         </div>
         <div class="project-body">
           <div class="project-tags">
+            <span class="project-status live">منشور</span>
             <span class="project-tag">EdTech</span>
             <span class="project-tag">Exams</span>
             <span class="project-tag">Arabic RTL</span>
@@ -705,6 +701,63 @@ a, button { cursor: pointer; }
         </div>
       </article>
 
+      <!-- SAYANAH -->
+      <article class="project-card glass reveal" aria-label="نظام إدارة طلبات الصيانة">
+        <div class="project-thumb grad-3" aria-hidden="true">
+          <div class="ui-block tall"></div>
+          <div class="ui-block"></div>
+          <div class="ui-block"></div>
+          <div class="ui-block"></div>
+        </div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="project-status beta">نسخة أولية</span>
+            <span class="project-tag">Next.js</span>
+            <span class="project-tag">Supabase</span>
+            <span class="project-tag">Arabic RTL</span>
+          </div>
+          <h3 class="project-name">سايان — نظام إدارة طلبات الصيانة</h3>
+          <p class="project-desc">
+            نظام لتسجيل طلبات صيانة الأجهزة ومتابعتها: بيانات العميل والجهاز، وحالة الإصلاح وسجلها، والتسليم، مع لوحة متابعة.
+          </p>
+          <a href="https://sayanah.alsaiel.com" class="project-link" target="_blank" rel="noopener" aria-label="زيارة نظام سايان">
+            زيارة النظام
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h7M9 8l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </article>
+
+      <!-- SADAD -->
+      <article class="project-card glass reveal" aria-label="مشروع SADAD">
+        <div class="project-thumb grad-1" aria-hidden="true">
+          <div class="ui-block"></div>
+          <div class="ui-block tall"></div>
+          <div class="ui-block"></div>
+          <div class="ui-block"></div>
+        </div>
+        <div class="project-body">
+          <div class="project-tags">
+            <span class="project-status live">منشور</span>
+            <span class="project-tag">AI</span>
+            <span class="project-tag">SaaS</span>
+            <span class="project-tag">WhatsApp</span>
+          </div>
+          <h3 class="project-name">SADAD — نظام الإنجاز الذكي</h3>
+          <p class="project-desc">
+            نظام إنتاجية شخصي مدعوم بـ Claude AI — إضافة مهام بواتساب، مزامنة سحابية فورية، تنبيهات ذكية، وداشبورد تحليلي.
+          </p>
+          <a href="https://sadad.alsaiel.com" class="project-link" target="_blank" rel="noopener" aria-label="زيارة مشروع SADAD">
+            زيارة المشروع
+            <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M5 12h7M9 8l4 4-4 4"/></svg>
+          </a>
+        </div>
+      </article>
+
+    </div>
+
+    <h3 class="projects-group-title reveal">قيد التطوير</h3>
+    <div class="projects-grid">
+
       <!-- NEXUS -->
       <article class="project-card glass reveal" aria-label="مشروع NEXUS">
         <div class="project-thumb grad-2" aria-hidden="true">
@@ -715,6 +768,7 @@ a, button { cursor: pointer; }
         </div>
         <div class="project-body">
           <div class="project-tags">
+            <span class="project-status wip">قيد التطوير</span>
             <span class="project-tag">Automation</span>
             <span class="project-tag">n8n</span>
             <span class="project-tag">API</span>
@@ -740,6 +794,7 @@ a, button { cursor: pointer; }
         </div>
         <div class="project-body">
           <div class="project-tags">
+            <span class="project-status wip">قيد التطوير</span>
             <span class="project-tag">RAG</span>
             <span class="project-tag">Embeddings</span>
             <span class="project-tag">Claude</span>
