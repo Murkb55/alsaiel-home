@@ -21,7 +21,6 @@ html.gw-wait .fa, html.gw-wait .fb, html.gw-wait .fc { animation-play-state: pau
 .gw-seal { transform-origin: 560px 450px; }
 .gw-pt { transform-origin: 560px 450px; opacity: 0; }
 .gw-rim { opacity: 0; }
-.gw-veil { opacity: 0; }
 .gw-fig { opacity: 0; }
 :root { --gw-mid: 27vw; --gw-end: 120vw; }
 @media (max-aspect-ratio: 1/1) { :root { --gw-mid: 38vw; } .gw-cam { transform-origin: 50% 58%; } }
@@ -85,3 +84,10 @@ html.gw-wait .fa, html.gw-wait .fb, html.gw-wait .fc { animation-play-state: pau
 
 .gw-bloom { position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0;
   background: radial-gradient(75vmax circle at 35% 58%, rgba(226,248,255,.95), rgba(79,216,232,.5) 38%, rgba(124,108,255,.25) 60%, rgba(124,108,255,0) 80%); }
+
+/* world after entering: the supplied night-scene photograph, framed so the three gates sit left of the slit */
+.gw-world { overflow: hidden; background: #05070D; }
+.gw-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 30% 50%; }
+.gw-veil { position: absolute; top: 0; bottom: 0; left: 33.4%; width: 3.3%; opacity: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(255,233,196,.55), #FFE3B0 35%, #F4B15E 70%, rgba(201,143,74,.75)); }
+@media (max-aspect-ratio: 1/1) { .gw-veil { left: 45%; width: 10%; } .gw-photo { object-position: 24% 50%; } }
