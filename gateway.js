@@ -7,24 +7,14 @@
   var root = document.documentElement, el = document.getElementById('gateway');
   if (!el) return;
   var reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  var layers = [].slice.call(el.querySelectorAll('.gw-layer'));
   var goBtn = el.querySelector('.gw-go'), skipBtn = el.querySelector('.gw-skip');
   var state = 'idle';          // idle | open | closing
   var pageParts = [];
 
-  /* review aid: ?gw=monument | minimal switches the visual tone */
-  var tone = new URLSearchParams(location.search).get('gw');
-  if (tone === 'monument' || tone === 'minimal') el.setAttribute('data-gw', tone);
-
-  /* a few drifting light specks (CSS-animated, transform/opacity only) */
-  var dust = el.querySelector('.gw-dust');
-  if (dust && !dust.children.length) {
-    var seed = 7, rnd = function () { seed = (seed * 16807) % 2147483647; return seed / 2147483647; };
-    for (var i = 0; i < 14; i++) {
-      var s = document.createElement('i');
-      s.style.cssText = 'left:' + (8 + rnd() * 84).toFixed(1) + '%;top:' + (40 + rnd() * 55).toFixed(1) + '%;--d:' + (7 + rnd() * 6).toFixed(1) + 's;--l:' + (rnd() * 5).toFixed(1) + 's;--x:' + (rnd() * 40 - 20).toFixed(0) + 'px';
-      dust.appendChild(s);
-    }
-  }
+  /* the slit stays centred: portrait screens crop the scene around it */
+  function fit() { var vb = innerHeight > innerWidth ? '300 0 520 900' : '0 0 1600 900'; layers.forEach(function (s) { s.setAttribute('viewBox', vb); }); }
+  fit(); addEventListener('resize', fit);
 
   function remember() { try { localStorage.setItem(KEY, JSON.stringify({ t: Date.now(), v: 1 })); } catch (e) {} }
   function setInert(on) {
@@ -33,26 +23,28 @@
   }
   function fontsReady() {
     var t = new Promise(function (r) { setTimeout(r, 900); });
-    var f = (document.fonts && document.fonts.load) ? document.fonts.load('800 1em "Noto Kufi Arabic"', 'الصايل') : Promise.resolve();
+    var f = (document.fonts && document.fonts.load) ? document.fonts.load('700 1em Amiri', 'الصايل') : Promise.resolve();
     return Promise.race([f.catch(function () {}), t]);
+  }
+  function reset() {
+    el.getAnimations({ subtree: true }).forEach(function (a) { a.cancel(); });
+    el.classList.remove('gw-run'); el.removeAttribute('style');
   }
 
   function open() {
     if (state === 'open') return;
     state = 'open';
-    el.getAnimations({ subtree: true }).forEach(function (a) { a.cancel(); });
-    el.classList.remove('gw-run'); el.removeAttribute('style');
+    reset();
     root.classList.add('gw-on', 'gw-wait');
     setInert(true);
     skipBtn.focus({ preventScroll: true });
     fontsReady().then(function () { if (state === 'open') requestAnimationFrame(function () { el.classList.add('gw-run'); }); });
   }
 
-  function A(node, kf, o) { return node.animate(kf, Object.assign({ fill: 'forwards', easing: 'cubic-bezier(.7,0,.2,1)' }, o)); }
+  function A(node, kf, o) { return node.animate(kf, Object.assign({ fill: 'forwards', easing: 'cubic-bezier(.6,0,.2,1)' }, o)); }
 
   function finish() {
-    el.getAnimations({ subtree: true }).forEach(function (a) { a.cancel(); });
-    el.classList.remove('gw-run'); el.removeAttribute('style');
+    reset();
     root.classList.remove('gw-on', 'gw-wait');
     setInert(false); remember(); state = 'idle';
     var h = document.querySelector('.hero h1'); if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
@@ -66,18 +58,18 @@
       A(el, [{ opacity: 1 }, { opacity: 0 }], { duration: reduce.matches ? 200 : 260, easing: 'ease-out' }).finished.then(finish, finish);
       return;
     }
-    var text = [].slice.call(el.querySelectorAll('.gw-name,.gw-latin,.gw-tag,.gw-actions'));
-    var svg = el.querySelector('.gw-gate svg');
-    text.forEach(function (n) { A(n, [{ opacity: 1, transform: 'none' }, { opacity: 0, transform: 'translateY(-10px)' }], { duration: 320, easing: 'ease-out' }); });
-    [].slice.call(el.querySelectorAll('.gw-fr')).forEach(function (f, i) {              // frames rush past the camera
-      A(f, [{ transform: 'scale(1)', opacity: .6 }, { transform: 'scale(2.6)', opacity: 0 }], { duration: 760, delay: 60 + i * 90, easing: 'cubic-bezier(.4,0,.9,.5)' });
-    });
-    A(el.querySelector('.gw-core'), [{ opacity: 1 }, { opacity: 1, transform: 'scale(1.35)' }], { duration: 700, delay: 100 });
-    svg.style.transformOrigin = '50% 52%';
-    A(svg, [{ transform: 'scale(1)' }, { transform: 'scale(2.7)' }], { duration: 1100, delay: 100, easing: 'cubic-bezier(.55,.05,.85,.4)' });
-    A(el.querySelector('.gw-bloom'), [{ opacity: 0 }, { opacity: .8 }], { duration: 450, delay: 480, easing: 'ease-in' });
-    setTimeout(function () { root.classList.remove('gw-wait'); }, 760);       // hero entrance starts under the fading overlay
-    A(el, [{ opacity: 1 }, { opacity: 0 }], { duration: 420, delay: 820, easing: 'ease-out' }).finished.then(finish, finish);
+    /* 03 opening → 04 expanding → 05 transition */
+    A(el.querySelector('.gw-lock'), [{ opacity: 1 }, { opacity: 0 }], { duration: 320, easing: 'ease-out' });
+    var kfL = [{ transform: 'translateX(0)' }, { transform: 'translateX(calc(var(--gw-mid) * -1))', offset: .5 }, { transform: 'translateX(calc(var(--gw-end) * -1))' }];
+    var kfR = [{ transform: 'translateX(0)' }, { transform: 'translateX(var(--gw-mid))', offset: .5 }, { transform: 'translateX(var(--gw-end))' }];
+    A(el.querySelector('.gw-slabL'), kfL, { duration: 1500, delay: 80, easing: 'cubic-bezier(.5,0,.3,1)' });
+    A(el.querySelector('.gw-slabR'), kfR, { duration: 1500, delay: 80, easing: 'cubic-bezier(.5,0,.3,1)' });
+    A(el.querySelector('.gw-cam'), [{ transform: 'scale(1)' }, { transform: 'scale(1.45)' }], { duration: 1600, delay: 80, easing: 'cubic-bezier(.55,.05,.4,1)' });
+    A(el.querySelector('.gw-veil'), [{ opacity: 1 }, { opacity: 0 }], { duration: 500, delay: 60, easing: 'ease-out' });
+    A(el.querySelector('.gw-fig'), [{ opacity: 0 }, { opacity: 1 }], { duration: 500, delay: 500, easing: 'ease-out' });
+    A(el.querySelector('.gw-bloom'), [{ opacity: 0 }, { opacity: .9, offset: .55 }, { opacity: .55 }], { duration: 800, delay: 800, easing: 'ease-in-out' });
+    setTimeout(function () { root.classList.remove('gw-wait'); }, 1250);       // hero entrance starts under the fading overlay
+    A(el, [{ opacity: 1 }, { opacity: 0 }], { duration: 650, delay: 1350, easing: 'ease-out' }).finished.then(finish, finish);
   }
 
   goBtn.addEventListener('click', function () { close('enter'); });
