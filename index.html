@@ -18,6 +18,8 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/notokufiarabic/v27/CSRk4ydQnPyaDxEXLFF6LZVLKrodrOYFFkCqIzAUWw.woff2">
+<link rel="preload" as="font" type="font/woff2" crossorigin href="https://fonts.gstatic.com/s/ibmplexsansarabic/v15/Qw3CZRtWPQCuHme67tEYUIx3Kh0PHR9N6Ys43PW5fslBEg0.woff2">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Kufi+Arabic:wght@500;800&family=IBM+Plex+Sans+Arabic:wght@400;500&display=swap" rel="stylesheet">
 <script>document.documentElement.classList.add('js');</script>
 <script>/* Gateway policy: show on first visit, then at most every 30 days. ?intro=1 forces, ?intro=0 or a #hash skips. */
@@ -26,6 +28,9 @@ var local=/^(localhost|127\.0\.0\.1)$/.test(location.hostname)||location.protoco
 if(q==='1')show=true;else if(q==='0'||location.hash.length>1)show=false;else if(local)show=true;
 else{var r=localStorage.getItem('alsaiel.gateway.v1');show=!r||(Date.now()-(JSON.parse(r).t||0))>2592e6}
 if(show){d.classList.add('gw-on','gw-wait');var l=document.createElement('link');l.rel='preload';l.as='image';l.href='assets/gateway/closed.webp';document.head.appendChild(l)}}catch(e){}})();</script>
+<script>/* hold the hero entrance until the display font is ready (max 1.2s), so the headline never re-wraps while it is animating in */
+(function(){try{var d=document.documentElement;if(!document.fonts||!document.fonts.load)return;d.classList.add('fw');var done=function(){d.classList.remove('fw')};
+Promise.race([Promise.all([document.fonts.load('800 1em "Noto Kufi Arabic"','أبني'),document.fonts.load('400 1em "IBM Plex Sans Arabic"','مهندس')]),new Promise(function(r){setTimeout(r,1200)})]).then(done,done)}catch(e){}})();</script>
 <link rel="stylesheet" href="gateway.css">
 <link rel="stylesheet" href="showcase.css">
 <style>
@@ -76,6 +81,7 @@ header.solid { background: rgba(7,9,16,.82); backdrop-filter: blur(14px); -webki
 .hero h1 .w > span { display: inline-block; }
 .hero h1 .grad > span { background: linear-gradient(100deg, var(--violet), var(--cyan) 75%); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .hero h1 { min-height: 4.1em; }
+html.fw .hero h1 .w > span, html.fw .lead, html.fw .cta, html.fw .fa, html.fw .fb, html.fw .fc { animation-play-state: paused !important; }
 @media (max-width: 900px) { .hero h1 { min-height: 0; } }
 .lead { margin-top: 22px; max-width: 32em; color: var(--muted); font-size: clamp(1rem, 1.5vw, 1.12rem); }
 .cta { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 12px; }

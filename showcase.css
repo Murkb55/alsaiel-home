@@ -155,3 +155,6 @@ html[dir="rtl"] .showcase.pinned .sc-proj.out .sc-visual { transform: translate3
   .js .sc-proj .rv-l, .js .sc-proj .sc-copy > *, .js .sc-beam { opacity: 1 !important; transform: none !important; transition: none !important; }
   .sv-t .sc-shots img, .sv-d .sc-shots img, .sv-w .fr, .sc-visual { transition: none !important; }
 }
+
+/* stacked mode: leave room for the fixed header when jumping to a chapter */
+.sc-proj { scroll-margin-top: 14px; }

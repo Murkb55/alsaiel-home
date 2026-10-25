@@ -62,9 +62,9 @@
     if (key !== derived) { derived = key; setProject(p); setShot(p, k); }           // manual choices persist until scrolling changes the state
     tabs.forEach(function (tb, j) { tb.style.setProperty('--p', j < p ? 1 : j === p ? within.toFixed(3) : 0); });
   }
-  function goTo(i) {
+  function goTo(i, instant) {
     i = Math.max(0, Math.min(N - 1, i));
-    var behavior = reduce.matches ? 'auto' : 'smooth';
+    var behavior = instant ? 'instant' : (reduce.matches ? 'auto' : 'smooth');
     if (pinned) scrollTo({ top: Math.round(segTop(i) + (sec.offsetHeight - innerHeight) / N * .08), behavior: behavior });
     else projs[i].scrollIntoView({ behavior: behavior, block: 'start' });
   }
@@ -131,6 +131,17 @@
     }, { rootMargin: '900px 0px' }).observe(sec);
   }
 
+  /* deep links: #tahayya, #dall, #waqa jump straight to that project (also keeps shared links and the back button meaningful) */
+  var slugs = ['tahayya', 'dall', 'waqa'];
+  function fromHash() {
+    var i = slugs.indexOf(location.hash.replace('#', '').toLowerCase());
+    if (i < 0) return;
+    var y0 = -1, settle = function () { if (y0 === -1 || Math.abs(scrollY - y0) < 4) goTo(i, true); };   // re-aim while late-loading images shift the layout, unless the visitor already scrolled
+    requestAnimationFrame(function () { goTo(i, true); y0 = scrollY; [400, 1000, 1800].forEach(function (ms) { setTimeout(function () { settle(); y0 = scrollY; }, ms); }); });
+  }
+  addEventListener('hashchange', fromHash);
+
   layout();
+  fromHash();
   window.AlsaielShowcase = { goTo: goTo, state: function () { return { pinned: pinned, project: cur, shots: shot.slice() }; } };
 })();
