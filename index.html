@@ -25,7 +25,7 @@
 var local=/^(localhost|127\.0\.0\.1)$/.test(location.hostname)||location.protocol==='file:';
 if(q==='1')show=true;else if(q==='0'||location.hash.length>1)show=false;else if(local)show=true;
 else{var r=localStorage.getItem('alsaiel.gateway.v1');show=!r||(Date.now()-(JSON.parse(r).t||0))>2592e6}
-if(show)d.classList.add('gw-on','gw-wait')}catch(e){}})();</script>
+if(show){d.classList.add('gw-on','gw-wait');var l=document.createElement('link');l.rel='preload';l.as='image';l.href='assets/gateway/closed.webp';document.head.appendChild(l)}}catch(e){}})();</script>
 <link rel="stylesheet" href="gateway.css">
 <style>
 :root {
@@ -196,26 +196,17 @@ footer { position: relative; z-index: 1; padding: 30px 0 calc(50px + env(safe-ar
 <div class="light" aria-hidden="true"></div>
 <div class="progress" aria-hidden="true"></div>
 <div id="gateway" role="dialog" aria-modal="true" aria-label="بوابة الدخول إلى موقع الصايل">
-  <div class="gw-cam">
-    <div class="gw-layer gw-world" aria-hidden="true">
-      <img class="gw-photo" src="assets/gateway/world.webp" width="1672" height="941" alt="" decoding="async" fetchpriority="high">
-      <div class="gw-veil"></div>
+  <div class="gw-cam" aria-hidden="true">
+    <div class="gw-box">
+      <img class="gw-img gw-world" data-src="assets/gateway/world.webp" width="1672" height="941" alt="" decoding="async">
+      <img class="gw-img gw-closed" data-src="assets/gateway/closed.webp" width="1672" height="941" alt="" decoding="async" fetchpriority="high">
+      <div class="gw-glow gw-glow1"></div><div class="gw-glow gw-glow2"></div>
     </div>
-    <svg class="gw-layer gw-slab gw-slabL" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-      <polygon points="-1400,-60 556,-60 540,960 -1400,960" fill="url(#gwSlab)"/><rect x="522" y="-60" width="34" height="1020" fill="url(#gwRimL)" class="gw-rim"/>
-    </svg>
-    <svg class="gw-layer gw-slab gw-slabR" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-      <polygon points="564,-60 2600,-60 2600,960 580,960" fill="url(#gwSlabR)"/><rect x="564" y="-60" width="34" height="1020" fill="url(#gwRimR)" class="gw-rim"/>
-    </svg>
-    <svg class="gw-layer gw-fx" viewBox="0 0 1600 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
-      <rect class="gw-seal" x="536" y="-60" width="48" height="1020" fill="#1D1D22"/>
-      <rect class="gw-vig" x="-1400" y="-60" width="4000" height="1020" fill="url(#gwVig)"/>
-      <circle class="gw-pt" cx="560" cy="450" r="46" fill="url(#gwPt)"/>
-    </svg>
+    <div class="gw-wash"></div>
+    <div class="gw-shade"></div>
   </div>
-  <div class="gw-bloom" aria-hidden="true"></div>
   <div class="gw-lock">
-    <svg class="gw-mark" viewBox="0 0 160 200" aria-hidden="true" focusable="false"><path fill="url(#gmA)" d="M22 196V30L112 8L140 22V92L120 82V40L48 56V196Z"/><path fill="url(#gmC)" d="M120 40V82L140 92V22Z"/><path fill="#FFF1D6" opacity=".9" d="M48 56L112 42L112 46L48 62Z"/></svg>
+    <svg class="gw-mark" viewBox="0 0 160 200" aria-hidden="true" focusable="false"><defs><linearGradient id="gmA" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE2B4"/><stop offset=".45" stop-color="#F4B15E"/><stop offset="1" stop-color="#8B683F"/></linearGradient><linearGradient id="gmC" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#FFF1D6"/><stop offset="1" stop-color="#F4B15E"/></linearGradient></defs><path fill="url(#gmA)" d="M22 196V30L112 8L140 22V92L120 82V40L48 56V196Z"/><path fill="url(#gmC)" d="M120 40V82L140 92V22Z"/><path fill="#FFF1D6" opacity=".9" d="M48 56L112 42L112 46L48 62Z"/></svg>
     <h2 class="gw-name">الصايل</h2>
     <p class="gw-latin">ALSAIEL</p>
     <p class="gw-tag">بوابة إلى عالم رقمي يُبنى بإتقان</p>

@@ -1,75 +1,80 @@
-/* ALSAIEL Digital Gateway — a monolith with a slit of light that opens onto the world beyond.
-   Only transform/opacity are animated. The overlay is hidden unless <html> has .gw-on
-   (set by the inline policy script in <head>), so without JS the site is shown directly. */
+/* ALSAIEL Digital Gateway — closed gate (dark, mysterious) → opening → revealed world → site.
+   Two photographs share the same gate edge on the right. Only transform/opacity are animated.
+   The overlay is hidden unless <html> has .gw-on (set by the inline policy script in <head>). */
 #gateway { display: none; }
 html.gw-on { overflow: hidden; }
 html.gw-on #gateway { display: block; }
 
-/* Hold the hero's entrance animation until the gateway opens */
+/* Hold the hero's entrance animation until the gateway fades out */
 html.gw-wait .hero h1 .w > span, html.gw-wait .lead, html.gw-wait .cta,
 html.gw-wait .fa, html.gw-wait .fb, html.gw-wait .fc { animation-play-state: paused !important; }
 
 #gateway {
-  --obsidian: #0B0B0D; --charcoal: #1A1A1F; --bronze: #8B683F; --amber: #F4B15E; --sand: #D9C9A7; --mist: #EDEBDF;
-  position: fixed; inset: 0; z-index: 1000; background: var(--obsidian); color: var(--mist); overflow: hidden; isolation: isolate;
+  --amber: #F4B15E; --sand: #D9C9A7; --mist: #EDEBDF;
+  position: fixed; inset: 0; z-index: 1000; background: #04050A; color: var(--mist); overflow: hidden; isolation: isolate;
 }
-.gw-cam { position: absolute; inset: 0; transform-origin: 35% 58%; will-change: transform; }
-.gw-layer { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
-.gw-slab { will-change: transform; }
-.gw-world { will-change: transform; }
-.gw-fx .gw-seal, .gw-fx .gw-pt { transform-box: view-box; }
-.gw-seal { transform-origin: 560px 450px; }
-.gw-pt { transform-origin: 560px 450px; opacity: 0; }
-.gw-rim { opacity: 0; }
-.gw-fig { opacity: 0; }
-:root { --gw-mid: 27vw; --gw-end: 120vw; }
-@media (max-aspect-ratio: 1/1) { :root { --gw-mid: 38vw; } .gw-cam { transform-origin: 50% 58%; } }
 
-/* lockup */
-.gw-lock { position: absolute; z-index: 2; display: grid; justify-items: center; gap: clamp(8px, 1.6vh, 16px); text-align: center;
-  right: clamp(24px, 7vw, 120px); top: 50%; transform: translateY(-50%); width: min(38vw, 480px); }
-.gw-mark { width: clamp(64px, 9vw, 112px); height: auto; filter: drop-shadow(0 8px 24px rgba(244,177,94,.22)); }
+/* ---- scene: the photo box is anchored to the right so the gate edge (≈88% of the image) is always in frame ---- */
+.gw-cam { position: absolute; inset: 0; transform-origin: 88% 52%; will-change: transform; }
+.gw-box { position: absolute; top: 50%; right: 0; width: max(100vw, 177.66vh); aspect-ratio: 1672 / 941; transform: translateY(-50%); }
+.gw-img { position: absolute; inset: 0; width: 100%; height: 100%; display: block; user-select: none; -webkit-user-drag: none; }
+.gw-world { opacity: 1; }
+.gw-closed { opacity: 0; will-change: opacity; }
+/* gate light: soft radial glows pinned to the slit */
+.gw-glow { position: absolute; left: 88.3%; top: 50%; width: 0; height: 0; pointer-events: none; opacity: 0; }
+.gw-glow::before { content: ""; position: absolute; width: 42vmax; height: 62vmax; left: -21vmax; top: -31vmax; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(255,233,196,.7), rgba(244,177,94,.38) 38%, rgba(244,177,94,.1) 70%, rgba(244,177,94,0)); }
+.gw-glow2::before { background: radial-gradient(closest-side, rgba(255,246,228,.98), rgba(255,220,160,.55) 45%, rgba(244,177,94,0)); }
+/* a warm wash peaks while the two photographs cross, hiding their different perspectives */
+.gw-wash { position: absolute; inset: 0; opacity: 0; pointer-events: none; background: radial-gradient(130% 120% at 88% 50%, rgba(255,236,204,.92), rgba(244,177,94,.62) 42%, rgba(52,38,24,.55) 100%); }
+/* the legibility shade keeps the lockup area dark and the edges quiet */
+.gw-shade { position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(120% 95% at 56% 40%, rgba(4,5,10,0) 30%, rgba(4,5,10,.55) 100%), linear-gradient(180deg, rgba(4,5,10,.45), rgba(4,5,10,0) 28%, rgba(4,5,10,0) 62%, rgba(4,5,10,.55)); }
+
+/* ---- lockup (HTML, kept clear of the bright gate) ---- */
+.gw-lock { position: absolute; z-index: 2; display: grid; justify-items: center; gap: clamp(6px, 1.4vh, 14px); text-align: center;
+  left: 57%; top: 43%; transform: translate(-50%, -50%); width: min(44vw, 520px); }
+.gw-mark { width: clamp(56px, 7.5vw, 96px); height: auto; filter: drop-shadow(0 8px 24px rgba(244,177,94,.22)); }
 .gw-name { font: 800 clamp(2.6rem, 6vw, 4.8rem)/1.2 'Noto Kufi Arabic', 'IBM Plex Sans Arabic', sans-serif;
-  background: linear-gradient(180deg, #FFE9C4, var(--amber) 70%, var(--bronze)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  background: linear-gradient(180deg, #FFE9C4, var(--amber) 70%, #8B683F); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .gw-latin { font: 400 clamp(.78rem, 1.5vw, 1rem)/1 'IBM Plex Sans Arabic', sans-serif; letter-spacing: .66em; padding-inline-start: .66em; direction: ltr; color: var(--sand); }
-.gw-tag { color: #B9B09A; font-size: clamp(.92rem, 1.5vw, 1.05rem); max-width: 26em; text-wrap: balance; margin-top: 6px; }
+.gw-tag { color: #C4BBA6; font-size: clamp(.92rem, 1.5vw, 1.05rem); max-width: 26em; text-wrap: balance; margin-top: 6px; }
 .gw-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 8px; }
-.gw-btn { min-height: 48px; padding: 0 26px; border-radius: 999px; font: 500 1rem 'IBM Plex Sans Arabic', sans-serif; cursor: pointer; touch-action: manipulation; border: 1px solid rgba(217,201,167,.35); background: rgba(11,11,13,.4); color: var(--mist); display: inline-flex; align-items: center; gap: 10px; transition: background-color .25s, border-color .25s, transform .25s; }
+.gw-btn { min-height: 48px; padding: 0 26px; border-radius: 999px; font: 500 1rem 'IBM Plex Sans Arabic', sans-serif; cursor: pointer; touch-action: manipulation; border: 1px solid rgba(217,201,167,.4); background: rgba(4,5,10,.5); color: var(--mist); display: inline-flex; align-items: center; gap: 10px; transition: background-color .25s, border-color .25s, transform .25s; }
 .gw-btn:hover { border-color: var(--amber); }
 .gw-btn.primary { background: linear-gradient(180deg, #FFD9A0, var(--amber)); color: #0B0B0D; border-color: transparent; font-weight: 700; }
 .gw-btn.primary:hover { transform: translateY(-2px); filter: brightness(1.06); }
 .gw-btn:focus-visible { outline: 2px solid #FFF1D6; outline-offset: 3px; }
 
-/* ---------- opening: a point of light -> the slit forms -> the gate stands (≈2.6s) ---------- */
+/* ---- STATE 1: closed gate (≈2.4s intro) ---- */
 #gateway:not(.gw-run) .gw-lock > * { opacity: 0; }
-#gateway.gw-run .gw-pt   { animation: gwPoint 1.1s ease-out .1s both, gwPointOut .5s ease-in 1.0s forwards; }
-#gateway.gw-run .gw-seal { animation: gwSeal .95s cubic-bezier(.6,0,.2,1) .55s both; }
-#gateway.gw-run .gw-veil { animation: gwFade .6s ease-out .7s both; }
-#gateway.gw-run .gw-rim  { animation: gwFade 1s ease-out 1.1s forwards, gwBreath 4.4s ease-in-out 2.2s infinite; }
-#gateway.gw-run .gw-mark  { animation: gwRise .7s cubic-bezier(.2,.7,.2,1) 1.25s both; }
-#gateway.gw-run .gw-name  { animation: gwRise .7s cubic-bezier(.2,.7,.2,1) 1.45s both; }
-#gateway.gw-run .gw-latin { animation: gwRise .6s cubic-bezier(.2,.7,.2,1) 1.7s both; }
-#gateway.gw-run .gw-tag   { animation: gwRise .6s cubic-bezier(.2,.7,.2,1) 1.9s both; }
-#gateway.gw-run .gw-skip  { animation: gwRise .5s ease-out .5s both; }
-#gateway.gw-run .gw-go    { animation: gwRise .6s cubic-bezier(.2,.7,.2,1) 2.05s both; }
-@keyframes gwPoint    { from { opacity: 0; transform: scale(.4) } to { opacity: 1; transform: scale(1) } }
-@keyframes gwPointOut { to { opacity: 0 } }
-@keyframes gwSeal     { from { transform: scaleY(1) } to { transform: scaleY(0) } }
-@keyframes gwFade     { from { opacity: 0 } to { opacity: 1 } }
-@keyframes gwBreath   { 0%,100% { opacity: 1 } 50% { opacity: .7 } }
-@keyframes gwRise     { from { opacity: 0; transform: translateY(14px) } to { opacity: 1; transform: none } }
+#gateway.gw-run .gw-closed { animation: gwFade 1.1s ease-out both; }
+#gateway.gw-run .gw-glow1 { animation: gwFade 1.4s ease-out .5s forwards, gwBreath 5s ease-in-out 2s infinite; }
+#gateway.gw-run .gw-mark  { animation: gwRise .7s cubic-bezier(.2,.7,.2,1) 1.0s both; }
+#gateway.gw-run .gw-name  { animation: gwRise .7s cubic-bezier(.2,.7,.2,1) 1.2s both; }
+#gateway.gw-run .gw-latin { animation: gwRise .6s cubic-bezier(.2,.7,.2,1) 1.45s both; }
+#gateway.gw-run .gw-tag   { animation: gwRise .6s cubic-bezier(.2,.7,.2,1) 1.65s both; }
+#gateway.gw-run .gw-skip  { animation: gwRise .5s ease-out .4s both; }
+#gateway.gw-run .gw-go    { animation: gwRise .6s cubic-bezier(.2,.7,.2,1) 1.85s both; }
+@keyframes gwFade   { from { opacity: 0 } to { opacity: 1 } }
+@keyframes gwBreath { 0%,100% { opacity: .85 } 50% { opacity: .55 } }
+@keyframes gwRise   { from { opacity: 0; transform: translateY(14px) } to { opacity: 1; transform: none } }
 
-/* portrait: slit stays centred, lockup sits below it */
+/* ---- portrait: the gate edge stays in frame; lockup sits in the dark lower area ---- */
 @media (max-aspect-ratio: 1/1) {
-  .gw-lock { left: 0; right: 0; margin-inline: auto; top: auto; bottom: max(24px, env(safe-area-inset-bottom)); transform: none; width: min(92vw, 440px); gap: 8px; }
-  .gw-mark { width: clamp(52px, 15vw, 76px); }
-  .gw-name { font-size: clamp(2.4rem, 12vw, 3.6rem); }
+  .gw-box { right: -30vw; }                       /* push the gate toward the right edge so the lockup stays clear of the light */
+  .gw-cam { transform-origin: 85% 52%; }
+  .gw-lock { left: 50%; top: auto; bottom: max(22px, env(safe-area-inset-bottom)); transform: translateX(-50%); width: min(92vw, 440px); gap: 8px; }
+  .gw-mark { width: clamp(48px, 14vw, 70px); }
+  .gw-name { font-size: clamp(2.3rem, 11.5vw, 3.4rem); }
+  .gw-shade { background: linear-gradient(180deg, rgba(4,5,10,.35), rgba(4,5,10,0) 24%, rgba(4,5,10,.2) 45%, rgba(4,5,10,.9) 82%); }
 }
-@media (max-height: 520px) and (min-aspect-ratio: 1/1) { .gw-tag { display: none; } .gw-mark { display: none; } }
+@media (max-height: 520px) and (min-aspect-ratio: 1/1) { .gw-tag, .gw-mark { display: none; } }
 
-/* reduced motion: static composition, no loops */
+/* ---- reduced motion: the closed gate is shown statically; entering is a plain fade ---- */
 @media (prefers-reduced-motion: reduce) {
-  #gateway .gw-pt { opacity: 0; } #gateway .gw-seal { transform: scaleY(0); } #gateway .gw-rim, #gateway .gw-veil { opacity: 1; }
+  #gateway .gw-closed { opacity: 1; animation: none !important; }
+  #gateway .gw-glow1 { opacity: .7; animation: none !important; }
   #gateway.gw-run *, #gateway:not(.gw-run) * { animation: none !important; }
   #gateway:not(.gw-run) .gw-lock > * { opacity: 1; }
   .gw-btn { transition: none; }
@@ -78,16 +83,3 @@ html.gw-wait .fa, html.gw-wait .fb, html.gw-wait .fc { animation-play-state: pau
 /* replay link (footer) */
 .gw-replay { font: inherit; color: var(--cyan, #4FD8E8); background: none; border: 0; cursor: pointer; padding: 10px 0; min-height: 44px; margin-inline-start: 18px; text-decoration: underline; text-underline-offset: 4px; }
 .gw-replay:focus-visible { outline: 2px solid var(--cyan, #4FD8E8); outline-offset: 3px; border-radius: 4px; }
-
-@media (max-aspect-ratio: 1/1) { .gw-lock::before { content: ""; position: absolute; inset: -40px -24px -40px; z-index: -1; background: radial-gradient(closest-side, rgba(11,11,13,.92) 55%, rgba(11,11,13,0)); } }
-.gw-vig { pointer-events: none; }
-
-.gw-bloom { position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0;
-  background: radial-gradient(75vmax circle at 35% 58%, rgba(226,248,255,.95), rgba(79,216,232,.5) 38%, rgba(124,108,255,.25) 60%, rgba(124,108,255,0) 80%); }
-
-/* world after entering: the supplied night-scene photograph, framed so the three gates sit left of the slit */
-.gw-world { overflow: hidden; background: #05070D; }
-.gw-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 30% 50%; }
-.gw-veil { position: absolute; top: 0; bottom: 0; left: 33.4%; width: 3.3%; opacity: 0; pointer-events: none;
-  background: linear-gradient(180deg, rgba(255,233,196,.55), #FFE3B0 35%, #F4B15E 70%, rgba(201,143,74,.75)); }
-@media (max-aspect-ratio: 1/1) { .gw-veil { left: 45%; width: 10%; } .gw-photo { object-position: 9.5% 50%; } }
