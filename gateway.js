@@ -23,7 +23,7 @@
   }
   function fontsReady() {
     var t = new Promise(function (r) { setTimeout(r, 900); });
-    var f = (document.fonts && document.fonts.load) ? document.fonts.load('700 1em Amiri', 'الصايل') : Promise.resolve();
+    var f = (document.fonts && document.fonts.load) ? document.fonts.load('800 1em "Noto Kufi Arabic"', 'الصايل') : Promise.resolve();
     return Promise.race([f.catch(function () {}), t]);
   }
   function reset() {
@@ -66,7 +66,6 @@
     A(el.querySelector('.gw-slabR'), kfR, { duration: 1500, delay: 80, easing: 'cubic-bezier(.5,0,.3,1)' });
     A(el.querySelector('.gw-cam'), [{ transform: 'scale(1)' }, { transform: 'scale(1.45)' }], { duration: 1600, delay: 80, easing: 'cubic-bezier(.55,.05,.4,1)' });
     A(el.querySelector('.gw-veil'), [{ opacity: 1 }, { opacity: 0 }], { duration: 500, delay: 60, easing: 'ease-out' });
-    A(el.querySelector('.gw-fig'), [{ opacity: 0 }, { opacity: 1 }], { duration: 500, delay: 500, easing: 'ease-out' });
     A(el.querySelector('.gw-bloom'), [{ opacity: 0 }, { opacity: .9, offset: .55 }, { opacity: .55 }], { duration: 800, delay: 800, easing: 'ease-in-out' });
     setTimeout(function () { root.classList.remove('gw-wait'); }, 1250);       // hero entrance starts under the fading overlay
     A(el, [{ opacity: 1 }, { opacity: 0 }], { duration: 650, delay: 1350, easing: 'ease-out' }).finished.then(finish, finish);

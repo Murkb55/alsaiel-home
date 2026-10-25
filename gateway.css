@@ -30,7 +30,7 @@ html.gw-wait .fa, html.gw-wait .fb, html.gw-wait .fc { animation-play-state: pau
 .gw-lock { position: absolute; z-index: 2; display: grid; justify-items: center; gap: clamp(8px, 1.6vh, 16px); text-align: center;
   right: clamp(24px, 7vw, 120px); top: 50%; transform: translateY(-50%); width: min(38vw, 480px); }
 .gw-mark { width: clamp(64px, 9vw, 112px); height: auto; filter: drop-shadow(0 8px 24px rgba(244,177,94,.22)); }
-.gw-name { font: 700 clamp(2.8rem, 6.4vw, 5.2rem)/1.1 'Amiri', 'Noto Kufi Arabic', serif;
+.gw-name { font: 800 clamp(2.6rem, 6vw, 4.8rem)/1.2 'Noto Kufi Arabic', 'IBM Plex Sans Arabic', sans-serif;
   background: linear-gradient(180deg, #FFE9C4, var(--amber) 70%, var(--bronze)); -webkit-background-clip: text; background-clip: text; color: transparent; }
 .gw-latin { font: 400 clamp(.78rem, 1.5vw, 1rem)/1 'IBM Plex Sans Arabic', sans-serif; letter-spacing: .66em; padding-inline-start: .66em; direction: ltr; color: var(--sand); }
 .gw-tag { color: #B9B09A; font-size: clamp(.92rem, 1.5vw, 1.05rem); max-width: 26em; text-wrap: balance; margin-top: 6px; }
@@ -84,4 +84,4 @@ html.gw-wait .fa, html.gw-wait .fb, html.gw-wait .fc { animation-play-state: pau
 .gw-vig { pointer-events: none; }
 
 .gw-bloom { position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0;
-  background: radial-gradient(75vmax circle at 35% 55%, rgba(255,233,196,.95), rgba(244,177,94,.45) 42%, rgba(244,177,94,0) 78%); }
+  background: radial-gradient(75vmax circle at 35% 58%, rgba(226,248,255,.95), rgba(79,216,232,.5) 38%, rgba(124,108,255,.25) 60%, rgba(124,108,255,0) 80%); }
