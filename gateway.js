@@ -27,7 +27,7 @@
     return Promise.race([f.catch(function () {}), t]);
   }
   function reset() {
-    el.getAnimations({ subtree: true }).forEach(function (a) { a.cancel(); });
+    try { el.getAnimations({ subtree: true }).forEach(function (a) { a.cancel(); }); } catch (e) {}
     el.classList.remove('gw-run'); el.removeAttribute('style');
   }
 
@@ -41,10 +41,15 @@
     fontsReady().then(function () { if (state === 'open') requestAnimationFrame(function () { el.classList.add('gw-run'); }); });
   }
 
-  function A(node, kf, o) { return node.animate(kf, Object.assign({ fill: 'forwards', easing: 'cubic-bezier(.6,0,.2,1)' }, o)); }
+  /* every animation is best-effort: if a browser rejects one, the others and the close still run */
+  function A(node, kf, o) {
+    try { return node.animate(kf, Object.assign({ fill: 'forwards', easing: 'cubic-bezier(.6,0,.2,1)' }, o)); }
+    catch (e) { return { finished: Promise.resolve() }; }
+  }
+  var guard = 0;
 
   function finish() {
-    reset();
+    clearTimeout(guard); reset();
     root.classList.remove('gw-on', 'gw-wait');
     setInert(false); remember(); state = 'idle';
     var h = document.querySelector('.hero h1'); if (h) { h.setAttribute('tabindex', '-1'); h.focus({ preventScroll: true }); }
@@ -53,6 +58,7 @@
   function close(mode) {
     if (state !== 'open') return;
     state = 'closing';
+    guard = setTimeout(finish, mode === 'skip' || reduce.matches ? 900 : 2800);   // never leave the visitor stuck behind the overlay
     if (reduce.matches || mode === 'skip') {
       root.classList.remove('gw-wait');
       A(el, [{ opacity: 1 }, { opacity: 0 }], { duration: reduce.matches ? 200 : 260, easing: 'ease-out' }).finished.then(finish, finish);
@@ -60,8 +66,9 @@
     }
     /* 03 opening → 04 expanding → 05 transition */
     A(el.querySelector('.gw-lock'), [{ opacity: 1 }, { opacity: 0 }], { duration: 320, easing: 'ease-out' });
-    var kfL = [{ transform: 'translateX(0)' }, { transform: 'translateX(calc(var(--gw-mid) * -1))', offset: .5 }, { transform: 'translateX(calc(var(--gw-end) * -1))' }];
-    var kfR = [{ transform: 'translateX(0)' }, { transform: 'translateX(var(--gw-mid))', offset: .5 }, { transform: 'translateX(var(--gw-end))' }];
+    var mid = Math.round(innerWidth * (innerHeight > innerWidth ? .38 : .27)), end = Math.round(innerWidth * 1.2);
+    var kfL = [{ transform: 'translateX(0px)' }, { transform: 'translateX(' + (-mid) + 'px)', offset: .5 }, { transform: 'translateX(' + (-end) + 'px)' }];
+    var kfR = [{ transform: 'translateX(0px)' }, { transform: 'translateX(' + mid + 'px)', offset: .5 }, { transform: 'translateX(' + end + 'px)' }];
     A(el.querySelector('.gw-slabL'), kfL, { duration: 1500, delay: 80, easing: 'cubic-bezier(.5,0,.3,1)' });
     A(el.querySelector('.gw-slabR'), kfR, { duration: 1500, delay: 80, easing: 'cubic-bezier(.5,0,.3,1)' });
     A(el.querySelector('.gw-cam'), [{ transform: 'scale(1)' }, { transform: 'scale(1.45)' }], { duration: 1600, delay: 80, easing: 'cubic-bezier(.55,.05,.4,1)' });

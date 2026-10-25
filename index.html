@@ -22,7 +22,8 @@
 <script>document.documentElement.classList.add('js');</script>
 <script>/* Gateway policy: show on first visit, then at most every 30 days. ?intro=1 forces, ?intro=0 or a #hash skips. */
 (function(){try{var d=document.documentElement,p=new URLSearchParams(location.search),q=p.get('intro'),show=false;
-if(q==='1')show=true;else if(q==='0'||location.hash.length>1)show=false;
+var local=/^(localhost|127\.0\.0\.1)$/.test(location.hostname)||location.protocol==='file:';
+if(q==='1')show=true;else if(q==='0'||location.hash.length>1)show=false;else if(local)show=true;
 else{var r=localStorage.getItem('alsaiel.gateway.v1');show=!r||(Date.now()-(JSON.parse(r).t||0))>2592e6}
 if(show)d.classList.add('gw-on','gw-wait')}catch(e){}})();</script>
 <link rel="stylesheet" href="gateway.css">
