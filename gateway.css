@@ -90,4 +90,4 @@ html.gw-wait .fa, html.gw-wait .fb, html.gw-wait .fc { animation-play-state: pau
 .gw-photo { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 30% 50%; }
 .gw-veil { position: absolute; top: 0; bottom: 0; left: 33.4%; width: 3.3%; opacity: 0; pointer-events: none;
   background: linear-gradient(180deg, rgba(255,233,196,.55), #FFE3B0 35%, #F4B15E 70%, rgba(201,143,74,.75)); }
-@media (max-aspect-ratio: 1/1) { .gw-veil { left: 45%; width: 10%; } .gw-photo { object-position: 24% 50%; } }
+@media (max-aspect-ratio: 1/1) { .gw-veil { left: 45%; width: 10%; } .gw-photo { object-position: 9.5% 50%; } }
