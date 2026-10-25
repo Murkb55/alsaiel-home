@@ -1,0 +1,105 @@
+/* ALSAIEL Digital Gateway — entry overlay.
+   Only transform/opacity are animated. The overlay is hidden unless <html> has .gw-on
+   (set by the inline policy script in <head>), so without JS the site is shown directly. */
+#gateway { display: none; }
+html.gw-on { overflow: hidden; }
+html.gw-on #gateway { display: grid; }
+
+/* Hold the hero's entrance animation until the gateway opens */
+html.gw-wait .hero h1 .w > span, html.gw-wait .lead, html.gw-wait .cta,
+html.gw-wait .fa, html.gw-wait .fb, html.gw-wait .fc { animation-play-state: paused !important; }
+
+#gateway {
+  --gw-bg: #05060B; --gw-accent: #F4B86A; --gw-accent-2: #FFD9A0; --gw-pillar: #E9ECF8; --gw-pillar-op: .92;
+  --gw-door: #0A0D16; --gw-text: #EEF1FB; --gw-muted: #9AA4C0;
+  position: fixed; inset: 0; z-index: 1000; background: var(--gw-bg); color: var(--gw-text);
+  place-items: center; overflow: hidden; isolation: isolate;
+  padding: max(16px, env(safe-area-inset-top)) 16px max(16px, env(safe-area-inset-bottom));
+}
+#gateway[data-gw="monument"] { --gw-bg: #07080D; --gw-accent: #CFE8F2; --gw-accent-2: #FFFFFF; --gw-pillar: #AEB6CC; --gw-pillar-op: 1; --gw-door: #11141F; }
+#gateway[data-gw="minimal"]  { --gw-bg: #06070C; --gw-accent: #EEF1FB; --gw-accent-2: #FFFFFF; --gw-pillar: transparent; --gw-door: #06070C; }
+
+/* ambient light */
+.gw-glow { position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(60vmax circle at 50% 46%, color-mix(in srgb, var(--gw-accent) 20%, transparent), transparent 62%),
+              radial-gradient(40vmax circle at 50% 100%, rgba(124,108,255,.12), transparent 70%); opacity: 0; }
+.gw-dust { position: absolute; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; }
+.gw-dust i { position: absolute; width: 3px; height: 3px; border-radius: 50%; background: var(--gw-accent); opacity: 0; }
+#gateway[data-gw="minimal"] .gw-dust { display: none; }
+
+.gw-stage { display: grid; justify-items: center; gap: clamp(10px, 2.2vh, 22px); width: min(100%, 520px); text-align: center; }
+.gw-gate { width: min(46vw, 300px, 42svh * .77); aspect-ratio: 400 / 520; overflow: visible; }
+.gw-gate svg { width: 100%; height: 100%; display: block; overflow: visible; }
+.gw-gate .tb { transform-box: fill-box; }
+.gw-pillar { fill: url(#gwP); fill-opacity: var(--gw-pillar-op); }
+#gateway[data-gw="monument"] .gw-pillar { fill: var(--gw-pillar); }
+.gw-edge { fill: var(--gw-accent-2); opacity: .85; }
+.gw-fr { fill: none; stroke: var(--gw-accent); stroke-width: 1.4; transform-box: fill-box; transform-origin: center; opacity: 0; }
+#gateway[data-gw="minimal"] .gw-pillar { stroke: var(--gw-text); stroke-width: 1.5; stroke-opacity: .8; }
+.gw-rail { fill: var(--gw-text); fill-opacity: .55; }
+.gw-dia { fill: var(--gw-accent); }
+.gw-light { opacity: 0; }
+
+.gw-name { font: 800 clamp(2.4rem, 8vw, 4.4rem)/1.15 'Noto Kufi Arabic', 'IBM Plex Sans Arabic', sans-serif; letter-spacing: 0; }
+.gw-latin { font: 500 clamp(.8rem, 2.4vw, 1rem)/1 'IBM Plex Sans Arabic', sans-serif; letter-spacing: .62em; padding-inline-start: .62em; direction: ltr; color: var(--gw-muted); }
+.gw-tag { color: var(--gw-muted); font-size: clamp(.95rem, 2.6vw, 1.1rem); max-width: 28em; text-wrap: balance; }
+.gw-actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 4px; }
+.gw-btn { min-height: 48px; padding: 0 26px; border-radius: 999px; font: 500 1rem 'IBM Plex Sans Arabic', sans-serif; cursor: pointer; touch-action: manipulation; border: 1px solid rgba(238,241,251,.25); background: transparent; color: var(--gw-text); display: inline-flex; align-items: center; gap: 10px; transition: background-color .25s, border-color .25s, transform .25s; }
+.gw-btn:hover { border-color: var(--gw-accent); }
+.gw-btn.primary { background: var(--gw-accent); color: #0B0E16; border-color: transparent; font-weight: 700; }
+.gw-btn.primary:hover { background: var(--gw-accent-2); transform: translateY(-2px); }
+.gw-btn:focus-visible { outline: 2px solid var(--gw-accent-2); outline-offset: 3px; }
+
+.gw-bloom { position: absolute; inset: 0; z-index: 3; pointer-events: none; opacity: 0;
+  background: radial-gradient(70vmax circle at 50% 46%, color-mix(in srgb, var(--gw-accent-2) 70%, transparent), color-mix(in srgb, var(--gw-accent) 30%, transparent) 40%, transparent 72%); }
+
+/* ---------- opening sequence (≈2.7s) ---------- */
+#gateway.gw-run .gw-glow   { animation: gwFade 1.4s ease-out forwards; }
+#gateway.gw-run .gw-dust i { animation: gwDust var(--d, 9s) ease-in-out var(--l, 0s) infinite; }
+#gateway.gw-run .gw-base   { animation: gwScaleX .6s cubic-bezier(.2,.7,.2,1) both; transform-origin: center; }
+#gateway.gw-run .gw-pl     { animation: gwScaleY .85s cubic-bezier(.2,.7,.2,1) .15s both; transform-origin: 50% 100%; }
+#gateway.gw-run .gw-lintel { animation: gwScaleX .55s cubic-bezier(.2,.7,.2,1) .8s both; transform-origin: center; }
+#gateway.gw-run .gw-light  { animation: gwFade .9s ease-out 1.05s forwards, gwBreath 4.2s ease-in-out 2s infinite; }
+#gateway.gw-run .gw-fr1   { animation: gwFr .7s ease-out 1.15s forwards; }
+#gateway.gw-run .gw-fr2   { animation: gwFr .7s ease-out 1.3s forwards; }
+#gateway.gw-run .gw-fr3   { animation: gwFr .7s ease-out 1.45s forwards; }
+#gateway.gw-run .gw-dia    { animation: gwFade .5s ease-out 1.3s both, gwBreath 3.4s ease-in-out 1.9s infinite; }
+#gateway.gw-run .gw-name   { animation: gwRise .7s cubic-bezier(.2,.7,.2,1) 1.35s both; }
+#gateway.gw-run .gw-latin  { animation: gwRise .6s cubic-bezier(.2,.7,.2,1) 1.6s both; }
+#gateway.gw-run .gw-tag    { animation: gwRise .6s cubic-bezier(.2,.7,.2,1) 1.85s both; }
+#gateway.gw-run .gw-skip   { animation: gwRise .5s ease-out .45s both; }
+#gateway.gw-run .gw-go     { animation: gwRise .6s cubic-bezier(.2,.7,.2,1) 2.05s both; }
+/* before .gw-run the overlay shows nothing but its background (avoids a flash of unstyled content) */
+#gateway:not(.gw-run) .gw-stage > * { opacity: 0; }
+#gateway:not(.gw-run) .gw-actions .gw-btn { opacity: 0; }
+@keyframes gwFade   { from { opacity: 0 } to { opacity: 1 } }
+@keyframes gwBreath { 0%,100% { opacity: 1 } 50% { opacity: .72 } }
+@keyframes gwFr { from { opacity: 0 } to { opacity: .6 } }
+@keyframes gwScaleX { from { transform: scaleX(0) } to { transform: scaleX(1) } }
+@keyframes gwScaleY { from { transform: scaleY(0) } to { transform: scaleY(1) } }
+@keyframes gwRise   { from { opacity: 0; transform: translateY(14px) } to { opacity: 1; transform: none } }
+@keyframes gwDust   { 0% { opacity: 0; transform: translate3d(0,0,0) } 20% { opacity: .55 } 80% { opacity: .25 } 100% { opacity: 0; transform: translate3d(var(--x, 14px), -90px, 0) } }
+#gateway.gw-run .gw-stage > .gw-gate { opacity: 1; }
+#gateway:not(.gw-run) .gw-stage > .gw-gate { opacity: 1; }
+
+/* reduced motion: static composition, no loops */
+@media (prefers-reduced-motion: reduce) {
+  #gateway .gw-glow { opacity: 1; animation: none !important; }
+  #gateway .gw-dust { display: none; }
+  #gateway .gw-light { opacity: 1; animation: none !important; }
+  #gateway .gw-fr { opacity: .6; animation: none !important; }
+  #gateway.gw-run *, #gateway:not(.gw-run) * { animation: none !important; }
+  #gateway:not(.gw-run) .gw-stage > *, #gateway:not(.gw-run) .gw-actions .gw-btn { opacity: 1; }
+  .gw-btn { transition: none; }
+}
+@media (max-height: 560px) { .gw-gate { width: min(28vw, 150px); } .gw-tag { display: none; } }
+
+/* replay link (footer) */
+.gw-replay { font: inherit; color: var(--cyan, #4FD8E8); background: none; border: 0; cursor: pointer; padding: 10px 0; min-height: 44px; margin-inline-start: 18px; text-decoration: underline; text-underline-offset: 4px; }
+.gw-replay:focus-visible { outline: 2px solid var(--cyan, #4FD8E8); outline-offset: 3px; border-radius: 4px; }
+.gw-core { transform-box: fill-box; transform-origin: center; }
+/* minimal tone: outline pillars, softer light */
+#gateway[data-gw="minimal"] .gw-pillar { fill: none; stroke: var(--gw-text); stroke-width: 1.5; stroke-opacity: .85; }
+#gateway[data-gw="minimal"] .gw-edge { display: none; }
+#gateway[data-gw="minimal"] .gw-light { fill-opacity: .38; }
+#gateway[data-gw="minimal"] .gw-core { display: none; }
